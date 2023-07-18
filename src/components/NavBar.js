@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "../styles/navbar.css";
 import taskLogo from "../images/taskLogo.png";
 
-const NavBar = () => {
+const NavBar = ({ userId, onLogout }) => {
   return (
     <>
       <div className="navbar">
@@ -17,9 +17,20 @@ const NavBar = () => {
             <Link to="create-task">Create Task</Link>
           </li>
         </ul>
-        <div className="signin-button">
-          <button className="signin">SIGN IN</button>
-        </div>
+        {userId ? (
+          <button className="navbar-signout" type="submit" onClick={onLogout}>
+            Sign out
+          </button>
+        ) : (
+          <div className="navbar-login">
+            <Link className="navbar-links-auth" to="create-account">
+              <button className="auth-button">Create Account</button>
+            </Link>
+            <Link className="navbar-links-auth" to="sign-in">
+              <button className="auth-button">Sign In</button>
+            </Link>
+          </div>
+        )}
       </div>
     </>
   );

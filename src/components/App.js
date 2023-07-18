@@ -6,6 +6,8 @@ import "../styles/app.css";
 import NavBar from "../components/NavBar";
 import Dashboard from "./Dashboard";
 import CreateTask from "./CreateTask";
+import CreateAccount from "./CreateAccount";
+import SignIn from "./SignIn";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Routes>
           <Route path="dashboard" element={<Dashboard />}></Route>
           <Route path="create-task" element={<CreateTask />}></Route>
+          <Route path="create-account" element={<CreateAccount />}></Route>
+          <Route path="sign-in" element={<SignIn />}></Route>
         </Routes>
       </Router>
     </div>
