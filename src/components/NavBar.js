@@ -7,7 +7,11 @@ const NavBar = ({ userId, onLogout }) => {
   return (
     <>
       <div className="navbar">
-        <img src={taskLogo} alt="clinic-task-logo" class="navbar-logo"></img>
+        <img
+          src={taskLogo}
+          alt="clinic-task-logo"
+          className="navbar-logo"
+        ></img>
         <h2 className="navbar-title">CTM</h2>
         <ul className="navbar-links">
           <li className="navbar-links-item">
