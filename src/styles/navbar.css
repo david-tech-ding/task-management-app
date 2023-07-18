@@ -1,0 +1,32 @@
+.navbar-logo{
+    max-width: 60px;
+    max-height: 45px;
+    margin-right: 1em;
+    padding: 1em;
+    align-self: center;
+}
+.navbar{
+    display: flex;
+}
+
+.navbar-title{
+    margin-right: 1em;
+    align-self: center;
+}
+
+.navbar-links{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center
+}
+
+.navbar-links-item{
+    list-style-type: none;
+    padding: 0 1em;
+}
+
+.signin-button{
+    margin-left: auto;
+    padding: 0.5em 1em;
+}
