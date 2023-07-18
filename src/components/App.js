@@ -8,18 +8,21 @@ import Dashboard from "./Dashboard";
 import CreateTask from "./CreateTask";
 import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
+import { TaskProvider } from "./TaskContext";
 
 function App() {
   return (
     <div className="App">
       <Router>
         <NavBar />
-        <Routes>
-          <Route path="dashboard" element={<Dashboard />}></Route>
-          <Route path="create-task" element={<CreateTask />}></Route>
-          <Route path="create-account" element={<CreateAccount />}></Route>
-          <Route path="sign-in" element={<SignIn />}></Route>
-        </Routes>
+        <TaskProvider>
+          <Routes>
+            <Route path="dashboard" element={<Dashboard />}></Route>
+            <Route path="create-task" element={<CreateTask />}></Route>
+            <Route path="create-account" element={<CreateAccount />}></Route>
+            <Route path="sign-in" element={<SignIn />}></Route>
+          </Routes>
+        </TaskProvider>
       </Router>
     </div>
   );

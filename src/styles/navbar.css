@@ -1,3 +1,7 @@
+:root{
+    --clr-blue: hsla(215, 100%, 50%, 1);
+    --clr-bg: hsla(220, 96%, 42%, 1);
+}
 .navbar-logo{
     max-width: 60px;
     max-height: 45px;
@@ -30,3 +34,17 @@
     margin-left: auto;
     padding: 1.2em 1em;
 }
+
+.auth-button{
+    position: relative;
+    margin: 0 0.5em;
+    font-size: 1rem;
+    cursor: pointer;
+    color: var(--clr-blue);
+    border: var(--clr-blue) 2.5px solid;
+    border-radius: 0.25em;
+    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+    box-shadow: inset 0 0 0.5em 0 var(--clr-blue), 0 0 0.5em 0 currentColor
+}
+
