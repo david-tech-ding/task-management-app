@@ -1,0 +1,42 @@
+.create-task {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-task-form {
+  padding: 10px;
+  margin-left: 10px;
+  max-width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.create-task-form_input {
+  margin-top: 5px;
+  margin-left: 20px;
+  border-radius: 5px;
+  border-width: 1.5px;
+  border-style: solid;
+  box-sizing: content-box;
+  height: 17px;
+}
+
+.create-task-form_select {
+  margin-top: 5px;
+  margin-left: 20px;
+  width: 145px;
+  padding: 1px 2px;
+  border-radius: 5px;
+  border-width: 1.5px;
+  border-style: solid;
+  box-sizing: content-box;
+}
+
+.create-task-form button {
+  margin-top: 10px;
+  border: 2px outset black;
+  border-radius: 5px;
+  padding: 0 5px;
+}
