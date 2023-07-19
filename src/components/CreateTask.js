@@ -2,13 +2,10 @@ import React, { useState, useContext } from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { TaskContext } from "./TaskContext";
 import "../styles/createtask.css";
 
 const CreateTask = () => {
   axios.defaults.baseURL = "https://api.trello.com/1";
-
-  const { addTask } = useContext(TaskContext);
 
   const [startDate, setStartDate] = useState(new Date());
 
@@ -27,8 +24,6 @@ const CreateTask = () => {
     axios
       .post("/cards", { ...fields })
       .then((res) => {
-        const createdTask = res.data;
-        addTask(createdTask);
         console.log(fields);
       })
       .catch((err) => console.log(err));
