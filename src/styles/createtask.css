@@ -13,6 +13,13 @@
   align-items: flex-end;
 }
 
+.create-task-form label {
+  display: flex; 
+  align-items: center; 
+  margin-bottom: 5px;
+}
+
+
 .create-task-form_input {
   margin-top: 5px;
   margin-left: 20px;
