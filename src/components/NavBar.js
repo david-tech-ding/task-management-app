@@ -1,9 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 import taskLogo from "../images/taskLogo.png";
 
 const NavBar = ({ userId, onLogout }) => {
+  const navigate = useNavigate();
+
   return (
     <>
       <div className="navbar">
@@ -11,8 +13,11 @@ const NavBar = ({ userId, onLogout }) => {
           src={taskLogo}
           alt="clinic-task-logo"
           className="navbar-logo"
+          onClick={() => navigate("/")}
         ></img>
-        <h2 className="navbar-title">CTM</h2>
+        <h2 className="navbar-title" onClick={() => navigate("/")}>
+          CTM
+        </h2>
         <ul className="navbar-links">
           <li className="navbar-links-item">
             <Link to="dashboard">Dashboard</Link>

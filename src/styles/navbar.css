@@ -8,6 +8,7 @@
     margin-right: 1em;
     padding: 1em;
     align-self: center;
+    cursor: pointer;
 }
 .navbar{
     display: flex;
@@ -16,6 +17,7 @@
 .navbar-title{
     margin-right: 1em;
     align-self: center;
+    cursor: pointer;
 }
 
 .navbar-links{
