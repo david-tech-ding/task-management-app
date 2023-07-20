@@ -7,30 +7,31 @@ import "../styles/createtask.css";
 const CreateTask = () => {
   axios.defaults.baseURL = "https://api.trello.com/1";
 
-  const [startDate, setStartDate] = useState(new Date());
+  const [date, setDate] = useState();
 
   const initialState = {
     fields: {
       title: "",
       details: "",
-      priorityLevel: "",
+      priorityLevel: "High",
       assignTo: "",
-      dueDate: { startDate },
+      dueDate: "",
     },
   };
   const [fields, setFields] = useState(initialState.fields);
   const handleCreateTask = (e) => {
     e.preventDefault();
+    console.log(fields);
     axios
       .post("/cards", { ...fields })
-      .then((res) => {
+      .then(() => {
         console.log(fields);
       })
       .catch((err) => console.log(err));
   };
-  const handleDateChange = (e) => {
-    e.preventDefault();
-    setStartDate(e.target.value);
+  const handleDateChange = (chosenDate) => {
+    setDate(chosenDate);
+    setFields({ ...fields, dueDate: chosenDate });
   };
   const handleFieldChange = (e) => {
     e.preventDefault();
@@ -98,8 +99,8 @@ const CreateTask = () => {
           Due Date
           <DatePicker
             className="create-task-form_input"
-            selected={startDate}
-            onDateChange={() => handleDateChange}
+            selected={date}
+            onChange={handleDateChange}
             id="dueDate"
             name="dueDate"
             value={fields.dueDate}
