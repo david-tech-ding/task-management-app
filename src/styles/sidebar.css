@@ -1,73 +1,77 @@
-.side-bar{
-    font-size: 13.5px;
-    width: 130px;
-    max-width: 200px;
-    height: 100vh;
-    margin-top: 1rem;
-    position: fixed;
-    top: 57px;
-    left: 0;
-    right: 0;
-    padding-top: 2rem;
-    padding-left: 1rem;
-    background-color: white;
-    text-align: left;
-    transition: width 0.5s;
+.side-bar {
+  font-size: 13.5px;
+  width: 130px;
+  max-width: 200px;
+  height: 100vh;
+  margin-top: 1rem;
+  position: fixed;
+  top: 57px;
+  left: 0;
+  right: 0;
+  padding-top: 2rem;
+  padding-left: 1rem;
+  background-color: white;
+  text-align: left;
+  transition: width 0.5s;
 }
 
 .logo-container {
   cursor: pointer;
 }
 
-.sidebar-logo{
-    padding-right: 3.5rem;
-    margin-bottom: 1rem;
+.sidebar-logo {
+  padding-right: 3.5rem;
+  margin-bottom: 1rem;
 }
 .collapsed {
-    width: 80px;
-  }
+  width: 80px;
+}
 
-.expanded{
-    width: 300px;
-    background-color: hsla(203, 81%, 61%, 1);
+.expanded {
+  width: 300px;
+  background-color: hsla(203, 81%, 61%, 1);
 }
 
 .logo-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-  
-  .side-bar.collapsed + .side-bar-content {
-    display: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
-.search-bar{
-    padding-top: 1em;
-    display: flex;
-    align-items: center;
-    margin-bottom: -8px;
-    width: max-content
+.side-bar.collapsed + .side-bar-content {
+  display: none;
 }
 
-.search-logo{
-    max-width: 20px;
-    padding: 0.5em 0 0.5em 0.5em;
+.search-bar {
+  padding-top: 1em;
+  display: flex;
+  align-items: center;
+  margin-bottom: -8px;
+  width: max-content;
 }
 
-input{
-    width: 59%;
-}
-.user-link, .priority-link{
-    text-decoration: none;
-    color: black
+.search-logo {
+  max-width: 20px;
+  padding: 0.5em 0 0.5em 0.5em;
 }
 
-.user, .priority, .sort-container{
-    padding-top: 30px;
+.search-bar input {
+  width: 59%;
+}
+.user-link,
+.priority-link {
+  text-decoration: none;
+  color: black;
 }
 
-.user-link:hover, .priority-link:hover{
-    font-weight: 800;
+.user,
+.priority,
+.sort-container {
+  padding-top: 30px;
+}
+
+.user-link:hover,
+.priority-link:hover {
+  font-weight: 800;
 }
