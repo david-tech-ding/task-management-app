@@ -3,7 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import qs from "qs";
 import "../styles/sidebar.css";
 import searchLogo from "../images/searchLogo.png";
-import sideBarLogo from "../images/sideBarLogo.png";
+import * as FaIcons from "react-icons/fa";
+import * as AiIcons from "react-icons/ai";
 
 const SideBar = () => {
   const { search } = useLocation();
@@ -44,7 +45,11 @@ const SideBar = () => {
   return (
     <div className={`side-bar ${sidebarVisible ? "expanded" : "collapsed"}`}>
       <div className="logo-container" onClick={toggleSidebar}>
-        <img src={sideBarLogo} alt="Sidebar Logo" className="sidebar-logo" />
+        {sidebarVisible ? (
+          <AiIcons.AiOutlineClose className="sidebar-logo" />
+        ) : (
+          <FaIcons.FaBars className="sidebar-logo" />
+        )}
       </div>
       {contentVisible && (
         <div className="side-bar-content">
@@ -74,26 +79,18 @@ const SideBar = () => {
               <b>Sort by</b>
               <div className="priority">
                 <Link
-                  to={buildQueryString("query", { priority: "High" })}
+                  to={buildQueryString("query", { priority: "priority" })}
                   className="priority-link"
                 >
-                  High Priority
+                  Priority
                 </Link>
               </div>
-              <div className="priority">
+              <div className="status">
                 <Link
-                  to={buildQueryString("query", { priority: "Medium" })}
-                  className="priority-link"
+                  to={buildQueryString("query", { priority: "status" })}
+                  className="status-link"
                 >
-                  Medium Priority
-                </Link>
-              </div>
-              <div className="priority">
-                <Link
-                  to={buildQueryString("query", { priority: "Low" })}
-                  className="priority-link"
-                >
-                  Low Priority
+                  Status
                 </Link>
               </div>
             </div>

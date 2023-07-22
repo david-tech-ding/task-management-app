@@ -12,7 +12,7 @@
     padding-left: 1rem;
     background-color: white;
     text-align: left;
-    transition: width 0.5s;
+    transition: width 1s;
 }
 
 .logo-container {
@@ -59,15 +59,15 @@
 input{
     width: 59%;
 }
-.user-link, .priority-link{
+.user-link, .priority-link, .status-link{
     text-decoration: none;
     color: black
 }
 
-.user, .priority, .sort-container{
+.user, .priority, .status, .sort-container{
     padding-top: 30px;
 }
 
-.user-link:hover, .priority-link:hover{
-    font-weight: 800;
+.user-link:hover, .priority-link:hover, .status-link:hover{
+    font-weight: 600;
 }
