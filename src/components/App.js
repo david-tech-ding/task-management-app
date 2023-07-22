@@ -11,6 +11,7 @@ import CreateTask from "./CreateTask";
 import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
 import SideBar from "./SideBar";
+import TaskCard from "./TaskCard";
 
 const App = () => {
   const [userId, setUserId] = useState("");
@@ -28,10 +29,21 @@ const App = () => {
     <div className="App">
       <NavBar onLogout={handleLogout} userId={userId} />
       <Routes>
-        <Route path="dashboard" element={<Dashboard />}></Route>
-        <Route path="create-task" element={<CreateTask />}></Route>
-        <Route path="create-account" element={<CreateAccount />}></Route>
-        <Route path="sign-in" element={<SignIn />}></Route>
+        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="create-task" element={<CreateTask />} />
+        <Route path="create-account" element={<CreateAccount />} />
+        <Route path="sign-in" element={<SignIn />} />
+        <Route
+          path="your-tasks"
+          element={
+            <TaskCard
+              title="test"
+              priorityLevel="High"
+              details="Some test details"
+              dueDate="Fri Jul 28 2023"
+            />
+          }
+        />
       </Routes>
       <SideBar />
     </div>
