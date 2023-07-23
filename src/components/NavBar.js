@@ -25,6 +25,9 @@ const NavBar = ({ userId, onLogout }) => {
           <li className="navbar-links-item">
             <Link to="create-task">Create Task</Link>
           </li>
+          <li className="navbar-links-item">
+            <Link to="create-user">Add New User</Link>
+          </li>
         </ul>
         {userId ? (
           <button className="navbar-signout" type="submit" onClick={onLogout}>

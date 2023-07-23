@@ -12,6 +12,7 @@ import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
 import SideBar from "./SideBar";
 import TaskCard from "./TaskCard";
+import CreateUser from "./CreateUser";
 
 const App = () => {
   const [userId, setUserId] = useState("");
@@ -41,9 +42,11 @@ const App = () => {
               priorityLevel="High"
               details="Some test details"
               dueDate="Fri Jul 28 2023"
+              status="In Progress"
             />
           }
         />
+        <Route path="create-user" element={<CreateUser />} />
       </Routes>
       <SideBar />
     </div>

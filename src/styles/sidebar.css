@@ -59,15 +59,15 @@
 .search-bar input {
   width: 59%;
 }
-.user-link, .priority-link{
+.user-link, .priority-link, .status-link{
     text-decoration: none;
     color: black
 }
 
-.user, .priority, .sort-container{
+.user, .priority, .status, .sort-container{
     padding-top: 30px;
 }
 
-.user-link:hover, .priority-link:hover{
+.user-link:hover, .priority-link:hover, .status-link:hover{
     font-weight: 800;
 }
