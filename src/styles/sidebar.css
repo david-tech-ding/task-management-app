@@ -1,18 +1,18 @@
-.side-bar {
-  font-size: 13.5px;
-  width: 130px;
-  max-width: 200px;
-  height: 100vh;
-  margin-top: 1rem;
-  position: fixed;
-  top: 57px;
-  left: 0;
-  right: 0;
-  padding-top: 2rem;
-  padding-left: 1rem;
-  background-color: white;
-  text-align: left;
-  transition: width 0.5s;
+.side-bar{
+    font-size: 13.5px;
+    width: 130px;
+    max-width: 200px;
+    height: 100vh;
+    margin-top: 1rem;
+    position: fixed;
+    top: 57px;
+    left: 0;
+    right: 0;
+    padding-top: 2rem;
+    padding-left: 1rem;
+    background-color: white;
+    text-align: left;
+    transition: width 0.5s;
 }
 
 .logo-container {
@@ -59,19 +59,15 @@
 .search-bar input {
   width: 59%;
 }
-.user-link,
-.priority-link {
-  text-decoration: none;
-  color: black;
+.user-link, .priority-link, .status-link{
+    text-decoration: none;
+    color: black
 }
 
-.user,
-.priority,
-.sort-container {
-  padding-top: 30px;
+.user, .priority, .status, .sort-container{
+    padding-top: 30px;
 }
 
-.user-link:hover,
-.priority-link:hover {
-  font-weight: 800;
+.user-link:hover, .priority-link:hover, .status-link:hover{
+    font-weight: 800;
 }

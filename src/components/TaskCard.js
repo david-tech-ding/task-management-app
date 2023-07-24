@@ -1,14 +1,18 @@
 import React, { useState } from "react";
 import "../styles/taskcard.css";
+import Status from "./Status";
 
-const TaskCard = ({ title, priorityLevel, details, dueDate }) => {
+const TaskCard = ({ title, priorityLevel, details, dueDate, status }) => {
   const [comment, setComment] = useState("");
 
   const handleChange = (e) => {
     e.preventDefault();
     setComment(e.target.value);
   };
-  const handleSaveComment = (e) => {};
+  const handleSaveComment = (e) => {
+    e.preventDefault();
+  };
+
 
   return (
     <div className="task-card-page">
@@ -20,6 +24,7 @@ const TaskCard = ({ title, priorityLevel, details, dueDate }) => {
           </div>
           <div className="task-card_due_date">To be completed by {dueDate}</div>
           <div className="task-card_details">{details}</div>
+          <Status className="task-card_status" status={status} />
           <form className="task-card_comments" onSubmit={handleSaveComment}>
             <input
               type="text"
