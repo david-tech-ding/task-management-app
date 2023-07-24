@@ -8,7 +8,7 @@ const TaskCard = ({ title, priorityLevel, details, dueDate }) => {
     e.preventDefault();
     setComment(e.target.value);
   };
-  const handleSaveComment = () => {};
+  const handleSaveComment = (e) => {};
 
   return (
     <div className="task-card-page">

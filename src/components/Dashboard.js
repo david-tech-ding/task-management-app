@@ -1,10 +1,11 @@
 import React from "react";
 import TaskSummary from "./TaskSummary";
 import { Link } from "react-router-dom";
+import "../styles/dashboard.css";
 
 const Dashboard = () => {
   return (
-    <div>
+    <div className="dashboard-page">
       <h1>Dashboard</h1>
       <TaskSummary
         title={

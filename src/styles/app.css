@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  display: grid;
+  grid-template-columns: 2fr 12fr;
 }
 
 .App-logo {
@@ -26,6 +28,16 @@
 
 .App-link {
   color: #61dafb;
+}
+
+.navbar {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+
+.sidebar {
+  grid-column-start: 1;
+  grid-column-end: 2;
 }
 
 @keyframes App-logo-spin {
