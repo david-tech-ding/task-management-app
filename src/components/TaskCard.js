@@ -13,6 +13,7 @@ const TaskCard = ({ title, priorityLevel, details, dueDate, status }) => {
     e.preventDefault();
   };
 
+
   return (
     <div className="task-card-page">
       <div className="task-card-grid">

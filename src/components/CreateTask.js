@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../styles/createtask.css";
 
 const CreateTask = () => {
-  axios.defaults.baseURL = "https://api.trello.com/1";
+  axios.defaults.baseURL = "http://localhost:3001";
 
   const [date, setDate] = useState();
 
@@ -23,7 +23,7 @@ const CreateTask = () => {
     e.preventDefault();
     console.log(fields);
     axios
-      .post("/cards", { ...fields })
+      .post("/task", { ...fields })
       .then(() => {
         console.log(fields);
       })

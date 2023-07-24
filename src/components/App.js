@@ -28,7 +28,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <NavBar onLogout={handleLogout} userId={userId} />
+      <NavBar className="navbar" onLogout={handleLogout} userId={userId} />
       <Routes>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="create-task" element={<CreateTask />} />
@@ -38,7 +38,7 @@ const App = () => {
           path="your-tasks"
           element={
             <TaskCard
-              title="test"
+              title="Test"
               priorityLevel="High"
               details="Some test details"
               dueDate="Fri Jul 28 2023"
@@ -48,7 +48,7 @@ const App = () => {
         />
         <Route path="create-user" element={<CreateUser />} />
       </Routes>
-      <SideBar />
+      <SideBar className="sidebar" />
     </div>
   );
 };
