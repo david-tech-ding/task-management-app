@@ -21,7 +21,7 @@ const CreateTask = () => {
   const [fields, setFields] = useState(initialState.fields);
   const handleCreateTask = (e) => {
     e.preventDefault();
-    console.log(fields);
+
     axios
       .post("/task", { ...fields })
       .then(() => {
