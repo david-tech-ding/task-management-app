@@ -16,12 +16,13 @@ const CreateTask = () => {
       priorityLevel: "High",
       assignTo: "",
       dueDate: "",
+      status: "Not started",
     },
   };
   const [fields, setFields] = useState(initialState.fields);
   const handleCreateTask = (e) => {
     e.preventDefault();
-    console.log(fields);
+
     axios
       .post("/task", { ...fields })
       .then(() => {

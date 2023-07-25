@@ -11,8 +11,8 @@ import CreateTask from "./CreateTask";
 import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
 import SideBar from "./SideBar";
-import TaskCard from "./TaskCard";
 import CreateUser from "./CreateUser";
+import TaskCardPage from "./TaskCardPage";
 
 const App = () => {
   const [userId, setUserId] = useState("");
@@ -32,20 +32,12 @@ const App = () => {
       <Routes>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="create-task" element={<CreateTask />} />
-        <Route path="create-account" element={<CreateAccount />} />
-        <Route path="sign-in" element={<SignIn />} />
         <Route
-          path="your-tasks"
-          element={
-            <TaskCard
-              title="Test"
-              priorityLevel="High"
-              details="Some test details"
-              dueDate="Fri Jul 28 2023"
-              status="In Progress"
-            />
-          }
+          path="create-account"
+          element={<CreateAccount onSetUser={setUserId} />}
         />
+        <Route path="sign-in" element={<SignIn onSetUser={setUserId} />} />
+        <Route path="your-tasks" element={<TaskCardPage />} />
         <Route path="create-user" element={<CreateUser />} />
       </Routes>
       <SideBar className="sidebar" />

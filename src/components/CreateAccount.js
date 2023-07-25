@@ -1,13 +1,16 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 import "../styles/auth-form.css";
 
 const CreateAccount = ({ onSetUser }) => {
+  axios.defaults.baseURL = "http://localhost:3001";
   const [newUser, setNewUser] = useState({
     email: "",
     password: "",
+    userName: "",
   });
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
@@ -19,6 +22,16 @@ const CreateAccount = ({ onSetUser }) => {
       .then((userCredential) => {
         const { user } = userCredential;
         onSetUser(user.uid);
+        axios
+          .post("/user", { ...newUser })
+          .then(
+            setNewUser({
+              email: "",
+              password: "",
+              userName: "",
+            })
+          )
+          .catch((err) => console.log(err));
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -47,6 +60,17 @@ const CreateAccount = ({ onSetUser }) => {
             type="password"
             name="password"
             id="create-account_password-input"
+          />
+        </label>
+        <label htmlFor="create-account_username-input">
+          Username
+          <input
+            className="auth-form_input"
+            onChange={handleChange}
+            value={newUser.userName}
+            type="userName"
+            name="userName"
+            id="create-account_username-input"
           />
         </label>
         <button

@@ -1,15 +1,7 @@
 import React from "react";
 import "../styles/tasksummary.css";
-import axios from "axios";
 
 const TaskSummary = ({ title, tasks }) => {
-  axios.defaults.baseURL = "https://api.trello.com/1";
-  //   const boardName = { title };
-
-  //   axios
-  //     .post("/boards", { boardName })
-  //     .then(console.log(boardName))
-  //     .catch((err) => console.log(err));
   const highPriorityTasks = tasks.filter(
     (task) => task.priorityLevel === "High"
   );
