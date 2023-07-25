@@ -6,6 +6,14 @@ import "../styles/taskcardpage.css";
 const TaskCardPage = () => {
   const [tasks, setTasks] = useState([]);
 
+  const handleStatusChange = async (e, taskId) => {
+    // await axios
+    //   .patch(`/task/${taskId}`)
+    //   .send({ status: e.target.value })
+    //   .then(console.log("Status updated"))
+    //   .catch((err) => console.log(err));
+  };
+
   useEffect(() => {
     axios
       .get("/task")
@@ -27,6 +35,8 @@ const TaskCardPage = () => {
               details={task.details}
               dueDate={task.dueDate}
               status={task.status}
+              id={task.id}
+              onStatusChange={handleStatusChange}
             />
           );
         })}

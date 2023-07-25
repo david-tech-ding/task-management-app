@@ -32,8 +32,11 @@ const App = () => {
       <Routes>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="create-task" element={<CreateTask />} />
-        <Route path="create-account" element={<CreateAccount />} />
-        <Route path="sign-in" element={<SignIn />} />
+        <Route
+          path="create-account"
+          element={<CreateAccount onSetUser={setUserId} />}
+        />
+        <Route path="sign-in" element={<SignIn onSetUser={setUserId} />} />
         <Route path="your-tasks" element={<TaskCardPage />} />
         <Route path="create-user" element={<CreateUser />} />
       </Routes>

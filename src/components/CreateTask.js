@@ -16,6 +16,7 @@ const CreateTask = () => {
       priorityLevel: "High",
       assignTo: "",
       dueDate: "",
+      status: "Not started",
     },
   };
   const [fields, setFields] = useState(initialState.fields);

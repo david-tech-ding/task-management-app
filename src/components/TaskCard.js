@@ -2,17 +2,24 @@ import React, { useState } from "react";
 import "../styles/taskcard.css";
 import Status from "./Status";
 
-const TaskCard = ({ title, priorityLevel, details, dueDate, status }) => {
-  const [comment, setComment] = useState("");
+const TaskCard = ({
+  title,
+  priorityLevel,
+  details,
+  dueDate,
+  status,
+  id,
+  onStatusChange,
+}) => {
+  const [comments, setComments] = useState([]);
 
   const handleChange = (e) => {
     e.preventDefault();
-    setComment(e.target.value);
+    setComments(e.target.value);
   };
   const handleSaveComment = (e) => {
     e.preventDefault();
   };
-
 
   return (
     <div className="task-card-page">
@@ -25,14 +32,24 @@ const TaskCard = ({ title, priorityLevel, details, dueDate, status }) => {
           <div className="task-card_due_date">To be completed by {dueDate}</div>
           <div className="task-card_details">{details}</div>
           <Status className="task-card_status" status={status} />
-          <form className="task-card_comments" onSubmit={handleSaveComment}>
+          <form className="task-card_form">
+            <select className="status-select" id="status-select">
+              <option value="Not Started">Not Started</option>
+              <option value="In Progress">In Progress</option>
+              <option value="Complete">Complete</option>
+            </select>
+            <button type="submit" onSubmit={() => onStatusChange(id)}>
+              Change Status
+            </button>
             <input
               type="text"
               placeholder="Write a comment..."
-              value={comment}
+              value={comments}
               onChange={handleChange}
             />
-            <button type="submit">Save</button>
+            <button type="submit" onSubmit={handleSaveComment}>
+              Save
+            </button>
           </form>
         </div>
       </div>
