@@ -25,7 +25,6 @@ const Dashboard = ({ user }) => {
 
   const combinedTasks = yourTasks.concat(tasksAssignedByYou);
   const allYourTasks = [...new Set(combinedTasks)];
-  console.log(allYourTasks);
 
   const tasksDueSoon = allYourTasks.filter((yourTask) => {
     const soonDue = new Date();
@@ -39,14 +38,28 @@ const Dashboard = ({ user }) => {
       <h1>{user}'s Dashboard</h1>
       <TaskSummary
         title={
-          <Link className="task-summary-link" to="/tasks">
+          <Link className="task-summary-link" to="/your-tasks">
             Your Tasks
           </Link>
         }
         tasks={yourTasks}
       />
-      <TaskSummary title="Tasks Assigned By You" tasks={tasksAssignedByYou} />
-      <TaskSummary title="Due Soon" tasks={tasksDueSoon} />
+      <TaskSummary
+        title={
+          <Link className="task-summary-link" to="/assigned-by-you">
+            Assigned By You
+          </Link>
+        }
+        tasks={tasksAssignedByYou}
+      />
+      <TaskSummary
+        title={
+          <Link className="task-summary-link" to="/due-soon">
+            Due Soon
+          </Link>
+        }
+        tasks={tasksDueSoon}
+      />
     </div>
   );
 };
