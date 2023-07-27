@@ -72,7 +72,18 @@ const App = () => {
               />
             }
           />
-          <Route path="tasks" element={<TaskCardPage />} />
+          <Route
+            path="your-tasks"
+            element={<TaskCardPage user={loggedInUser.userName} />}
+          />
+          <Route
+            path="assigned-by-you"
+            element={<TaskCardPage user={loggedInUser.userName} />}
+          />
+          <Route
+            path="due-soon"
+            element={<TaskCardPage user={loggedInUser.userName} />}
+          />
           <Route path="create-user" element={<CreateUser />} />
         </Routes>
       </div>
