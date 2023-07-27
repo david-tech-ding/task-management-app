@@ -47,3 +47,8 @@
   border-radius: 5px;
   padding: 0 5px;
 }
+
+.create-task-form button:active {
+  transform: scale(0.98);
+  box-shadow: 1px 0.5px 0.5px rgb(60, 59, 59);
+}

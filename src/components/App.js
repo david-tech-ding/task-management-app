@@ -10,7 +10,6 @@ import Dashboard from "./Dashboard";
 import CreateTask from "./CreateTask";
 import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
-import SideBar from "./SideBar";
 import CreateUser from "./CreateUser";
 import TaskCardPage from "./TaskCardPage";
 
@@ -44,7 +43,7 @@ const App = () => {
           theme={theme}
         />
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route path="/" element={<Dashboard userId={userId}/>} />
           <Route path="create-task" element={<CreateTask />} />
           <Route
             path="create-account"
@@ -54,7 +53,6 @@ const App = () => {
           <Route path="your-tasks" element={<TaskCardPage />} />
           <Route path="create-user" element={<CreateUser />} />
         </Routes>
-        <SideBar className="sidebar" />
       </div>
     </ThemeContext.Provider>
   );
