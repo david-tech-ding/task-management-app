@@ -6,7 +6,7 @@ import searchLogo from "../images/searchLogo.png";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 
-const SideBar = () => {
+const SideBar = ({ onStatusChange, changeUser }) => {
   const { search } = useLocation();
   const [searchItem, setSearchItem] = useState("");
   const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -31,6 +31,11 @@ const SideBar = () => {
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
     setContentVisible(!contentVisible);
+  };
+
+  const handleUserChange = (e) => {
+    e.preventDefault();
+    changeUser(e.target.value);
   };
 
   const filteredUsers = [
@@ -66,20 +71,21 @@ const SideBar = () => {
             </div>
             {filteredUsers.map((user) => (
               <div className="user" key={user}>
-                <Link
-                  to={buildQueryString("query", { user })}
-                  className="user-link"
+                <button
+                  className="user-filter_button"
+                  type="button"
+                  onClick={handleUserChange}
+                  value={user}
                 >
                   {user}
-                </Link>
+                </button>
               </div>
             ))}
-
             <div className="sort-container">
               <b>Sort by</b>
               <div className="priority">
                 <Link
-                  to={buildQueryString("query", { priority: "priority" })}
+                  to={buildQueryString("sort", { priorityLevel: "priority" })}
                   className="priority-link"
                 >
                   Priority
@@ -87,7 +93,7 @@ const SideBar = () => {
               </div>
               <div className="status">
                 <Link
-                  to={buildQueryString("query", { priority: "status" })}
+                  to={buildQueryString("sort", { status: "status" })}
                   className="status-link"
                 >
                   Status

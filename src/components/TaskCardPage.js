@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TaskCard from "./TaskCard";
+import SideBar from "./SideBar";
 import "../styles/taskcardpage.css";
 
 const TaskCardPage = () => {
+  axios.defaults.baseURL = "http://localhost:3001";
   const [tasks, setTasks] = useState([]);
-
-  const handleStatusChange = async (e, taskId) => {
-    // await axios
-    //   .patch(`/task/${taskId}`)
-    //   .send({ status: e.target.value })
-    //   .then(console.log("Status updated"))
-    //   .catch((err) => console.log(err));
-  };
+  const [userFilter, setUserFilter] = useState("");
 
   useEffect(() => {
     axios
-      .get("/task")
+      .get(`/task/${userFilter}`)
       .then((data) => {
-        console.log(data.data);
         setTasks(data.data);
       })
       .catch((err) => console.log(err));
-  }, []);
+  }, [userFilter]);
+
   return (
     <div className="task-card-page">
+      <SideBar className="sidebar" changeUser={setUserFilter} />
       <div className="task-card-grid">
         {tasks.map((task) => {
           return (
@@ -35,8 +31,6 @@ const TaskCardPage = () => {
               details={task.details}
               dueDate={task.dueDate}
               status={task.status}
-              id={task.id}
-              onStatusChange={handleStatusChange}
             />
           );
         })}

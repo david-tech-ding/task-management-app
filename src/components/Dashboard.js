@@ -4,7 +4,7 @@ import TaskSummary from "./TaskSummary";
 import { Link } from "react-router-dom";
 import "../styles/dashboard.css";
 
-const Dashboard = () => {
+const Dashboard = ({ userId }) => {
   axios.defaults.baseURL = "http://localhost:3001";
   const [tasks, setTasks] = useState([]);
 
@@ -22,7 +22,7 @@ const Dashboard = () => {
       <h1>Dashboard</h1>
       <TaskSummary
         title={
-          <Link className="task-summary-link" to="/your-tasks">
+          <Link className="task-summary-link" to="/tasks">
             Your Tasks
           </Link>
         }

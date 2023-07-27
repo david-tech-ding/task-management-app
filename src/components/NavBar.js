@@ -20,7 +20,7 @@ const NavBar = ({ userId, onLogout }) => {
         </h2>
         <ul className="navbar-links">
           <li className="navbar-links-item">
-            <Link to="dashboard">Dashboard</Link>
+            <Link to="/">Dashboard</Link>
           </li>
           <li className="navbar-links-item">
             <Link to="create-task">Create Task</Link>

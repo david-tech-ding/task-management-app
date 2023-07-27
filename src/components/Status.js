@@ -1,7 +1,7 @@
 import React from "react";
 
-const Status = ({ status }) => {
-  return <div className="status">Status: {status}</div>;
+const Status = ({ newStatus }) => {
+  return <div className="status">Status: {newStatus}</div>;
 };
 
 export default Status;

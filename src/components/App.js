@@ -10,7 +10,6 @@ import Dashboard from "./Dashboard";
 import CreateTask from "./CreateTask";
 import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
-import SideBar from "./SideBar";
 import CreateUser from "./CreateUser";
 import TaskCardPage from "./TaskCardPage";
 
@@ -30,17 +29,16 @@ const App = () => {
     <div className="App">
       <NavBar className="navbar" onLogout={handleLogout} userId={userId} />
       <Routes>
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="/" element={<Dashboard userId={userId} />} />
         <Route path="create-task" element={<CreateTask />} />
         <Route
           path="create-account"
           element={<CreateAccount onSetUser={setUserId} />}
         />
         <Route path="sign-in" element={<SignIn onSetUser={setUserId} />} />
-        <Route path="your-tasks" element={<TaskCardPage />} />
+        <Route path="tasks" element={<TaskCardPage />} />
         <Route path="create-user" element={<CreateUser />} />
       </Routes>
-      <SideBar className="sidebar" />
     </div>
   );
 };

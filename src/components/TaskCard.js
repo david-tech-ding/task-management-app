@@ -2,16 +2,9 @@ import React, { useState } from "react";
 import "../styles/taskcard.css";
 import Status from "./Status";
 
-const TaskCard = ({
-  title,
-  priorityLevel,
-  details,
-  dueDate,
-  status,
-  id,
-  onStatusChange,
-}) => {
+const TaskCard = ({ title, priorityLevel, details, dueDate, status }) => {
   const [comments, setComments] = useState([]);
+  const [newStatus, setNewStatus] = useState({ status });
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -19,6 +12,11 @@ const TaskCard = ({
   };
   const handleSaveComment = (e) => {
     e.preventDefault();
+  };
+
+  const handleStatusChange = async (e) => {
+    e.preventDefault();
+    setNewStatus(e.target.value);
   };
 
   return (
@@ -29,16 +27,16 @@ const TaskCard = ({
           <div className="task-card_priority_level">
             {priorityLevel}&nbsp;Priority
           </div>
-          <div className="task-card_due_date">To be completed by {dueDate}</div>
+          <div className="task-card_due_date">Due on {dueDate}</div>
           <div className="task-card_details">{details}</div>
-          <Status className="task-card_status" status={status} />
+          <Status className="task-card_status" status={newStatus} />
           <form className="task-card_form">
             <select className="status-select" id="status-select">
               <option value="Not Started">Not Started</option>
               <option value="In Progress">In Progress</option>
               <option value="Complete">Complete</option>
             </select>
-            <button type="submit" onSubmit={() => onStatusChange(id)}>
+            <button type="submit" onSubmit={handleStatusChange}>
               Change Status
             </button>
             <input
