@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../styles/taskcard.css";
 import Status from "./Status";
 
-const TaskCard = ({ title, priorityLevel, details, dueDate, status }) => {
+const TaskCard = ({ title, priorityLevel, details, dueDate, status, id }) => {
+  axios.defaults.baseURL = "http://localhost:3001";
   const [comments, setComments] = useState([]);
   const [newStatus, setNewStatus] = useState({ status });
 
@@ -17,6 +19,11 @@ const TaskCard = ({ title, priorityLevel, details, dueDate, status }) => {
   const handleStatusChange = async (e) => {
     e.preventDefault();
     setNewStatus(e.target.value);
+    axios
+      .patch(`task/${id}`)
+      .send({ status: { newStatus } })
+      .then(console.log("Status updated"))
+      .catch((err) => console.log(err));
   };
 
   return (

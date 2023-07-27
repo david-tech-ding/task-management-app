@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/createtask.css";
 
-const CreateTask = () => {
+const CreateTask = ({ user }) => {
   axios.defaults.baseURL = "http://localhost:3001";
 
   const [date, setDate] = useState();
@@ -15,14 +15,15 @@ const CreateTask = () => {
       details: "",
       priorityLevel: "High",
       assignTo: "",
+      assignedBy: "",
       dueDate: "",
       status: "Not started",
     },
   };
   const [fields, setFields] = useState(initialState.fields);
+
   const handleCreateTask = (e) => {
     e.preventDefault();
-
     axios
       .post("/task", { ...fields })
       .then(() => {
@@ -37,7 +38,7 @@ const CreateTask = () => {
   };
   const handleFieldChange = (e) => {
     e.preventDefault();
-    setFields({ ...fields, [e.target.name]: e.target.value });
+    setFields({ ...fields, [e.target.name]: e.target.value, assignedBy: user });
   };
 
   return (
@@ -97,17 +98,16 @@ const CreateTask = () => {
             onChange={handleFieldChange}
           />
         </label>
-        <label htmlFor="dueDate">
-          Due Date
-          <DatePicker
-            className="create-task-form_input"
-            selected={date}
-            onChange={handleDateChange}
-            id="dueDate"
-            name="dueDate"
-            value={fields.dueDate}
-          />
-        </label>
+        <label htmlFor="dueDate">Due Date </label>
+        <DatePicker
+          className="create-task-form_input"
+          selected={date}
+          onChange={handleDateChange}
+          id="dueDate"
+          name="dueDate"
+          value={fields.dueDate}
+          autoComplete="off"
+        />
         <button type="submit">Create</button>
       </form>
     </div>

@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 
-const SignIn = ({ onSetUser }) => {
+const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
   const [userLogin, setUserLogin] = useState({
     email: "",
     password: "",
@@ -17,7 +17,11 @@ const SignIn = ({ onSetUser }) => {
     signInWithEmailAndPassword(auth, userLogin.email, userLogin.password)
       .then((userCredential) => {
         const { user } = userCredential;
-        onSetUser(user.uid);
+        onSetLoggedInUser({
+          ...loggedInUser,
+          id: user.uid,
+          userName: user.displayName,
+        });
         navigate("/");
         console.log(user);
       })
