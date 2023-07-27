@@ -6,26 +6,30 @@ import "../styles/dashboard.css";
 
 const Dashboard = ({ user }) => {
   axios.defaults.baseURL = "http://localhost:3001";
-  const [tasks, setTasks] = useState([]);
+  const [dashboardTasks, setDashboardTasks] = useState([]);
 
   useEffect(() => {
     axios
       .get("/task")
       .then((data) => {
-        setTasks(data.data);
+        setDashboardTasks(data.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const yourTasks = tasks.filter((task) => task.assignTo === user);
+  const yourTasks = dashboardTasks.filter((task) => task.assignTo === user);
 
-  const tasksAssignedByYou = tasks.filter((task) => task.assignedBy === user);
+  const tasksAssignedByYou = dashboardTasks.filter(
+    (task) => task.assignedBy === user
+  );
 
-  const soonDue = new Date();
-  soonDue.setDate(new Date().getDate() + 3);
-  console.log(soonDue);
+  const combinedTasks = yourTasks.concat(tasksAssignedByYou);
+  const allYourTasks = [...new Set(combinedTasks)];
+  console.log(allYourTasks);
 
-  const yourTasksDueSoon = yourTasks.filter((yourTask) => {
+  const tasksDueSoon = allYourTasks.filter((yourTask) => {
+    const soonDue = new Date();
+    soonDue.setDate(new Date().getDate() + 3);
     const taskDueDate = new Date(yourTask.dueDate);
     return taskDueDate <= soonDue;
   });
@@ -42,7 +46,7 @@ const Dashboard = ({ user }) => {
         tasks={yourTasks}
       />
       <TaskSummary title="Tasks Assigned By You" tasks={tasksAssignedByYou} />
-      <TaskSummary title="Due Soon" tasks={yourTasksDueSoon} />
+      <TaskSummary title="Due Soon" tasks={tasksDueSoon} />
     </div>
   );
 };

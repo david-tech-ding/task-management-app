@@ -6,7 +6,7 @@ import searchLogo from "../images/searchLogo.png";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 
-const SideBar = ({ onStatusChange, changeUser }) => {
+const SideBar = ({ changeUser }) => {
   const { search } = useLocation();
   const [searchItem, setSearchItem] = useState("");
   const [sidebarVisible, setSidebarVisible] = useState(true);

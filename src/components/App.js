@@ -36,7 +36,6 @@ const App = () => {
   };
 
   return (
-
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App" id={theme}>
         <NavBar
@@ -47,13 +46,32 @@ const App = () => {
           theme={theme}
         />
         <Routes>
-          <Route path="/" element={<Dashboard userId={loggedInUser.userName}/>} />
-          <Route path="create-task" element={<CreateTask user={loggedInUser.userName}/>} />
+          <Route
+            path="/"
+            element={<Dashboard user={loggedInUser.userName} />}
+          />
+          <Route
+            path="create-task"
+            element={<CreateTask user={loggedInUser.userName} />}
+          />
           <Route
             path="create-account"
-            element={<CreateAccount onSetLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />}
+            element={
+              <CreateAccount
+                onSetLoggedInUser={setLoggedInUser}
+                loggedInUser={loggedInUser}
+              />
+            }
           />
-          <Route path="sign-in" element={<SignIn onSetLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />} />
+          <Route
+            path="sign-in"
+            element={
+              <SignIn
+                onSetLoggedInUser={setLoggedInUser}
+                loggedInUser={loggedInUser}
+              />
+            }
+          />
           <Route path="tasks" element={<TaskCardPage />} />
           <Route path="create-user" element={<CreateUser />} />
         </Routes>
