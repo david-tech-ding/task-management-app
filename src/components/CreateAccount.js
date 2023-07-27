@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../config/firebase";
 import "../styles/auth-form.css";
 
-const CreateAccount = ({ onSetUser }) => {
+const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
   axios.defaults.baseURL = "http://localhost:3001";
   const [newUser, setNewUser] = useState({
     email: "",
@@ -21,7 +21,16 @@ const CreateAccount = ({ onSetUser }) => {
     createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
       .then((userCredential) => {
         const { user } = userCredential;
-        onSetUser(user.uid);
+        updateProfile(auth.currentUser, {
+          displayName: `${newUser.userName}`,
+        })
+          .then(() => console.log(user.displayName))
+          .catch((err) => console.log(err));
+        onSetLoggedInUser({
+          ...loggedInUser,
+          id: user.uid,
+          userName: user.displayName,
+        });
         axios
           .post("/user", { ...newUser })
           .then(

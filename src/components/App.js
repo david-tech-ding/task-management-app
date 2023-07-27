@@ -14,12 +14,15 @@ import CreateUser from "./CreateUser";
 import TaskCardPage from "./TaskCardPage";
 
 const App = () => {
-  const [userId, setUserId] = useState("");
+  const [loggedInUser, setLoggedInUser] = useState({
+    id: "",
+    userName: "",
+  });
   const navigate = useNavigate();
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        setUserId("");
+        setLoggedInUser({ id: "", userName: "" });
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -27,15 +30,35 @@ const App = () => {
 
   return (
     <div className="App">
-      <NavBar className="navbar" onLogout={handleLogout} userId={userId} />
+      <NavBar
+        className="navbar"
+        onLogout={handleLogout}
+        userId={loggedInUser.id}
+      />
       <Routes>
-        <Route path="/" element={<Dashboard userId={userId} />} />
-        <Route path="create-task" element={<CreateTask />} />
+        <Route path="/" element={<Dashboard user={loggedInUser.userName} />} />
+        <Route
+          path="create-task"
+          element={<CreateTask user={loggedInUser.userName} />}
+        />
         <Route
           path="create-account"
-          element={<CreateAccount onSetUser={setUserId} />}
+          element={
+            <CreateAccount
+              onSetLoggedInUser={setLoggedInUser}
+              loggedInUser={loggedInUser}
+            />
+          }
         />
-        <Route path="sign-in" element={<SignIn onSetUser={setUserId} />} />
+        <Route
+          path="sign-in"
+          element={
+            <SignIn
+              onSetLoggedInUser={setLoggedInUser}
+              loggedInUser={loggedInUser}
+            />
+          }
+        />
         <Route path="tasks" element={<TaskCardPage />} />
         <Route path="create-user" element={<CreateUser />} />
       </Routes>

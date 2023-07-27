@@ -31,6 +31,7 @@ const TaskCardPage = () => {
               details={task.details}
               dueDate={task.dueDate}
               status={task.status}
+              id={task.id}
             />
           );
         })}
