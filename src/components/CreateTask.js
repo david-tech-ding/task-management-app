@@ -28,6 +28,7 @@ const CreateTask = ({ user }) => {
       .post("/task", { ...fields })
       .then(() => {
         console.log(fields);
+        setFields(initialState.fields);
       })
       .catch((err) => console.log(err));
   };
