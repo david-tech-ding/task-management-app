@@ -11,6 +11,9 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
     email: "",
     password: "",
     userName: "",
+    firstName: "",
+    lastName: "",
+    jobRole: "",
   });
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
@@ -80,6 +83,39 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
             type="userName"
             name="userName"
             id="create-account_username-input"
+          />
+        </label>
+        <label htmlFor="create-account_firstname-input">
+          First Name
+          <input
+            className="auth-form_input"
+            onChange={handleChange}
+            value={newUser.firstName}
+            type="firstName"
+            name="firstName"
+            id="create-account_firstname-input"
+          />
+        </label>
+        <label htmlFor="create-account_lastname-input">
+          Last Name
+          <input
+            className="auth-form_input"
+            onChange={handleChange}
+            value={newUser.lastName}
+            type="lastName"
+            name="lastName"
+            id="create-account_lastname-input"
+          />
+        </label>
+        <label htmlFor="create-account_jobrole-input">
+          Job Role
+          <input
+            className="auth-form_input"
+            onChange={handleChange}
+            value={newUser.jobRole}
+            type="jobRole"
+            name="jobRole"
+            id="create-account_jobrole-input"
           />
         </label>
         <button

@@ -1,4 +1,5 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
+import axios from "axios";
 import "./CreateTask";
 import "../styles/app.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
@@ -35,6 +36,19 @@ const App = () => {
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
+
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("/user")
+      .then((response) => {
+        setUsers(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -81,15 +95,21 @@ const App = () => {
           />
           <Route
             path="your-tasks"
-            element={<TaskCardPage user={loggedInUser.userName} />}
+            element={
+              <TaskCardPage user={loggedInUser.userName} users={users} />
+            }
           />
           <Route
             path="assigned-by-you"
-            element={<TaskCardPage user={loggedInUser.userName} />}
+            element={
+              <TaskCardPage user={loggedInUser.userName} users={users} />
+            }
           />
           <Route
             path="due-soon"
-            element={<TaskCardPage user={loggedInUser.userName} />}
+            element={
+              <TaskCardPage user={loggedInUser.userName} users={users} />
+            }
           />
           <Route path="create-user" element={<CreateUser />} />
         </Routes>

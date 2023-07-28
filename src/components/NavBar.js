@@ -32,7 +32,7 @@ const NavBar = ({ userId, onLogout, theme, toggleTheme }) => {
             <Link to="create-user">Add New User</Link>
           </li>
         </ul>
-        <div class="switch">
+        <div className="switch">
           <ReactSwitch
             onChange={toggleTheme}
             checked={theme === "dark"}

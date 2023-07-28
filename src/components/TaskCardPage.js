@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 const TaskCardPage = ({ user }) => {
   axios.defaults.baseURL = "http://localhost:3001";
   const [tasks, setTasks] = useState([]);
+  const [users, setUsers] = useState([]);
   const [userFilter, setUserFilter] = useState("");
   const search = useLocation();
   const [tasksToShow, setTasksToShow] = useState([]);
@@ -42,6 +43,14 @@ const TaskCardPage = ({ user }) => {
       .catch((err) => console.log(err));
   });
 
+  useEffect(() => {
+    axios
+      .get("/user")
+      .then((data) => {
+        setUsers(data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <div className="task-card-page">
       <SideBar className="sidebar" changeUser={setUserFilter} />
@@ -58,6 +67,8 @@ const TaskCardPage = ({ user }) => {
               id={task.id}
               user={user}
               assignedBy={task.assignedBy}
+              assignTo={task.assignTo}
+              usersList={users}
             />
           );
         })}

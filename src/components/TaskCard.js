@@ -11,10 +11,13 @@ const TaskCard = ({
   id,
   user,
   assignedBy,
+  assignTo,
+  usersList,
 }) => {
   axios.defaults.baseURL = "http://localhost:3001";
   const [comments, setComments] = useState([]);
   const [newStatus, setNewStatus] = useState(status);
+  const [assignedUser, setAssignedUser] = useState(assignTo);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -42,6 +45,10 @@ const TaskCard = ({
       .delete(`/task/${id}`)
       .then(console.log("Task deleted"))
       .catch((err) => console.log(err));
+  };
+
+  const handleAssignedUserChange = (e) => {
+    setAssignedUser(e.target.value);
   };
 
   return (
@@ -88,6 +95,22 @@ const TaskCard = ({
               Save
             </button>
           </form>
+
+          <div>
+            <select
+              className="assigned-user_select"
+              id="assigned-user_select"
+              onChange={handleAssignedUserChange}
+              value={assignedUser}
+            >
+              {usersList.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.firstName}
+                </option>
+              ))}
+            </select>
+          </div>
+
           {assignedBy === user && (
             <button
               className="delete-button"
