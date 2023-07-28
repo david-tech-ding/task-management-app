@@ -45,7 +45,7 @@
 
 .status-select {
   margin-top: 5px;
-  width: 145px;
+  width: fit-content;
   padding: 1px 2px;
   border-radius: 5px;
   border-width: 1.5px;
@@ -84,6 +84,20 @@
 }
 
 .comments-button:active {
+  transform: scale(0.98);
+  box-shadow: 1px 0.5px 0.5px rgba(60, 59, 59, 0.486);
+}
+
+.delete-button {
+  background-color: red;
+  margin-top: 5px;
+  border: 1px outset black;
+  border-radius: 5px;
+  padding: 1px 5px;
+  box-shadow: 2px 1px 1px rgba(119, 117, 117, 0.675);
+}
+
+.delete-button:active {
   transform: scale(0.98);
   box-shadow: 1px 0.5px 0.5px rgba(60, 59, 59, 0.486);
 }

@@ -56,6 +56,8 @@ const TaskCardPage = ({ user }) => {
               dueDate={task.dueDate}
               status={task.status}
               id={task.id}
+              user={user}
+              assignedBy={task.assignedBy}
             />
           );
         })}
