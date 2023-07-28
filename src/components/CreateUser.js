@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import "../styles/create-user.css";
 
 const CreateUser = () => {
@@ -21,15 +22,25 @@ const CreateUser = () => {
 
   const handleCreateUser = (e) => {
     //use API
-    console.log("New User Details", {
-      firstName,
-      lastName,
-      jobRole,
-    });
-
-    setFirstName("");
-    setLastName("");
-    setJobRole("");
+    e.preventDefault();
+    if (firstName && lastName && jobRole) {
+      axios
+        .post("/user", {
+          firstName,
+          lastName,
+          jobRole,
+        })
+        .then((res) => {
+          setFirstName("");
+          setLastName("");
+          setJobRole("");
+        })
+        .catch((err) => {
+          console.log("Error creating user:", err);
+        });
+    } else {
+      alert("Please fill in the required fields");
+    }
   };
   return (
     <div className="create-user">
