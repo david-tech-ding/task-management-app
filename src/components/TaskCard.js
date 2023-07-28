@@ -2,7 +2,16 @@ import React, { useState } from "react";
 import axios from "axios";
 import "../styles/taskcard.css";
 
-const TaskCard = ({ title, priorityLevel, details, dueDate, status, id }) => {
+const TaskCard = ({
+  title,
+  priorityLevel,
+  details,
+  dueDate,
+  status,
+  id,
+  user,
+  assignedBy,
+}) => {
   axios.defaults.baseURL = "http://localhost:3001";
   const [comments, setComments] = useState([]);
   const [newStatus, setNewStatus] = useState(status);
@@ -25,6 +34,13 @@ const TaskCard = ({ title, priorityLevel, details, dueDate, status, id }) => {
     axios
       .patch(`/task/${id}`, newStatus)
       .then(console.log(newStatus))
+      .catch((err) => console.log(err));
+  };
+
+  const handleTaskDelete = async () => {
+    axios
+      .delete(`/task/${id}`)
+      .then(console.log("Task deleted"))
       .catch((err) => console.log(err));
   };
 
@@ -72,6 +88,15 @@ const TaskCard = ({ title, priorityLevel, details, dueDate, status, id }) => {
               Save
             </button>
           </form>
+          {assignedBy === user && (
+            <button
+              className="delete-button"
+              type="button"
+              onClick={handleTaskDelete}
+            >
+              Delete Task
+            </button>
+          )}
         </div>
       </div>
     </div>
