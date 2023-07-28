@@ -23,7 +23,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
           userName: user.displayName,
         });
         navigate("/");
-        console.log(user);
       })
       .catch((err) => console.log(err));
   };

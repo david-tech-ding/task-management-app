@@ -6,26 +6,29 @@ import "../styles/dashboard.css";
 
 const Dashboard = ({ user }) => {
   axios.defaults.baseURL = "http://localhost:3001";
-  const [tasks, setTasks] = useState([]);
+  const [dashboardTasks, setDashboardTasks] = useState([]);
 
   useEffect(() => {
     axios
       .get("/task")
       .then((data) => {
-        setTasks(data.data);
+        setDashboardTasks(data.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const yourTasks = tasks.filter((task) => task.assignTo === user);
+  const yourTasks = dashboardTasks.filter((task) => task.assignTo === user);
 
-  const tasksAssignedByYou = tasks.filter((task) => task.assignedBy === user);
+  const tasksAssignedByYou = dashboardTasks.filter(
+    (task) => task.assignedBy === user
+  );
 
-  const soonDue = new Date();
-  soonDue.setDate(new Date().getDate() + 3);
-  console.log(soonDue);
+  const combinedTasks = yourTasks.concat(tasksAssignedByYou);
+  const allYourTasks = [...new Set(combinedTasks)];
 
-  const yourTasksDueSoon = yourTasks.filter((yourTask) => {
+  const tasksDueSoon = allYourTasks.filter((yourTask) => {
+    const soonDue = new Date();
+    soonDue.setDate(new Date().getDate() + 3);
     const taskDueDate = new Date(yourTask.dueDate);
     return taskDueDate <= soonDue;
   });
@@ -35,14 +38,28 @@ const Dashboard = ({ user }) => {
       <h1>{user}'s Dashboard</h1>
       <TaskSummary
         title={
-          <Link className="task-summary-link" to="/tasks">
+          <Link className="task-summary-link" to="/your-tasks">
             Your Tasks
           </Link>
         }
         tasks={yourTasks}
       />
-      <TaskSummary title="Tasks Assigned By You" tasks={tasksAssignedByYou} />
-      <TaskSummary title="Due Soon" tasks={yourTasksDueSoon} />
+      <TaskSummary
+        title={
+          <Link className="task-summary-link" to="/assigned-by-you">
+            Assigned By You
+          </Link>
+        }
+        tasks={tasksAssignedByYou}
+      />
+      <TaskSummary
+        title={
+          <Link className="task-summary-link" to="/due-soon">
+            Due Soon
+          </Link>
+        }
+        tasks={tasksDueSoon}
+      />
     </div>
   );
 };

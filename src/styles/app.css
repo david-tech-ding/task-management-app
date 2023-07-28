@@ -7,11 +7,11 @@
   pointer-events: none;
 }
 
-#light{
+#light {
   background-color: white;
 }
 
-#dark{
+#dark {
   background-color: #536390;
 }
 @media (prefers-reduced-motion: no-preference) {

@@ -43,10 +43,61 @@
   border-radius: 5px;
 }
 
-.task-card_comments button {
-  margin-top: 10px;
-  margin-left: 10px;
-  border: 2px outset black;
+.status-select {
+  margin-top: 5px;
+  width: fit-content;
+  padding: 1px 2px;
+  border-radius: 5px;
+  border-width: 1.5px;
+  border-style: solid;
+  box-sizing: content-box;
+}
+
+.status-button {
+  margin-top: 5px;
+  border: 1px outset black;
   border-radius: 5px;
   padding: 1px 5px;
+  box-shadow: 2px 1px 1px rgba(119, 117, 117, 0.675);
+}
+
+.status-button:active {
+  transform: scale(0.98);
+  box-shadow: 1px 0.5px 0.5px rgba(60, 59, 59, 0.486);
+}
+
+.comments-input {
+  margin-top: 5px;
+  border-radius: 5px;
+  border-width: 1.5px;
+  border-style: solid;
+  padding-bottom: 30px;
+  height: 17px;
+}
+
+.comments-button {
+  margin-top: 5px;
+  border: 1px outset black;
+  border-radius: 5px;
+  padding: 1px 5px;
+  box-shadow: 2px 1px 1px rgba(119, 117, 117, 0.675);
+}
+
+.comments-button:active {
+  transform: scale(0.98);
+  box-shadow: 1px 0.5px 0.5px rgba(60, 59, 59, 0.486);
+}
+
+.delete-button {
+  background-color: red;
+  margin-top: 5px;
+  border: 1px outset black;
+  border-radius: 5px;
+  padding: 1px 5px;
+  box-shadow: 2px 1px 1px rgba(119, 117, 117, 0.675);
+}
+
+.delete-button:active {
+  transform: scale(0.98);
+  box-shadow: 1px 0.5px 0.5px rgba(60, 59, 59, 0.486);
 }

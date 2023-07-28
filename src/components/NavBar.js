@@ -32,12 +32,10 @@ const NavBar = ({ userId, onLogout, theme, toggleTheme }) => {
             <Link to="create-user">Add New User</Link>
           </li>
         </ul>
-        <div className="switch">
+        <div class="switch">
           <ReactSwitch
             onChange={toggleTheme}
             checked={theme === "dark"}
-            onColor="#2196F3"
-            offColor="#BDBDBD"
             checkedIcon={
               <div className="icon-container-moon">
                 <FaRegMoon size={16} />

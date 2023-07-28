@@ -12,6 +12,7 @@ import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
 import CreateUser from "./CreateUser";
 import TaskCardPage from "./TaskCardPage";
+import LandingPage from "./LandingPage";
 
 export const ThemeContext = createContext(null);
 
@@ -36,7 +37,6 @@ const App = () => {
   };
 
   return (
-
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
       <div className="App" id={theme}>
         <NavBar
@@ -47,14 +47,50 @@ const App = () => {
           theme={theme}
         />
         <Routes>
-          <Route path="/" element={<Dashboard userId={loggedInUser.userName}/>} />
-          <Route path="create-task" element={<CreateTask user={loggedInUser.userName}/>} />
+          <Route
+            path="/"
+            element={
+              loggedInUser.id ? (
+                <Dashboard user={loggedInUser.userName} />
+              ) : (
+                <LandingPage />
+              )
+            }
+          />
+          <Route
+            path="create-task"
+            element={<CreateTask user={loggedInUser.userName} />}
+          />
           <Route
             path="create-account"
-            element={<CreateAccount onSetLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />}
+            element={
+              <CreateAccount
+                onSetLoggedInUser={setLoggedInUser}
+                loggedInUser={loggedInUser}
+              />
+            }
           />
-          <Route path="sign-in" element={<SignIn onSetLoggedInUser={setLoggedInUser} loggedInUser={loggedInUser} />} />
-          <Route path="tasks" element={<TaskCardPage />} />
+          <Route
+            path="sign-in"
+            element={
+              <SignIn
+                onSetLoggedInUser={setLoggedInUser}
+                loggedInUser={loggedInUser}
+              />
+            }
+          />
+          <Route
+            path="your-tasks"
+            element={<TaskCardPage user={loggedInUser.userName} />}
+          />
+          <Route
+            path="assigned-by-you"
+            element={<TaskCardPage user={loggedInUser.userName} />}
+          />
+          <Route
+            path="due-soon"
+            element={<TaskCardPage user={loggedInUser.userName} />}
+          />
           <Route path="create-user" element={<CreateUser />} />
         </Routes>
       </div>
