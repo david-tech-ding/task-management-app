@@ -12,6 +12,7 @@ import CreateAccount from "./CreateAccount";
 import SignIn from "./SignIn";
 import CreateUser from "./CreateUser";
 import TaskCardPage from "./TaskCardPage";
+import LandingPage from "./LandingPage";
 
 export const ThemeContext = createContext(null);
 
@@ -48,7 +49,13 @@ const App = () => {
         <Routes>
           <Route
             path="/"
-            element={<Dashboard user={loggedInUser.userName} />}
+            element={
+              loggedInUser.id ? (
+                <Dashboard user={loggedInUser.userName} />
+              ) : (
+                <LandingPage />
+              )
+            }
           />
           <Route
             path="create-task"

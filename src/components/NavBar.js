@@ -21,33 +21,36 @@ const NavBar = ({ userId, onLogout, theme, toggleTheme }) => {
         <h2 className="navbar-title" onClick={() => navigate("/")}>
           CTM
         </h2>
-        <ul className="navbar-links">
-          <li className="navbar-links-item">
-            <Link to="/">Dashboard</Link>
-          </li>
-          <li className="navbar-links-item">
-            <Link to="create-task">Create Task</Link>
-          </li>
-          <li className="navbar-links-item">
-            <Link to="create-user">Add New User</Link>
-          </li>
-        </ul>
-        <div className="switch">
-          <ReactSwitch
-            onChange={toggleTheme}
-            checked={theme === "dark"}
-            checkedIcon={
-              <div className="icon-container-moon">
-                <FaRegMoon size={16} />
-              </div>
-            }
-            uncheckedIcon={
-              <div className="icon-container-sun">
-                <BiSun size={16} />
-              </div>
-            }
-          />
-        </div>
+        {userId ? (
+          <ul className="navbar-links">
+            <li className="navbar-links-item">
+              <Link to="/">Dashboard</Link>
+            </li>
+            <li className="navbar-links-item">
+              <Link to="create-task">Create Task</Link>
+            </li>
+            <li className="navbar-links-item">
+              <Link to="create-user">Add New User</Link>
+            </li>
+          </ul>
+        ) : (
+          <div className="switch">
+            <ReactSwitch
+              onChange={toggleTheme}
+              checked={theme === "dark"}
+              checkedIcon={
+                <div className="icon-container-moon">
+                  <FaRegMoon size={16} />
+                </div>
+              }
+              uncheckedIcon={
+                <div className="icon-container-sun">
+                  <BiSun size={16} />
+                </div>
+              }
+            />
+          </div>
+        )}
         {userId ? (
           <div className="navbar-signout">
             <button className="signout-button" type="submit" onClick={onLogout}>
