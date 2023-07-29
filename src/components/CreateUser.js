@@ -7,6 +7,7 @@ const CreateUser = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [jobRole, setJobRole] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -20,8 +21,18 @@ const CreateUser = () => {
     setJobRole(e.target.value);
   };
 
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0]);
+  };
+
+  const handleFileUpload = () => {
+    const formData = new FormData();
+    formData.append("MyFile", selectedFile, selectedFile.name);
+    console.log(selectedFile);
+  };
+
   const handleCreateUser = (e) => {
-    //use API
+
     e.preventDefault();
     if (firstName && lastName && jobRole) {
       axios
@@ -44,7 +55,7 @@ const CreateUser = () => {
   };
   return (
     <div className="create-user">
-      <h2>Create New User</h2>
+      <h2>Finish setting up your account:</h2>
       <div>
         <label htmlFor="firstName">First Name:</label>
         <input
@@ -72,6 +83,13 @@ const CreateUser = () => {
           onChange={handleJobRoleChange}
         />
       </div>
+      <input
+        type="file"
+        onChange={handleFileChange}
+      />
+      <button type="submit" onSubmit={handleFileUpload}>
+        Upload
+      </button>
       <button onClick={handleCreateUser}>Create User</button>
       <Link to="/">Back to Home</Link>
     </div>

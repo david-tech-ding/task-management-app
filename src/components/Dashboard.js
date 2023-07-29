@@ -8,6 +8,8 @@ const Dashboard = ({ user }) => {
   axios.defaults.baseURL = "http://localhost:3001";
   const [dashboardTasks, setDashboardTasks] = useState([]);
 
+  console.log(user);
+
   useEffect(() => {
     axios
       .get("/task")
