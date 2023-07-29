@@ -32,16 +32,26 @@ const CreateUser = () => {
   };
 
   const handleCreateUser = (e) => {
-    axios.patch(`/user/${firstName}`);
-    console.log("New User Details", {
-      firstName,
-      lastName,
-      jobRole,
-    });
 
-    setFirstName("");
-    setLastName("");
-    setJobRole("");
+    e.preventDefault();
+    if (firstName && lastName && jobRole) {
+      axios
+        .post("/user", {
+          firstName,
+          lastName,
+          jobRole,
+        })
+        .then((res) => {
+          setFirstName("");
+          setLastName("");
+          setJobRole("");
+        })
+        .catch((err) => {
+          console.log("Error creating user:", err);
+        });
+    } else {
+      alert("Please fill in the required fields");
+    }
   };
   return (
     <div className="create-user">
