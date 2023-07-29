@@ -24,13 +24,15 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
         updateProfile(auth.currentUser, {
           displayName: `${newUser.userName}`,
         })
-          .then(() => console.log(user.displayName))
+          .then(() => {
+            onSetLoggedInUser({
+              ...loggedInUser,
+              id: user.uid,
+              userName: user.displayName,
+            });
+            console.log(loggedInUser);
+          })
           .catch((err) => console.log(err));
-        onSetLoggedInUser({
-          ...loggedInUser,
-          id: user.uid,
-          userName: user.displayName,
-        });
         axios
           .post("/user", { ...newUser })
           .then(
@@ -41,7 +43,7 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
             })
           )
           .catch((err) => console.log(err));
-        navigate("/");
+        navigate("/create-user");
       })
       .catch((err) => console.log(err));
   };
