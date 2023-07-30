@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../styles/taskcard.css";
 
@@ -18,6 +18,10 @@ const TaskCard = ({
   const [comments, setComments] = useState([]);
   const [newStatus, setNewStatus] = useState(status);
   const [assignedUser, setAssignedUser] = useState(assignTo);
+
+  useEffect(() => {
+    console.log(usersList);
+  }, []);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -48,6 +52,7 @@ const TaskCard = ({
   };
 
   const handleAssignedUserChange = (e) => {
+    e.preventDefault();
     setAssignedUser(e.target.value);
   };
 
@@ -87,6 +92,21 @@ const TaskCard = ({
               value={comments}
               onChange={handleChange}
             />
+            <div>
+              <h3>Assign To</h3>
+              <select
+                className="assigned-user_select"
+                id="assigned-user_select"
+                onChange={handleAssignedUserChange}
+                value={assignedUser}
+              >
+                {usersList.map((user) => (
+                  <option key={user.id} value={user.id}>
+                    {user.firstName}
+                  </option>
+                ))}
+              </select>
+            </div>
             <button
               className="comments-button"
               type="submit"
@@ -95,22 +115,6 @@ const TaskCard = ({
               Save
             </button>
           </form>
-
-          <div>
-            <select
-              className="assigned-user_select"
-              id="assigned-user_select"
-              onChange={handleAssignedUserChange}
-              value={assignedUser}
-            >
-              {usersList.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.firstName}
-                </option>
-              ))}
-            </select>
-          </div>
-
           {assignedBy === user && (
             <button
               className="delete-button"
