@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -15,12 +15,43 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
     lastName: "",
     jobRole: "",
   });
+
+  const userRef = useRef();
+  const formRef = useRef();
+
+  const handleEnterKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleCreateAccount(e);
+    }
+  };
+
+  const addEnterKeyPressListener = () => {
+    if (userRef.current) {
+      userRef.current.addEventListener("keydown", handleEnterKeyPress);
+    }
+    if (formRef.current) {
+      formRef.current.addEventListener("keydown", handleEnterKeyPress);
+    }
+  };
+  const removeEnterKeyPressListener = () => {
+    if (userRef.current) {
+      userRef.current.removeEventListener("keydown", handleEnterKeyPress);
+    }
+    if (formRef.current) {
+      formRef.current.removeEventListener("keydown", handleEnterKeyPress);
+    }
+  };
+
   const handleChange = (e) => {
     setNewUser({ ...newUser, [e.target.name]: e.target.value });
   };
+
   const navigate = useNavigate();
+
   const handleCreateAccount = (e) => {
     e.preventDefault();
+    removeEnterKeyPressListener();
     createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
       .then((userCredential) => {
         const { user } = userCredential;
@@ -49,11 +80,12 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
         navigate("/create-user");
       })
       .catch((err) => console.log(err));
+    addEnterKeyPressListener();
   };
   return (
     <div className="auth">
       <h2 className="auth-subheading">Create an Account</h2>
-      <form className="auth-form">
+      <form className="auth-form" onSubmit={handleCreateAccount} ref={formRef}>
         <label htmlFor="create-account_email-input">
           Email
           <input
@@ -122,7 +154,7 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
         </label>
         <button
           id="create-user_button"
-          type="button"
+          type="submit"
           onClick={handleCreateAccount}
         >
           Submit

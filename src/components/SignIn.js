@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
 import AuthContext from "../context/AuthProvider";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
 
@@ -12,8 +12,33 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
   const { setAuth } = useContext(AuthContext);
   const userRef = useRef();
   const errRef = useRef();
+  const formRef = useRef();
+
   const [errMsg, setErrMsg] = useState("");
 
+  const handleEnterKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleSignIn(e);
+    }
+  };
+
+  const addEnterKeyPressListener = () => {
+    if (userRef.current) {
+      userRef.current.addEventListener("keydown", handleEnterKeyPress);
+    }
+    if (formRef.current) {
+      formRef.current.addEventListener("keydown", handleEnterKeyPress);
+    }
+  };
+  const removeEnterKeyPressListener = () => {
+    if (userRef.current) {
+      userRef.current.removeEventListener("keydown", handleEnterKeyPress);
+    }
+    if (formRef.current) {
+      formRef.current.removeEventListener("keydown", handleEnterKeyPress);
+    }
+  };
   useEffect(() => {
     if (userRef.current) {
       userRef.current.focus();
@@ -31,6 +56,7 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
 
   const handleSignIn = async (e) => {
     e.preventDefault();
+    removeEnterKeyPressListener();
 
     try {
       const userCredential = await signInWithEmailAndPassword(
@@ -63,6 +89,7 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
       }
       errRef.current.focus();
     }
+    addEnterKeyPressListener();
   };
 
   return (
@@ -75,7 +102,7 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
         {errMsg}
       </p>
       <h2 className="auth-subheading">Sign In</h2>
-      <form className="auth-form" onSubmit={handleSignIn}>
+      <form className="auth-form" onSubmit={handleSignIn} ref={formRef}>
         <label htmlFor="sign-in_email-input">
           Email
           <input
@@ -101,7 +128,7 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
             required
           />
         </label>
-        <button id="sign-in_button" type="button" onClick={handleSignIn}>
+        <button id="sign-in_button" type="submit" onClick={handleSignIn}>
           SIGN IN
         </button>
       </form>
