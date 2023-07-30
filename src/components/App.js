@@ -38,6 +38,13 @@ const App = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
 
+  useEffect(() => {
+    document.body.className = theme;
+    return () => {
+      document.body.className = "";
+    };
+  }, [theme]);
+
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -54,7 +61,7 @@ const App = () => {
   return (
     <AuthProvider>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
-        <div className="App" id={theme}>
+        <div className="App">
           <NavBar
             className="navbar"
             onLogout={handleLogout}
