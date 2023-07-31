@@ -17,12 +17,14 @@ import TaskCardPage from "./TaskCardPage";
 import LandingPage from "./LandingPage";
 
 export const ThemeContext = createContext(null);
+axios.defaults.baseURL = "http://localhost:3001";
 
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState({
     id: "",
     userName: "",
   });
+
   const navigate = useNavigate();
   const handleLogout = () => {
     signOut(auth)
@@ -74,7 +76,7 @@ const App = () => {
               path="/"
               element={
                 loggedInUser.id ? (
-                  <Dashboard user={loggedInUser.userName} />
+                  <Dashboard user={loggedInUser} />
                 ) : (
                   <LandingPage />
                 )
@@ -82,7 +84,9 @@ const App = () => {
             />
             <Route
               path="create-task"
-              element={<CreateTask user={loggedInUser.userName} />}
+              element={
+                <CreateTask user={loggedInUser.userName} users={users} />
+              }
             />
             <Route
               path="create-account"
@@ -120,7 +124,10 @@ const App = () => {
                 <TaskCardPage user={loggedInUser.userName} users={users} />
               }
             />
-            <Route path="create-user" element={<CreateUser />} />
+            <Route
+              path="create-user"
+              element={<CreateUser user={loggedInUser} />}
+            />
           </Routes>
         </div>
       </ThemeContext.Provider>

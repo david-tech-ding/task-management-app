@@ -4,9 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "../styles/createtask.css";
 
-const CreateTask = ({ user }) => {
-  axios.defaults.baseURL = "http://localhost:3001";
-
+const CreateTask = ({ user, users }) => {
   const [date, setDate] = useState();
 
   const initialState = {
@@ -14,7 +12,7 @@ const CreateTask = ({ user }) => {
       title: "",
       details: "",
       priorityLevel: "High",
-      assignTo: null,
+      assignTo: "",
       assignedBy: "",
       dueDate: "",
       status: "Not started",
@@ -89,14 +87,22 @@ const CreateTask = ({ user }) => {
         </label>
         <label htmlFor="assignTo">
           Assign To
-          <input
+          <select
             className="create-task-form_input"
-            type="number"
             id="assignTo"
             name="assignTo"
             value={fields.assignTo}
             onChange={handleFieldChange}
-          />
+          >
+            {users.map((userData) => {
+              return (
+                <option value={userData.id} key={userData.userName}>
+                  {userData.firstName}&nbsp;{userData.lastName}&nbsp;&#40;
+                  {userData.jobRole}&#41;
+                </option>
+              );
+            })}
+          </select>
         </label>
         <label htmlFor="dueDate">Due Date </label>
         <DatePicker

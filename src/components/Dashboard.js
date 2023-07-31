@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import "../styles/dashboard.css";
 
 const Dashboard = ({ user }) => {
-  axios.defaults.baseURL = "http://localhost:3001";
   const [dashboardTasks, setDashboardTasks] = useState([]);
 
   console.log(user);
@@ -19,10 +18,10 @@ const Dashboard = ({ user }) => {
       .catch((err) => console.log(err));
   }, []);
 
-  const yourTasks = dashboardTasks.filter((task) => task.assignTo === user);
+  const yourTasks = dashboardTasks.filter((task) => task.assignTo === user.id);
 
   const tasksAssignedByYou = dashboardTasks.filter(
-    (task) => task.assignedBy === user
+    (task) => task.assignedBy === user.userName
   );
 
   const combinedTasks = yourTasks.concat(tasksAssignedByYou);
@@ -37,7 +36,7 @@ const Dashboard = ({ user }) => {
 
   return (
     <div className="dashboard-page">
-      <h1>{user}'s Dashboard</h1>
+      <h1>{user.userName}'s Dashboard</h1>
       <TaskSummary
         title={
           <Link className="task-summary-link" to="/your-tasks">
