@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, useContext } from "react";
+import axios from "axios";
 import AuthContext from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -65,11 +66,18 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
         userLogin.password
       );
       const { user } = userCredential;
-      onSetLoggedInUser({
-        ...loggedInUser,
-        id: user.uid,
-        userName: user.displayName,
-      });
+
+      axios
+        .get(`/user/username/${user.displayName}`)
+        .then((response) => {
+          onSetLoggedInUser({
+            ...loggedInUser,
+            id: response.data[0].id,
+            userName: user.displayName,
+          });
+        })
+        .catch((err) => console.log(err));
+
       setUserLogin("");
 
       setAuth({

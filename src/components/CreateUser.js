@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "../styles/create-user.css";
 
-const CreateUser = () => {
+const CreateUser = ({ user }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [jobRole, setJobRole] = useState("");
-  const [selectedFile, setSelectedFile] = useState(null);
+  // const [selectedFile, setSelectedFile] = useState(null);
 
   const handleFirstNameChange = (e) => {
     setFirstName(e.target.value);
@@ -21,30 +21,30 @@ const CreateUser = () => {
     setJobRole(e.target.value);
   };
 
-  const handleFileChange = (e) => {
-    setSelectedFile(e.target.files[0]);
-  };
+  // const handleFileChange = (e) => {
+  //   setSelectedFile(e.target.files[0]);
+  // };
 
-  const handleFileUpload = () => {
-    const formData = new FormData();
-    formData.append("MyFile", selectedFile, selectedFile.name);
-    console.log(selectedFile);
-    axios
-      .patch(`/user/picture/`, { profilePic: selectedFile })
-      .then(console.log("Picture uploaded!"))
-      .catch((err) => console.log(err));
-  };
+  // const handleFileUpload = () => {
+  //   const formData = new FormData();
+  //   formData.append("MyFile", selectedFile, selectedFile.name);
+  //   console.log(selectedFile);
+  //   axios
+  //     .patch(`/user/picture/`, { profilePic: selectedFile })
+  //     .then(console.log("Picture uploaded!"))
+  //     .catch((err) => console.log(err));
+  // };
 
   const handleCreateUser = (e) => {
     e.preventDefault();
     if (firstName && lastName && jobRole) {
       axios
-        .post("/user", {
+        .patch(`/user/id/${user.id}`, {
           firstName,
           lastName,
           jobRole,
         })
-        .then((res) => {
+        .then(() => {
           setFirstName("");
           setLastName("");
           setJobRole("");
@@ -86,7 +86,7 @@ const CreateUser = () => {
           onChange={handleJobRoleChange}
         />
       </div>
-      <form>
+      {/* <form>
         <input
           type="file"
           accept="image/jpeg, image/png"
@@ -95,7 +95,7 @@ const CreateUser = () => {
         <button type="submit" onSubmit={handleFileUpload}>
           Upload
         </button>
-      </form>
+      </form> */}
       <button onClick={handleCreateUser}>Create User</button>
       <Link to="/">Back to Home</Link>
     </div>

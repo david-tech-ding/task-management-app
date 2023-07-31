@@ -5,8 +5,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../config/firebase";
 import "../styles/auth-form.css";
 
-const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
-  axios.defaults.baseURL = "http://localhost:3001";
+const CreateAccount = ({ onSetLoggedInUser, loggedInUser }) => {
   const [newUser, setNewUser] = useState({
     email: "",
     password: "",
@@ -51,19 +50,6 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
     removeEnterKeyPressListener();
     createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
       .then((userCredential) => {
-        const { user } = userCredential;
-        updateProfile(auth.currentUser, {
-          displayName: `${newUser.userName}`,
-        })
-          .then(() => {
-            onSetLoggedInUser({
-              ...loggedInUser,
-              id: user.uid,
-              userName: user.displayName,
-            });
-            console.log(loggedInUser);
-          })
-          .catch((err) => console.log(err));
         axios
           .post("/user", { ...newUser })
           .then(
@@ -74,11 +60,29 @@ const CreateAccount = ({ onSetUser, onSetLoggedInUser, loggedInUser }) => {
             })
           )
           .catch((err) => console.log(err));
+        const { user } = userCredential;
+        updateProfile(auth.currentUser, {
+          displayName: `${newUser.userName}`,
+        })
+          .then(async () => {
+            await axios
+              .get(`/user/username/${user.displayName}`)
+              .then((response) => {
+                onSetLoggedInUser({
+                  ...loggedInUser,
+                  id: response.data[0].id,
+                  userName: user.displayName,
+                });
+              })
+              .catch((err) => console.log(err));
+          })
+          .catch((err) => console.log(err));
         navigate("/create-user");
       })
       .catch((err) => console.log(err));
     addEnterKeyPressListener();
   };
+
   return (
     <div className="auth">
       <h2 className="auth-subheading">Create an Account</h2>

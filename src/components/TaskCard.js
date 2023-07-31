@@ -14,14 +14,13 @@ const TaskCard = ({
   assignTo,
   usersList,
 }) => {
-  axios.defaults.baseURL = "http://localhost:3001";
   const [comments, setComments] = useState([]);
   const [newStatus, setNewStatus] = useState(status);
   const [assignedUser, setAssignedUser] = useState(assignTo);
 
   useEffect(() => {
     console.log(usersList);
-  }, []);
+  }, [usersList]);
 
   const handleChange = (e) => {
     e.preventDefault();
@@ -92,21 +91,6 @@ const TaskCard = ({
               value={comments}
               onChange={handleChange}
             />
-            <div>
-              <h3>Assign To</h3>
-              <select
-                className="assigned-user_select"
-                id="assigned-user_select"
-                onChange={handleAssignedUserChange}
-                value={assignedUser}
-              >
-                {usersList.map((user) => (
-                  <option key={user.id} value={user.id}>
-                    {user.firstName}
-                  </option>
-                ))}
-              </select>
-            </div>
             <button
               className="comments-button"
               type="submit"
@@ -116,6 +100,7 @@ const TaskCard = ({
             </button>
           </form>
           <div>
+            <h3>Assign To</h3>
             <select
               className="assigned-user_select"
               id="assigned-user_select"
