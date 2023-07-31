@@ -14,7 +14,7 @@ const CreateTask = ({ user }) => {
       title: "",
       details: "",
       priorityLevel: "High",
-      assignTo: "",
+      assignTo: null,
       assignedBy: "",
       dueDate: "",
       status: "Not started",
@@ -91,7 +91,7 @@ const CreateTask = ({ user }) => {
           Assign To
           <input
             className="create-task-form_input"
-            type="text"
+            type="number"
             id="assignTo"
             name="assignTo"
             value={fields.assignTo}

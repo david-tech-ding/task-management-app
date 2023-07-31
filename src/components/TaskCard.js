@@ -115,6 +115,20 @@ const TaskCard = ({
               Save
             </button>
           </form>
+          <div>
+            <select
+              className="assigned-user_select"
+              id="assigned-user_select"
+              onChange={handleAssignedUserChange}
+              value={assignedUser}
+            >
+              {usersList.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.firstName}
+                </option>
+              ))}
+            </select>
+          </div>
           {assignedBy === user && (
             <button
               className="delete-button"
