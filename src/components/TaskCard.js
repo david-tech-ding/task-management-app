@@ -95,7 +95,6 @@ const TaskCard = ({
               Save
             </button>
           </form>
-
           <div>
             <select
               className="assigned-user_select"

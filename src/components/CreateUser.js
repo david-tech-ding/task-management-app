@@ -29,10 +29,13 @@ const CreateUser = () => {
     const formData = new FormData();
     formData.append("MyFile", selectedFile, selectedFile.name);
     console.log(selectedFile);
+    axios
+      .patch(`/user/picture/`, { profilePic: selectedFile })
+      .then(console.log("Picture uploaded!"))
+      .catch((err) => console.log(err));
   };
 
   const handleCreateUser = (e) => {
-
     e.preventDefault();
     if (firstName && lastName && jobRole) {
       axios
@@ -83,13 +86,16 @@ const CreateUser = () => {
           onChange={handleJobRoleChange}
         />
       </div>
-      <input
-        type="file"
-        onChange={handleFileChange}
-      />
-      <button type="submit" onSubmit={handleFileUpload}>
-        Upload
-      </button>
+      <form>
+        <input
+          type="file"
+          accept="image/jpeg, image/png"
+          onChange={handleFileChange}
+        />
+        <button type="submit" onSubmit={handleFileUpload}>
+          Upload
+        </button>
+      </form>
       <button onClick={handleCreateUser}>Create User</button>
       <Link to="/">Back to Home</Link>
     </div>
