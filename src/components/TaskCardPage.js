@@ -6,16 +6,17 @@ import "../styles/taskcardpage.css";
 import { useLocation } from "react-router-dom";
 
 const TaskCardPage = ({ user }) => {
-  axios.defaults.baseURL = "http://localhost:3001";
   const [tasks, setTasks] = useState([]);
   const [users, setUsers] = useState([]);
   const [userFilter, setUserFilter] = useState("");
   const search = useLocation();
   const [tasksToShow, setTasksToShow] = useState([]);
 
-  const yourTasks = tasks.filter((task) => task.assignTo === user);
+  const yourTasks = tasks.filter((task) => task.assignTo === user.id);
 
-  const tasksAssignedByYou = tasks.filter((task) => task.assignedBy === user);
+  const tasksAssignedByYou = tasks.filter(
+    (task) => task.assignedBy === user.userName
+  );
 
   const combinedTasks = yourTasks.concat(tasksAssignedByYou);
   const allYourTasks = [...new Set(combinedTasks)];

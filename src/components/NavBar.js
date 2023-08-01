@@ -6,7 +6,7 @@ import taskLogo from "../images/taskLogo.png";
 import { FaRegMoon } from "react-icons/fa";
 import { BiSun } from "react-icons/bi";
 
-const NavBar = ({ userId, onLogout, theme, toggleTheme }) => {
+const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
   const navigate = useNavigate();
 
   return (
@@ -16,22 +16,36 @@ const NavBar = ({ userId, onLogout, theme, toggleTheme }) => {
           src={taskLogo}
           alt="clinic-task-logo"
           className="navbar-logo"
-          onClick={() => navigate("/")}
+          onClick={() => {
+            if (user.firstName) {
+              navigate("/");
+            } else {
+              navigate("/create-user");
+            }
+          }}
         ></img>
-        <h2 className="navbar-title" onClick={() => navigate("/")}>
+        <h2
+          className="navbar-title"
+          onClick={() => {
+            if (user.firstName) {
+              navigate("/");
+            } else {
+              navigate("/create-user");
+            }
+          }}
+        >
           CTM
         </h2>
-        <ul className="navbar-links">
-          <li className="navbar-links-item">
-            <Link to="/">Dashboard</Link>
-          </li>
-          <li className="navbar-links-item">
-            <Link to="create-task">Create Task</Link>
-          </li>
-          <li className="navbar-links-item">
-            <Link to="create-user">Add New User</Link>
-          </li>
-        </ul>
+        {user.firstName ? (
+          <ul className="navbar-links">
+            <li className="navbar-links-item">
+              <Link to="/">Dashboard</Link>
+            </li>
+            <li className="navbar-links-item">
+              <Link to="create-task">Create Task</Link>
+            </li>
+          </ul>
+        ) : null}
         <div className="switch">
           <ReactSwitch
             onChange={toggleTheme}
@@ -48,7 +62,7 @@ const NavBar = ({ userId, onLogout, theme, toggleTheme }) => {
             }
           />
         </div>
-        {userId ? (
+        {user.id ? (
           <div className="navbar-signout">
             <button className="signout-button" type="submit" onClick={onLogout}>
               Sign out

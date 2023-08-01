@@ -64,10 +64,11 @@ const CreateAccount = ({ onSetLoggedInUser, loggedInUser }) => {
         updateProfile(auth.currentUser, {
           displayName: `${newUser.userName}`,
         })
-          .then(async () => {
-            await axios
+          .then(() => {
+            axios
               .get(`/user/username/${user.displayName}`)
               .then((response) => {
+                console.log(response);
                 onSetLoggedInUser({
                   ...loggedInUser,
                   id: response.data[0].id,

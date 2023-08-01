@@ -14,6 +14,7 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
   const userRef = useRef();
   const errRef = useRef();
   const formRef = useRef();
+  const navigate = useNavigate();
 
   const [errMsg, setErrMsg] = useState("");
 
@@ -53,7 +54,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
   const handleChange = (e) => {
     setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
   };
-  const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
@@ -85,7 +85,11 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
         roles: [],
       });
 
-      navigate("/");
+      if (loggedInUser.firstName) {
+        navigate("/");
+      } else {
+        navigate("/create-user");
+      }
     } catch (err) {
       const errorCode = err.code;
       if (errorCode === "auth/user-not-found") {
