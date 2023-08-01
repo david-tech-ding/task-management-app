@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import "../styles/taskcard.css";
 
@@ -19,6 +19,33 @@ const TaskCard = ({
   const [newStatus, setNewStatus] = useState(status);
   const [assignedUser, setAssignedUser] = useState(assignTo);
 
+  const userRef = useRef();
+  const buttonRef = useRef();
+
+  const handleEnterKeyPress = (e) => {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      handleSaveComment(e);
+    }
+  };
+
+  const addEnterKeyPressListener = () => {
+    if (userRef.current) {
+      userRef.current.addEventListener("keydown", handleEnterKeyPress);
+    }
+    if (buttonRef.current) {
+      buttonRef.current.addEventListener("keydown", handleEnterKeyPress);
+    }
+  };
+  const removeEnterKeyPressListener = () => {
+    if (userRef.current) {
+      userRef.current.removeEventListener("keydown", handleEnterKeyPress);
+    }
+    if (buttonRef.current) {
+      buttonRef.current.removeEventListener("keydown", handleEnterKeyPress);
+    }
+  };
+
   useEffect(() => {
     axios
       .get(`/comments/${id}`)
@@ -34,11 +61,17 @@ const TaskCard = ({
   };
   const handleSaveComment = (e) => {
     e.preventDefault();
+    removeEnterKeyPressListener();
     console.log(newComment);
     axios
       .post("/comments", { comment: newComment, TaskId: id })
-      .then(console.log(newComment))
+      // .then(console.log(newComment))
+      .then((res) => {
+        setSavedComments([...savedComments, res.data]);
+        setNewComment("");
+      })
       .catch((err) => console.log(err));
+    addEnterKeyPressListener();
   };
 
   const handleStatusChange = async (e) => {
@@ -114,6 +147,7 @@ const TaskCard = ({
               className="comments-button"
               type="submit"
               onClick={handleSaveComment}
+              ref={buttonRef}
             >
               Save
             </button>

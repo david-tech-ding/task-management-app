@@ -25,6 +25,8 @@
 }
 .collapsed {
   width: 80px;
+  background-color: #4a5671;
+
 }
 
 .expanded {

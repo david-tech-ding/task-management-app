@@ -12,6 +12,7 @@
 }
 .navbar{
     display: flex;
+    background-color: #4a5671;
 }
 
 .navbar-title{
