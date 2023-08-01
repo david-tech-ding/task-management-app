@@ -23,7 +23,10 @@ const App = () => {
   const [loggedInUser, setLoggedInUser] = useState({
     id: "",
     userName: "",
+    firstName: "",
   });
+
+  useEffect(() => console.log(loggedInUser), [loggedInUser]);
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -67,7 +70,7 @@ const App = () => {
           <NavBar
             className="navbar"
             onLogout={handleLogout}
-            userId={loggedInUser.id}
+            user={loggedInUser}
             toggleTheme={toggleTheme}
             theme={theme}
           />
@@ -108,25 +111,24 @@ const App = () => {
             />
             <Route
               path="your-tasks"
-              element={
-                <TaskCardPage user={loggedInUser.userName} users={users} />
-              }
+              element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route
               path="assigned-by-you"
-              element={
-                <TaskCardPage user={loggedInUser.userName} users={users} />
-              }
+              element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route
               path="due-soon"
-              element={
-                <TaskCardPage user={loggedInUser.userName} users={users} />
-              }
+              element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route
               path="create-user"
-              element={<CreateUser user={loggedInUser} />}
+              element={
+                <CreateUser
+                  onSetLoggedInUser={setLoggedInUser}
+                  user={loggedInUser}
+                />
+              }
             />
           </Routes>
         </div>

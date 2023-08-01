@@ -14,20 +14,31 @@ const TaskCard = ({
   assignTo,
   usersList,
 }) => {
-  const [comments, setComments] = useState([]);
+  const [newComment, setNewComment] = useState("");
+  const [savedComments, setSavedComments] = useState([]);
   const [newStatus, setNewStatus] = useState(status);
   const [assignedUser, setAssignedUser] = useState(assignTo);
 
   useEffect(() => {
-    console.log(usersList);
-  }, [usersList]);
+    axios
+      .get(`/comments/${id}`)
+      .then((data) => {
+        setSavedComments(data.data);
+        console.log(savedComments);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const handleChange = (e) => {
-    e.preventDefault();
-    setComments(e.target.value);
+    setNewComment(e.target.value);
   };
   const handleSaveComment = (e) => {
     e.preventDefault();
+    console.log(newComment);
+    axios
+      .post("/comments", { comment: newComment, TaskId: id })
+      .then(console.log(newComment))
+      .catch((err) => console.log(err));
   };
 
   const handleStatusChange = async (e) => {
@@ -84,17 +95,25 @@ const TaskCard = ({
             >
               Change Status
             </button>
+            <div>
+              <h3>Comments</h3>
+              <ul>
+                {savedComments.map((data) => {
+                  return <li key={data.id}>{data.comment}</li>;
+                })}
+              </ul>
+            </div>
             <input
               className="comments-input"
               type="text"
               placeholder="Write a comment..."
-              value={comments}
+              value={newComment}
               onChange={handleChange}
             />
             <button
               className="comments-button"
               type="submit"
-              onSubmit={handleSaveComment}
+              onClick={handleSaveComment}
             >
               Save
             </button>
@@ -109,12 +128,13 @@ const TaskCard = ({
             >
               {usersList.map((user) => (
                 <option key={user.id} value={user.id}>
-                  {user.firstName}
+                  {user.firstName}&nbsp;{user.lastName}&nbsp;&#40;{user.jobRole}
+                  &#41;
                 </option>
               ))}
             </select>
           </div>
-          {assignedBy === user && (
+          {assignedBy === user.userName && (
             <button
               className="delete-button"
               type="button"
