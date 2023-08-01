@@ -55,6 +55,10 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
     setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    console.log(loggedInUser);
+  }, [loggedInUser]);
+
   const handleSignIn = async (e) => {
     e.preventDefault();
     removeEnterKeyPressListener();
@@ -75,6 +79,11 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
             id: response.data[0].id,
             userName: user.displayName,
           });
+          if (response.data.length === 0) {
+            navigate("/create-user");
+          } else {
+            navigate("/");
+          }
         })
         .catch((err) => console.log(err));
 
@@ -84,12 +93,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
         user: user.email,
         roles: [],
       });
-
-      if (loggedInUser.firstName) {
-        navigate("/");
-      } else {
-        navigate("/create-user");
-      }
     } catch (err) {
       const errorCode = err.code;
       if (errorCode === "auth/user-not-found") {

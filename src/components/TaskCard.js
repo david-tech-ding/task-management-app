@@ -99,6 +99,14 @@ const TaskCard = ({
     setAssignedUser(e.target.value);
   };
 
+  const handleAssignedUserSubmit = () => {
+    axios
+      .patch(`/task/${id}`, { assignTo: assignedUser })
+      .then((res) => {
+        console.log("Assigned user updated", res.data);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div className="task-card-page">
       <div className="task-card-grid">
@@ -167,6 +175,13 @@ const TaskCard = ({
                 </option>
               ))}
             </select>
+            <button
+              className="save-assigned-user-button"
+              type="button"
+              onClick={handleAssignedUserSubmit}
+            >
+              Save
+            </button>
           </div>
           {assignedBy === user.userName && (
             <button
