@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders TaskSummary correctly renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="dashboard"
+  >
+    <div
+      class="task-summary"
+    >
+      <h2
+        class="task-summary-heading"
+      >
+        test title
+      </h2>
+      <div
+        class="high-priority-summary"
+      >
+        <h3
+          class="priority-summary-heading"
+        >
+          High Priority
+        </h3>
+        0
+      </div>
+      <div
+        class="medium-priority-summary"
+      >
+        <h3
+          class="priority-summary-heading"
+        >
+          Medium Priority
+        </h3>
+        0
+      </div>
+      <div
+        class="low-priority-summary"
+      >
+        <h3
+          class="priority-summary-heading"
+        >
+          Low Priority
+        </h3>
+        0
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

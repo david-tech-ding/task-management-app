@@ -34,10 +34,9 @@ const TaskCard = ({
   };
   const handleSaveComment = (e) => {
     e.preventDefault();
-    console.log(newComment);
     axios
       .post("/comments", { comment: newComment, TaskId: id })
-      .then(console.log(newComment))
+      .then(setNewComment(""))
       .catch((err) => console.log(err));
   };
 

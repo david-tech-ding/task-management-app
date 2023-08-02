@@ -66,7 +66,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
         userLogin.password
       );
       const { user } = userCredential;
-
       axios
         .get(`/user/username/${user.displayName}`)
         .then((response) => {
@@ -74,6 +73,7 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
             ...loggedInUser,
             id: response.data[0].id,
             userName: user.displayName,
+            firstName: response.data[0].firstName,
           });
         })
         .catch((err) => console.log(err));
@@ -84,12 +84,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
         user: user.email,
         roles: [],
       });
-
-      if (loggedInUser.firstName) {
-        navigate("/");
-      } else {
-        navigate("/create-user");
-      }
     } catch (err) {
       const errorCode = err.code;
       if (errorCode === "auth/user-not-found") {
@@ -101,6 +95,9 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
       }
       errRef.current.focus();
     }
+
+    loggedInUser.firstName ? navigate("/") : navigate("/create-user");
+
     addEnterKeyPressListener();
   };
 
