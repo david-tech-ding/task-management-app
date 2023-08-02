@@ -26,8 +26,6 @@ const App = () => {
     firstName: "",
   });
 
-  useEffect(() => console.log(loggedInUser), [loggedInUser]);
-
   const navigate = useNavigate();
   const handleLogout = () => {
     signOut(auth)

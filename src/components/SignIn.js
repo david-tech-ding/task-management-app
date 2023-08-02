@@ -70,7 +70,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
         userLogin.password
       );
       const { user } = userCredential;
-
       axios
         .get(`/user/username/${user.displayName}`)
         .then((response) => {
@@ -78,6 +77,7 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
             ...loggedInUser,
             id: response.data[0].id,
             userName: user.displayName,
+            firstName: response.data[0].firstName,
           });
           if (response.data.length === 0) {
             navigate("/create-user");
@@ -104,6 +104,9 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
       }
       errRef.current.focus();
     }
+
+    loggedInUser.firstName ? navigate("/") : navigate("/create-user");
+
     addEnterKeyPressListener();
   };
 
