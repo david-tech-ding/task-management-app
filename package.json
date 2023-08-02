@@ -46,5 +46,8 @@
     "firebase": "^10.0.0",
     "react-router-dom": "^6.14.2",
     "react-testing-library": "^8.0.1"
+  },
+  "jest": {
+    "transformIgnorePatterns": ["node_modules/(?!axios)/"]
   }
 }

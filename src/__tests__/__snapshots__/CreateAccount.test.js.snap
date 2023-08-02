@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateAccount component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="auth"
+  >
+    <h2
+      class="auth-subheading"
+    >
+      Create an Account
+    </h2>
+    <form
+      class="auth-form"
+    >
+      <label
+        for="create-account_email-input"
+      >
+        Email
+        <input
+          class="auth-form_input"
+          id="create-account_email-input"
+          name="email"
+          type="email"
+          value=""
+        />
+      </label>
+      <label
+        for="create-account_password-input"
+      >
+        Password
+        <input
+          class="auth-form_input"
+          id="create-account_password-input"
+          name="password"
+          type="password"
+          value=""
+        />
+      </label>
+      <label
+        for="create-account_username-input"
+      >
+        Username
+        <input
+          class="auth-form_input"
+          id="create-account_username-input"
+          name="userName"
+          type="userName"
+          value=""
+        />
+      </label>
+      <button
+        id="create-user_button"
+        type="submit"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
