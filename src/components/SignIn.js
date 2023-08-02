@@ -55,6 +55,10 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
     setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
   };
 
+  useEffect(() => {
+    console.log(loggedInUser);
+  }, [loggedInUser]);
+
   const handleSignIn = async (e) => {
     e.preventDefault();
     removeEnterKeyPressListener();
@@ -75,6 +79,11 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
             userName: user.displayName,
             firstName: response.data[0].firstName,
           });
+          if (response.data.length === 0) {
+            navigate("/create-user");
+          } else {
+            navigate("/");
+          }
         })
         .catch((err) => console.log(err));
 
