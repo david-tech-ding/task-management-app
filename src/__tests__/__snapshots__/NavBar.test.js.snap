@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="navbar"
+  >
+    <img
+      alt="clinic-task-logo"
+      class="navbar-logo"
+      src="taskLogo.png"
+    />
+    <h2
+      class="navbar-title"
+    >
+      CTM
+    </h2>
+    <div
+      class="switch"
+    >
+      <div
+        style="position: relative; display: inline-block; text-align: left; opacity: 1; direction: ltr; border-radius: 14px; transition: opacity 0.25s; user-select: none;"
+      >
+        <div
+          class="react-switch-bg"
+          style="height: 28px; width: 56px; margin: 0px; position: relative; background: rgb(136, 136, 136); border-radius: 14px; cursor: pointer; transition: background 0.25s;"
+        >
+          <div
+            style="height: 28px; width: 30px; position: relative; opacity: 0; pointer-events: none; transition: opacity 0.25s;"
+          >
+            <div
+              class="icon-container-moon"
+            >
+              <svg
+                fill="currentColor"
+                height="16"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 512 512"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M279.135 512c78.756 0 150.982-35.804 198.844-94.775 28.27-34.831-2.558-85.722-46.249-77.401-82.348 15.683-158.272-47.268-158.272-130.792 0-48.424 26.06-92.292 67.434-115.836 38.745-22.05 28.999-80.788-15.022-88.919A257.936 257.936 0 0 0 279.135 0c-141.36 0-256 114.575-256 256 0 141.36 114.576 256 256 256zm0-464c12.985 0 25.689 1.201 38.016 3.478-54.76 31.163-91.693 90.042-91.693 157.554 0 113.848 103.641 199.2 215.252 177.944C402.574 433.964 344.366 464 279.135 464c-114.875 0-208-93.125-208-208s93.125-208 208-208z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            style="height: 28px; width: 30px; position: absolute; opacity: 1; right: 0px; top: 0px; pointer-events: none; transition: opacity 0.25s;"
+          >
+            <div
+              class="icon-container-sun"
+            >
+              <svg
+                fill="currentColor"
+                height="16"
+                stroke="currentColor"
+                stroke-width="0"
+                viewBox="0 0 24 24"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M6.993 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007S14.761 6.993 12 6.993 6.993 9.239 6.993 12zM12 8.993c1.658 0 3.007 1.349 3.007 3.007S13.658 15.007 12 15.007 8.993 13.658 8.993 12 10.342 8.993 12 8.993zM10.998 19h2v3h-2zm0-17h2v3h-2zm-9 9h3v2h-3zm17 0h3v2h-3zM4.219 18.363l2.12-2.122 1.415 1.414-2.12 2.122zM16.24 6.344l2.122-2.122 1.414 1.414-2.122 2.122zM6.342 7.759 4.22 5.637l1.415-1.414 2.12 2.122zm13.434 10.605-1.414 1.414-2.122-2.122 1.414-1.414z"
+                />
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div
+          class="react-switch-handle"
+          style="height: 26px; width: 26px; background: rgb(255, 255, 255); display: inline-block; cursor: pointer; border-radius: 50%; position: absolute; transform: translateX(1px); top: 1px; outline: 0; border: 0px; transition: background-color 0.25s, transform 0.25s, box-shadow 0.15s;"
+        />
+        <input
+          aria-checked="false"
+          role="switch"
+          style="border: 0px; height: 1px; margin: -1px; overflow: hidden; padding: 0px; position: absolute; width: 1px;"
+          type="checkbox"
+        />
+      </div>
+    </div>
+    <div
+      class="navbar-login"
+    >
+      <a
+        class="navbar-links-auth"
+        href="/create-account"
+      >
+        <button
+          class="auth-button"
+        >
+          Create Account
+        </button>
+      </a>
+      <a
+        class="navbar-links-auth"
+        href="/sign-in"
+      >
+        <button
+          class="auth-button"
+        >
+          Sign In
+        </button>
+      </a>
+    </div>
+  </div>
+</DocumentFragment>
+`;
