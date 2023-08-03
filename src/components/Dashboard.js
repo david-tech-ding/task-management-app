@@ -7,8 +7,6 @@ import "../styles/dashboard.css";
 const Dashboard = ({ user }) => {
   const [dashboardTasks, setDashboardTasks] = useState([]);
 
-  console.log(user);
-
   useEffect(() => {
     axios
       .get("/task")

@@ -5,9 +5,8 @@ import SideBar from "./SideBar";
 import "../styles/taskcardpage.css";
 import { useLocation } from "react-router-dom";
 
-const TaskCardPage = ({ user }) => {
+const TaskCardPage = ({ user, users }) => {
   const [tasks, setTasks] = useState([]);
-  const [users, setUsers] = useState([]);
   const [userFilter, setUserFilter] = useState("");
   const search = useLocation();
   const [tasksToShow, setTasksToShow] = useState([]);
@@ -44,14 +43,6 @@ const TaskCardPage = ({ user }) => {
       .catch((err) => console.log(err));
   });
 
-  useEffect(() => {
-    axios
-      .get("/user")
-      .then((data) => {
-        setUsers(data.data);
-      })
-      .catch((err) => console.log(err));
-  }, []);
   return (
     <div className="task-card-page">
       <SideBar className="sidebar" changeUser={setUserFilter} />

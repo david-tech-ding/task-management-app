@@ -51,7 +51,6 @@ const TaskCard = ({
       .get(`/comments/${id}`)
       .then((data) => {
         setSavedComments(data.data);
-        console.log(savedComments);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -62,10 +61,8 @@ const TaskCard = ({
   const handleSaveComment = (e) => {
     e.preventDefault();
     removeEnterKeyPressListener();
-    console.log(newComment);
     axios
       .post("/comments", { comment: newComment, TaskId: id })
-      // .then(console.log(newComment))
       .then((res) => {
         setSavedComments([...savedComments, res.data]);
         setNewComment("");
