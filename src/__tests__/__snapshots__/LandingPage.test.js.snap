@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders renders correctly 1`] = `
+<DocumentFragment>
+  <div>
+    <h2>
+      Welcome to Clinic Task Manager!
+    </h2>
+    <p>
+      To continue, please log in to your account or create a new one to get started.
+    </p>
+  </div>
+</DocumentFragment>
+`;
