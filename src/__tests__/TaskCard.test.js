@@ -62,7 +62,6 @@ describe("renders", () => {
 });
 
 describe("get comments", () => {
-  jest.mock("axios");
   const validProps = {
     title: "test",
     priorityLevel: "test",
@@ -76,9 +75,12 @@ describe("get comments", () => {
     usersList: [{ firstName: "test", lastName: "test", id: 1 }],
   };
 
-  it("Should return comments list", () => {
-    const mockData = ["test comment", "test comment 2"];
-    axios.get.mockResolvedValueOnce(mockData);
+  it("Should make a call to the correct URL", async () => {
+    const mockData = {
+      data: [{ comment: "test comment" }, { comment: "test comment 2" }],
+    };
+    jest.spyOn(axios, "get").mockResolvedValue(mockData);
+
     render(
       <TaskCard
         title={validProps.title}
@@ -94,6 +96,41 @@ describe("get comments", () => {
       />
     );
 
-    expect(axios.get).toHaveBeenCalledWith(`/comments/${validProps.id}`);
+    expect(await screen.findByText("test comment")).toBeInTheDocument();
+    expect(await axios.get).toHaveBeenCalledWith(`/comments/${validProps.id}`);
   });
 });
+
+// describe("save comment button", () => {
+//   const validProps = {
+//     title: "test",
+//     priorityLevel: "test",
+//     details: "test",
+//     dueDate: "03 August 2023",
+//     status: "test",
+//     id: 1,
+//     user: "test",
+//     assignedBy: "test",
+//     assignTo: 1,
+//     usersList: [{ firstName: "test", lastName: "test", id: 1 }],
+//   };
+//   it("should make an axios.post call to correct URL", () => {
+//     jest.mock("axios");
+//     axios.post.mockImplementationOnce();
+
+//     render(
+//       <TaskCard
+//         title={validProps.title}
+//         priorityLevel={validProps.priorityLevel}
+//         details={validProps.details}
+//         dueDate={validProps.dueDate}
+//         status={validProps.status}
+//         id={validProps.id}
+//         user={validProps.user}
+//         assignedBy={validProps.assignedBy}
+//         assignTo={validProps.assignTo}
+//         usersList={validProps.usersList}
+//       />
+//     );
+//   });
+// });
