@@ -1,0 +1,112 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="task-card-page"
+  >
+    <div
+      class="task-card-grid"
+    >
+      <div
+        class="task-card test"
+      >
+        <div
+          class="task-card_title"
+        >
+          test
+        </div>
+        <div
+          class="task-card_priority_level"
+        >
+          test Priority
+        </div>
+        <div
+          class="task-card_due_date"
+        >
+          Due on 03 August 2023
+        </div>
+        <div
+          class="task-card_details"
+        >
+          test
+        </div>
+        <div
+          class="task-card_status"
+        >
+          Status: test
+        </div>
+        <form
+          class="task-card_form"
+        >
+          <select
+            class="status-select"
+            id="status-select"
+          >
+            <option
+              value="Not Started"
+            >
+              Not Started
+            </option>
+            <option
+              value="In Progress"
+            >
+              In Progress
+            </option>
+            <option
+              value="Complete"
+            >
+              Complete
+            </option>
+          </select>
+          <button
+            class="status-button"
+            type="button"
+          >
+            Change Status
+          </button>
+          <div>
+            <h3>
+              Comments
+            </h3>
+            <ul />
+          </div>
+          <input
+            class="comments-input"
+            placeholder="Write a comment..."
+            type="text"
+            value=""
+          />
+          <button
+            class="comments-button"
+            type="submit"
+          >
+            Save
+          </button>
+        </form>
+        <div>
+          <h3>
+            Assign To
+          </h3>
+          <select
+            class="assigned-user_select"
+            id="assigned-user_select"
+          >
+            <option
+              value="1"
+            >
+              test test ()
+            </option>
+          </select>
+          <button
+            class="save-assigned-user-button"
+            type="button"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

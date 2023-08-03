@@ -25,6 +25,8 @@ const App = () => {
     userName: "",
     firstName: "",
   });
+  const [users, setUsers] = useState([]);
+  const [theme, setTheme] = useState("light");
 
   const navigate = useNavigate();
   const handleLogout = () => {
@@ -36,7 +38,6 @@ const App = () => {
       .catch((err) => console.log(err));
   };
 
-  const [theme, setTheme] = useState("light");
   const toggleTheme = () => {
     setTheme((curr) => (curr === "light" ? "dark" : "light"));
   };
@@ -47,8 +48,6 @@ const App = () => {
       document.body.className = "";
     };
   }, [theme]);
-
-  const [users, setUsers] = useState([]);
 
   useEffect(() => {
     axios

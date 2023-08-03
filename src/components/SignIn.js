@@ -55,10 +55,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
     setUserLogin({ ...userLogin, [e.target.name]: e.target.value });
   };
 
-  useEffect(() => {
-    console.log(loggedInUser);
-  }, [loggedInUser]);
-
   const handleSignIn = async (e) => {
     e.preventDefault();
     removeEnterKeyPressListener();
