@@ -1,0 +1,54 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="create-user"
+  >
+    <h2>
+      Finish setting up your account:
+    </h2>
+    <form>
+      <div>
+        <label
+          for="firstName"
+        >
+          First Name:
+        </label>
+        <input
+          id="firstName"
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <label
+          for="lastName"
+        >
+          Last Name:
+        </label>
+        <input
+          id="lastName"
+          type="text"
+          value=""
+        />
+      </div>
+      <div>
+        <label
+          for="jobRole"
+        >
+          Job Role:
+        </label>
+        <input
+          id="jobRole"
+          type="text"
+          value=""
+        />
+      </div>
+      <button>
+        Create User
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

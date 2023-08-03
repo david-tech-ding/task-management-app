@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignIn component renders the component correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="auth"
+  >
+    <p
+      aria-live="assertive"
+      class="offscreen"
+    />
+    <h2
+      class="auth-subheading"
+    >
+      Sign In
+    </h2>
+    <form
+      class="auth-form"
+    >
+      <label
+        for="sign-in_email-input"
+      >
+        Email
+        <input
+          class="auth-form_input"
+          id="sign-in_email-input"
+          name="email"
+          required=""
+          type="email"
+          value=""
+        />
+      </label>
+      <label
+        for="sign-in_password-input"
+      >
+        Password
+        <input
+          class="auth-form_input"
+          id="sign-in_password-input"
+          name="password"
+          required=""
+          type="password"
+          value=""
+        />
+      </label>
+      <button
+        id="sign-in_button"
+        type="submit"
+      >
+        SIGN IN
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;
