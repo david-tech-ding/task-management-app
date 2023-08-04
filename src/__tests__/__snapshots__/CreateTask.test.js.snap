@@ -1,0 +1,126 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CreateTask component renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="create-task"
+  >
+    <h2
+      class="create-task-heading"
+    >
+      Create A New Task
+    </h2>
+    <form
+      class="create-task-form"
+    >
+      <label
+        for="title"
+      >
+        Title
+        <input
+          class="create-task-form_input"
+          id="title"
+          name="title"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        for="details"
+      >
+        Details
+        <input
+          class="create-task-form_input"
+          id="details"
+          name="details"
+          type="text"
+          value=""
+        />
+      </label>
+      <label
+        for="priorityLevel"
+      >
+        Priority Level
+        <select
+          class="create-task-form_select"
+          data-testid="priorityLevel"
+          id="priorityLevel"
+          name="priorityLevel"
+        >
+          <option
+            class="priority-level-high"
+            value="High"
+          >
+            High
+          </option>
+          <option
+            class="priority-level-high"
+            value="Medium"
+          >
+            Medium
+          </option>
+          <option
+            class="priority-level-high"
+            value="Low"
+          >
+            Low
+          </option>
+        </select>
+      </label>
+      <label
+        for="assignTo"
+      >
+        Assign To
+        <select
+          class="create-task-form_input"
+          data-testid="assignTo"
+          id="assignTo"
+          name="assignTo"
+        >
+          <option
+            value="1"
+          >
+            David Ding (Developer)
+          </option>
+          <option
+            value="2"
+          >
+            James Lee (Product Manager)
+          </option>
+          <option
+            value="3"
+          >
+            Jasper Lim (Human Resources)
+          </option>
+        </select>
+      </label>
+      <label
+        for="dueDate"
+      >
+        Due Date 
+      </label>
+      <div
+        class="react-datepicker-wrapper"
+      >
+        <div
+          class="react-datepicker__input-container"
+        >
+          <input
+            autocomplete="off"
+            class="create-task-form_input"
+            id="dueDate"
+            name="dueDate"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <button
+        type="submit"
+      >
+        Create
+      </button>
+    </form>
+  </div>
+</DocumentFragment>
+`;

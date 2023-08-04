@@ -24,7 +24,7 @@ jest.mock("firebase/auth", () => {
 });
 
 jest.mock("axios", () => ({
-  post: jest.fn(),
+  post: jest.fn(() => Promise.resolve({})),
   get: jest.fn(() => Promise.resolve({ data: [] })),
 }));
 

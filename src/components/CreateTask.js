@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../styles/createtask.css";
 
 const CreateTask = ({ user, users }) => {
-  const [date, setDate] = useState();
+  const [date, setDate] = useState(new Date());
 
   const initialState = {
     fields: {
@@ -18,12 +18,19 @@ const CreateTask = ({ user, users }) => {
       status: "Not started",
     },
   };
+
   const [fields, setFields] = useState(initialState.fields);
 
   const handleCreateTask = (e) => {
+    const formattedDate = date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+
     e.preventDefault();
     axios
-      .post("/task", { ...fields })
+      .post("/task", { ...fields, dueDate: formattedDate, assignedBy: user })
       .then(() => {
         console.log(fields);
         setFields(initialState.fields);
@@ -32,11 +39,20 @@ const CreateTask = ({ user, users }) => {
   };
   const handleDateChange = (chosenDate) => {
     setDate(chosenDate);
-    setFields({ ...fields, dueDate: chosenDate });
+    const formattedDate = chosenDate.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    });
+    setFields({ ...fields, dueDate: formattedDate });
   };
   const handleFieldChange = (e) => {
     e.preventDefault();
-    setFields({ ...fields, [e.target.name]: e.target.value, assignedBy: user });
+    setFields({
+      ...fields,
+      [e.target.name]: e.target.value,
+      assignedBy: user,
+    });
   };
 
   return (
@@ -73,6 +89,7 @@ const CreateTask = ({ user, users }) => {
             name="priorityLevel"
             value={fields.priorityLevel}
             onChange={handleFieldChange}
+            data-testid="priorityLevel"
           >
             <option className="priority-level-high" value="High">
               High
@@ -93,6 +110,7 @@ const CreateTask = ({ user, users }) => {
             name="assignTo"
             value={fields.assignTo}
             onChange={handleFieldChange}
+            data-testid="assignTo"
           >
             {users.map((userData) => {
               return (
@@ -114,7 +132,9 @@ const CreateTask = ({ user, users }) => {
           value={fields.dueDate}
           autoComplete="off"
         />
-        <button type="submit">Create</button>
+        <button type="submit" onClick={handleCreateTask}>
+          Create
+        </button>
       </form>
     </div>
   );
