@@ -2,7 +2,7 @@ import React from "react";
 import ReactSwitch from "react-switch";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
-import taskLogo from "../images/taskLogo.png";
+import ctmLogo from "../images/ctmLogo.png";
 import { FaRegMoon } from "react-icons/fa";
 import { BiSun } from "react-icons/bi";
 
@@ -13,7 +13,7 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
     <>
       <div className="navbar">
         <img
-          src={taskLogo}
+          src={ctmLogo}
           alt="clinic-task-logo"
           className="navbar-logo"
           onClick={() => {
@@ -24,18 +24,6 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
             }
           }}
         ></img>
-        <h2
-          className="navbar-title"
-          onClick={() => {
-            if (user.firstName) {
-              navigate("/");
-            } else {
-              navigate("/create-user");
-            }
-          }}
-        >
-          CTM
-        </h2>
         {user.firstName ? (
           <ul className="navbar-links">
             <li className="navbar-links-item">

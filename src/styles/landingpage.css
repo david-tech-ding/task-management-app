@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Belleza&family=Offside&family=Oswald&display=swap");
+
+.landing-page-container {
+  height: 100vh;
+  width: 100vw;
+  background-image: linear-gradient(
+      to bottom,
+      rgba(115, 115, 225, 0.835),
+      rgba(63, 63, 179, 0.493)
+    ),
+    url("../images/LandingPageBackground.jpg");
+  background-size: cover;
+}
+
+.typewriter h1 {
+  overflow: hidden;
+  border-right: 0.05em solid aliceblue;
+  white-space: nowrap;
+  color: aliceblue;
+  font-family: Belleza;
+  font-size: 5em;
+  margin: 0 auto;
+  letter-spacing: 0.2em;
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from,
+  to {
+    border-color: transparent;
+  }
+  50% {
+    border-color: aliceblue;
+  }
+}
