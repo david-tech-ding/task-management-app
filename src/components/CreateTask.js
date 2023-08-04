@@ -5,7 +5,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import "../styles/createtask.css";
 
 const CreateTask = ({ user, users }) => {
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
 
   const initialState = {
     fields: {
@@ -22,15 +22,9 @@ const CreateTask = ({ user, users }) => {
   const [fields, setFields] = useState(initialState.fields);
 
   const handleCreateTask = (e) => {
-    const formattedDate = date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-
     e.preventDefault();
     axios
-      .post("/task", { ...fields, dueDate: formattedDate, assignedBy: user })
+      .post("/task", { ...fields })
       .then(() => {
         console.log(fields);
         setFields(initialState.fields);
@@ -39,19 +33,13 @@ const CreateTask = ({ user, users }) => {
   };
   const handleDateChange = (chosenDate) => {
     setDate(chosenDate);
-    const formattedDate = chosenDate.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "2-digit",
-      day: "2-digit",
-    });
-    setFields({ ...fields, dueDate: formattedDate });
+    setFields({ ...fields, dueDate: chosenDate });
   };
   const handleFieldChange = (e) => {
     e.preventDefault();
     setFields({
       ...fields,
       [e.target.name]: e.target.value,
-      assignedBy: user,
     });
   };
 

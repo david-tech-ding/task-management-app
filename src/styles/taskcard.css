@@ -1,13 +1,16 @@
 .task-card.High {
-  background-color: rgba(242, 99, 99, 0.914);
+  border: 8px solid rgba(242, 99, 99, 0.914);
+  background-color: lightgray;
 }
 
 .task-card.Medium {
-  background-color: rgb(240, 240, 117);
+  border: 8px solid rgb(240, 240, 117);
+  background-color: lightgray;
 }
 
 .task-card.Low {
-  background-color: rgb(110, 213, 110);
+  border: 8px solid rgb(110, 213, 110);
+  background-color: lightgray;
 }
 
 .task-card {
@@ -39,6 +42,53 @@
   border: 1px dotted black;
 }
 
+.comments-container{
+  border: 2px solid lightblue;
+  border-radius: 8px;
+  margin: 10px 0;
+  padding: 0 10px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+.comments-list {
+  list-style-type: none;
+  padding: 0
+}
+
+.comments-list li {
+  padding: 10px;
+  border: 1px solid #ccc;
+  margin: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.comments-list li.selected {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+.comments-list li button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.tick-container{
+  width: 18px;
+  height: 18px;
+  display: flex;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+
+.tick-logo{
+  font-size: 18px;
+}
 .task-card_comments input {
   border-radius: 5px;
 }

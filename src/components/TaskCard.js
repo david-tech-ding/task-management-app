@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
+import * as TiIcons from "react-icons/ti";
 import "../styles/taskcard.css";
 
 const TaskCard = ({
@@ -18,6 +19,7 @@ const TaskCard = ({
   const [savedComments, setSavedComments] = useState([]);
   const [newStatus, setNewStatus] = useState(status);
   const [assignedUser, setAssignedUser] = useState(assignTo);
+  const [selectedCommentId, setSelectedCommentId] = useState(null);
 
   const userRef = useRef();
   const buttonRef = useRef();
@@ -58,18 +60,6 @@ const TaskCard = ({
   const handleChange = (e) => {
     setNewComment(e.target.value);
   };
-  const handleSaveComment = (e) => {
-    e.preventDefault();
-    removeEnterKeyPressListener();
-    axios
-      .post("/comments", { comment: newComment, TaskId: id })
-      .then((res) => {
-        setSavedComments([...savedComments, res.data]);
-        setNewComment("");
-      })
-      .catch((err) => console.log(err));
-    addEnterKeyPressListener();
-  };
 
   const handleStatusChange = async (e) => {
     e.preventDefault();
@@ -104,6 +94,33 @@ const TaskCard = ({
       })
       .catch((err) => console.log(err));
   };
+
+  const handleSaveComment = (e) => {
+    e.preventDefault();
+    removeEnterKeyPressListener();
+
+    if (newComment.trim() !== "") {
+      axios
+        .post("/comments", { comment: newComment, TaskId: id })
+        .then((res) => {
+          setSavedComments([...savedComments, res.data]);
+          setNewComment("");
+        })
+        .catch((err) => console.log(err));
+      addEnterKeyPressListener();
+    }
+  };
+
+  const handleClearComment = (id) => {
+    axios
+      .delete(`/comments/${id}`)
+      .then(() => {
+        setSavedComments(savedComments.filter((comment) => comment.id !== id));
+        setSelectedCommentId(null);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="task-card-page">
       <div className="task-card-grid">
@@ -133,12 +150,35 @@ const TaskCard = ({
             >
               Change Status
             </button>
-            <div>
+            <div className="comments-container">
               <h3>Comments</h3>
-              <ul>
-                {savedComments.map((data) => {
-                  return <li key={data.id}>{data.comment}</li>;
-                })}
+              <ul className="comments-list">
+                {savedComments.map((data) => (
+                  <li
+                    key={data.id}
+                    className={selectedCommentId === data.id ? "selected" : ""}
+                  >
+                    {data.comment}
+                    {selectedCommentId === data.id ? (
+                      <button
+                        type="button"
+                        className="tick-button"
+                        onClick={() => handleClearComment(data.id)}
+                      >
+                        <span className="tick-container">
+                          <TiIcons.TiTick className="tick-logo" />
+                        </span>
+                      </button>
+                    ) : (
+                      <button
+                        type="button"
+                        onClick={() => setSelectedCommentId(data.id)}
+                      >
+                        Clear
+                      </button>
+                    )}
+                  </li>
+                ))}
               </ul>
             </div>
             <input

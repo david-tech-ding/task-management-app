@@ -1,6 +1,11 @@
 .task-card-content{
+  display: grid;
   margin-left: 150px;
   transition: margin-left 0.5s;
+  margin-top: 30px;
+  grid-column-start: 2;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 50px;
 }
 
 .side-bar.collapsed + .task-card-content {
