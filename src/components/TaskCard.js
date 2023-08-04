@@ -55,7 +55,7 @@ const TaskCard = ({
         setSavedComments(data.data);
       })
       .catch((err) => console.log(err));
-  });
+  }, [id]);
 
   const handleChange = (e) => {
     setNewComment(e.target.value);

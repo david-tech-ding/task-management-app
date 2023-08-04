@@ -1,87 +1,87 @@
-:root{
-    --clr-blue: hsla(215, 100%, 50%, 1);
-    --clr-bg: hsla(220, 96%, 42%, 1);
+:root {
+  --clr-blue: hsla(215, 100%, 50%, 1);
+  --clr-bg: hsla(220, 96%, 42%, 1);
 }
-.navbar-logo{
-    max-width: 60px;
-    max-height: 45px;
-    margin-right: 1em;
-    padding: 1em;
-    align-self: center;
-    cursor: pointer;
+.navbar-logo {
+  max-width: 60px;
+  max-height: 45px;
+  margin-right: 1em;
+  margin-left: 1em;
+  padding: 1em;
+  align-self: center;
+  cursor: pointer;
 }
-.navbar{
-    display: flex;
-    background-color: #4a5671;
-}
-
-.navbar-title{
-    margin-right: 1em;
-    align-self: center;
-    cursor: pointer;
+.navbar {
+  display: flex;
+  background-color: #3f3c3c;
 }
 
-.navbar-links{
-    display: flex;
-    margin: 0;
-    padding: 0;
-    align-items: center
+.navbar-title {
+  margin-right: 1em;
+  align-self: center;
+  cursor: pointer;
 }
 
-.navbar-links-item{
-    list-style-type: none;
-    padding: 0 1em;
+.navbar-links {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  align-items: center;
 }
 
-.switch{
-    margin: 1.5rem 0 0 1rem;
-}
-.icon-container-sun{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+.navbar-links-item {
+  list-style-type: none;
+  padding: 0 1em;
 }
 
-.icon-container-moon{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
+.switch {
+  margin: 1.5rem 0 0 1rem;
+}
+.icon-container-sun {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.navbar-login{
-    margin-left: auto;
-    padding: 1.2em 1em;
+.icon-container-moon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.navbar-signout{
-    margin-left: auto;
-    padding: 1.2em 1em;
+.navbar-login {
+  margin-left: auto;
+  padding: 1.2em 1em;
 }
 
-.signout-button{
-    padding: 0.5em 0.5em;
-    position: relative;
-    font-size: 1rem;
-    cursor: pointer;
-    color: var(--clr-blue);
-    border: var(--clr-blue) 2.5px solid;
-    border-radius: 0.25em;
-    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
-
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue), 0 0 0.5em 0 currentColor 
-}
-.auth-button{
-    position: relative;
-    margin: 0 0.5em;
-    font-size: 1rem;
-    cursor: pointer;
-    color: var(--clr-blue);
-    border: var(--clr-blue) 2.5px solid;
-    border-radius: 0.25em;
-    text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
-
-    box-shadow: inset 0 0 0.5em 0 var(--clr-blue), 0 0 0.5em 0 currentColor
+.navbar-signout {
+  margin-left: auto;
+  padding: 1.2em 1em;
 }
 
+.signout-button {
+  padding: 0.5em 0.5em;
+  position: relative;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--clr-blue);
+  border: var(--clr-blue) 2.5px solid;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue), 0 0 0.5em 0 currentColor;
+}
+.auth-button {
+  position: relative;
+  margin: 0 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  color: var(--clr-blue);
+  border: var(--clr-blue) 2.5px solid;
+  border-radius: 0.25em;
+  text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
+
+  box-shadow: inset 0 0 0.5em 0 var(--clr-blue), 0 0 0.5em 0 currentColor;
+}
