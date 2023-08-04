@@ -51,9 +51,9 @@ const SideBar = ({ changeUser }) => {
     <div className={`side-bar ${sidebarVisible ? "expanded" : "collapsed"}`}>
       <div className="logo-container" onClick={toggleSidebar}>
         {sidebarVisible ? (
-          <AiIcons.AiOutlineClose className="sidebar-logo" />
+          <AiIcons.AiOutlineClose className="sidebar-logo" size={28} />
         ) : (
-          <FaIcons.FaBars className="sidebar-logo" />
+          <FaIcons.FaBars className="sidebar-logo" size={28} />
         )}
       </div>
       {contentVisible && (

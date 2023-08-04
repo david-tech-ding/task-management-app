@@ -45,25 +45,27 @@ const TaskCardPage = ({ user, users }) => {
 
   return (
     <div className="task-card-page">
-      <SideBar className="sidebar" changeUser={setUserFilter} />
-      <div className="task-card-grid">
-        {tasksToShow.map((task) => {
-          return (
-            <TaskCard
-              key={task.id}
-              title={task.title}
-              priorityLevel={task.priorityLevel}
-              details={task.details}
-              dueDate={task.dueDate}
-              status={task.status}
-              id={task.id}
-              user={user}
-              assignedBy={task.assignedBy}
-              assignTo={task.assignTo}
-              usersList={users}
-            />
-          );
-        })}
+      <div className="page-container">
+        <SideBar className="sidebar" changeUser={setUserFilter} />
+        <div className="task-card-content">
+          {tasksToShow.map((task) => {
+            return (
+              <TaskCard
+                key={task.id}
+                title={task.title}
+                priorityLevel={task.priorityLevel}
+                details={task.details}
+                dueDate={task.dueDate}
+                status={task.status}
+                id={task.id}
+                user={user}
+                assignedBy={task.assignedBy}
+                assignTo={task.assignTo}
+                usersList={users}
+              />
+            );
+          })}
+        </div>
       </div>
     </div>
   );

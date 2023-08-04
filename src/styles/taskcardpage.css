@@ -1,6 +1,20 @@
-.task-card-grid {
-  grid-column-start: 2;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  padding-left: 50px;
+.task-card-content{
+  margin-left: 150px;
+  transition: margin-left 0.5s;
+}
+
+.side-bar.collapsed + .task-card-content {
+  margin-left: 120px;
+}
+
+.side-bar.expanded + .task-card-content {
+  margin-left: 200px;
+}
+
+.side-bar{
+  width: 150px;
+}
+
+.side-bar.collapsed{
+  width: 80px;
 }
