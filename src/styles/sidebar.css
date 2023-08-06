@@ -62,6 +62,11 @@
 .search-bar input {
   width: 59%;
 }
+
+.filter-user-container{
+  overflow-y: auto;
+  max-height: 350px;
+}
 .user-link,
 .priority-link,
 .status-link {
