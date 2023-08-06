@@ -10,6 +10,8 @@
     "jest": "^27.5.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.16.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.10.1",
     "react-scripts": "5.0.1",
@@ -48,6 +50,8 @@
     "react-testing-library": "^8.0.1"
   },
   "jest": {
-    "transformIgnorePatterns": ["node_modules/(?!axios)/"]
+    "transformIgnorePatterns": [
+      "node_modules/(?!axios)/"
+    ]
   }
 }

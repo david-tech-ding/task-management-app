@@ -20,6 +20,7 @@ const TaskCard = ({
   const [newStatus, setNewStatus] = useState(status);
   const [assignedUser, setAssignedUser] = useState(assignTo);
   const [selectedCommentId, setSelectedCommentId] = useState(null);
+  const [detailsVisible, setDetailsVisible] = useState(false);
 
   const userRef = useRef();
   const buttonRef = useRef();
@@ -121,104 +122,117 @@ const TaskCard = ({
       .catch((err) => console.log(err));
   };
 
+  const handleTitleClick = () => {
+    setDetailsVisible(!detailsVisible);
+  };
+
   return (
     <div className="task-card-page">
       <div className="task-card-grid">
         <div className={`task-card ${priorityLevel}`}>
-          <div className="task-card_title">{title}</div>
+          <div className="task-card_title-container" onClick={handleTitleClick}>
+            <span className="task-card_title">{title}</span>
+          </div>
+          {detailsVisible && (
+            <form className="task-card_form">
+              <div className="task-card_details">{details}</div>
+              <div className="comments-container">
+                <h3>Comments</h3>
+                <ul className="comments-list">
+                  {savedComments.map((data) => (
+                    <li
+                      key={data.id}
+                      className={
+                        selectedCommentId === data.id ? "selected" : ""
+                      }
+                    >
+                      {data.comment}
+                      {selectedCommentId === data.id ? (
+                        <button
+                          type="button"
+                          className="tick-button"
+                          onClick={() => handleClearComment(data.id)}
+                        >
+                          <span className="tick-container">
+                            <TiIcons.TiTick className="tick-logo" />
+                          </span>
+                        </button>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedCommentId(data.id)}
+                        >
+                          Clear
+                        </button>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <input
+                className="comments-input"
+                type="text"
+                placeholder="Write a comment..."
+                value={newComment}
+                onChange={handleChange}
+              />
+              <button
+                className="comments-button"
+                type="submit"
+                onClick={handleSaveComment}
+                ref={buttonRef}
+              >
+                Save
+              </button>
+            </form>
+          )}
           <div className="task-card_priority_level">
             {priorityLevel}&nbsp;Priority
           </div>
-          <div className="task-card_due_date">Due on {dueDate}</div>
-          <div className="task-card_details">{details}</div>
+          <div className="task-card_due_date">Due on: {dueDate}</div>
           <div className="task-card_status">Status: {status}</div>
-          <form className="task-card_form">
-            <select
-              className="status-select"
-              id="status-select"
-              onChange={handleStatusChange}
-              defaultValue={status}
-            >
-              <option value="Not Started">Not Started</option>
-              <option value="In Progress">In Progress</option>
-              <option value="Complete">Complete</option>
-            </select>
-            <button
-              className="status-button"
-              type="button"
-              onClick={handleStatusSubmit}
-            >
-              Change Status
-            </button>
-            <div className="comments-container">
-              <h3>Comments</h3>
-              <ul className="comments-list">
-                {savedComments.map((data) => (
-                  <li
-                    key={data.id}
-                    className={selectedCommentId === data.id ? "selected" : ""}
-                  >
-                    {data.comment}
-                    {selectedCommentId === data.id ? (
-                      <button
-                        type="button"
-                        className="tick-button"
-                        onClick={() => handleClearComment(data.id)}
-                      >
-                        <span className="tick-container">
-                          <TiIcons.TiTick className="tick-logo" />
-                        </span>
-                      </button>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() => setSelectedCommentId(data.id)}
-                      >
-                        Clear
-                      </button>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <input
-              className="comments-input"
-              type="text"
-              placeholder="Write a comment..."
-              value={newComment}
-              onChange={handleChange}
-            />
-            <button
-              className="comments-button"
-              type="submit"
-              onClick={handleSaveComment}
-              ref={buttonRef}
-            >
-              Save
-            </button>
-          </form>
-          <div>
+          <select
+            className="status-select"
+            id="status-select"
+            onChange={handleStatusChange}
+            defaultValue={status}
+          >
+            <option value="Not Started">Not Started</option>
+            <option value="In Progress">In Progress</option>
+            <option value="Complete">Complete</option>
+          </select>
+          <button
+            className="status-button"
+            type="button"
+            onClick={handleStatusSubmit}
+          >
+            Change Status
+          </button>
+          <div className="assign-container">
             <h3>Assign To</h3>
-            <select
-              className="assigned-user_select"
-              id="assigned-user_select"
-              onChange={handleAssignedUserChange}
-              value={assignedUser}
-            >
-              {usersList.map((user) => (
-                <option key={user.id} value={user.id}>
-                  {user.firstName}&nbsp;{user.lastName}&nbsp;&#40;{user.jobRole}
-                  &#41;
-                </option>
-              ))}
-            </select>
-            <button
-              className="save-assigned-user-button"
-              type="button"
-              onClick={handleAssignedUserSubmit}
-            >
-              Save
-            </button>
+            <div className="assign-row">
+              <select
+                className="assigned-user_select"
+                id="assigned-user_select"
+                onChange={handleAssignedUserChange}
+                value={assignedUser}
+              >
+                {usersList.map((user) => (
+                  <option key={user.id} value={user.id}>
+                    {user.firstName}&nbsp;{user.lastName}&nbsp;&#40;
+                    {user.jobRole}
+                    &#41;
+                  </option>
+                ))}
+              </select>
+              <button
+                className="save-assigned-user-button"
+                type="button"
+                onClick={handleAssignedUserSubmit}
+              >
+                Save
+              </button>
+            </div>
           </div>
           {assignedBy === user.userName && (
             <button
