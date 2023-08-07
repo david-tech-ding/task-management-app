@@ -56,6 +56,7 @@ const TaskCard = ({
         setSavedComments(data.data);
       })
       .catch((err) => console.log(err));
+    console.log(usersList);
   }, [id]);
 
   const handleChange = (e) => {

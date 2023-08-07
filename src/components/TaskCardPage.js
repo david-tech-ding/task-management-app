@@ -10,6 +10,7 @@ const TaskCardPage = ({ user, users }) => {
   const [userFilter, setUserFilter] = useState("");
   const search = useLocation();
   const [tasksToShow, setTasksToShow] = useState([]);
+  const [sortByPriority, setSortByPriority] = useState(false);
 
   const yourTasks = tasks.filter((task) => task.assignTo === user.id);
 
@@ -43,27 +44,54 @@ const TaskCardPage = ({ user, users }) => {
       .catch((err) => console.log(err));
   });
 
+  const priorityOrder = ["High", "Medium", "Low"];
+
+  const sortTaskCardByPriority = (tasks) => {
+    console.log("Sorting by priority...");
+    return tasks.slice().sort((a, b) => {
+      const priorityComparison =
+        priorityOrder.indexOf(a.priorityLevel) -
+        priorityOrder.indexOf(b.priorityLevel);
+      if (priorityComparison !== 0) {
+        return priorityComparison;
+      }
+
+      return new Date(a.dueDate) - new Date(b.dueDate);
+    });
+  };
+
+  const sortedTaskCards = sortByPriority
+    ? sortTaskCardByPriority(tasksToShow)
+    : tasksToShow;
+
   return (
     <div className="task-card-page">
-      <SideBar className="sidebar" changeUser={setUserFilter} />
+      <SideBar
+        className="sidebar"
+        changeUser={setUserFilter}
+        setSortByPriority={setSortByPriority}
+        sortByPriority={sortByPriority}
+      />
       <div className="task-card-content">
-        {tasksToShow.map((task) => {
-          return (
-            <TaskCard
-              key={task.id}
-              title={task.title}
-              priorityLevel={task.priorityLevel}
-              details={task.details}
-              dueDate={task.dueDate}
-              status={task.status}
-              id={task.id}
-              user={user}
-              assignedBy={task.assignedBy}
-              assignTo={task.assignTo}
-              usersList={users}
-            />
-          );
-        })}
+        {sortedTaskCards
+          .filter((task) => task.assignTo === user.id)
+          .map((task) => {
+            return (
+              <TaskCard
+                key={task.id}
+                title={task.title}
+                priorityLevel={task.priorityLevel}
+                details={task.details}
+                dueDate={task.dueDate}
+                status={task.status}
+                id={task.id}
+                user={user}
+                assignedBy={task.assignedBy}
+                assignTo={task.assignTo}
+                usersList={users}
+              />
+            );
+          })}
       </div>
     </div>
   );

@@ -4,8 +4,9 @@
   transition: margin-left 0.5s;
   margin-top: 30px;
   grid-column-start: 2;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 50px;
+  max-width: 1440px;
 }
 
 .side-bar.collapsed + .task-card-content {

@@ -126,6 +126,9 @@
   margin-bottom: 0.3rem;
 }
 
+.assigned-user_select{
+  width: 100px;
+}
 .comments-input {
   margin-top: 5px;
   border-radius: 5px;

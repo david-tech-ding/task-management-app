@@ -7,7 +7,7 @@ import searchLogo from "../images/searchLogo.png";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 
-const SideBar = () => {
+const SideBar = ({ setSortByPriority, sortByPriority }) => {
   const { search } = useLocation();
   const [searchItem, setSearchItem] = useState("");
   const [sidebarVisible, setSidebarVisible] = useState(true);
@@ -53,9 +53,13 @@ const SideBar = () => {
     setSearchItem(user);
   };
 
-  const filteredUsers = existingUsers.filter((user) =>
-    user.toLowerCase().includes(searchItem.toLowerCase())
+  const filteredUsers = existingUsers.filter(
+    (user) => user && user.toLowerCase().includes(searchItem.toLowerCase())
   );
+
+  const handlePrioritySort = () => {
+    setSortByPriority(!sortByPriority);
+  };
 
   return (
     <div className={`side-bar ${sidebarVisible ? "expanded" : "collapsed"}`}>
@@ -96,8 +100,15 @@ const SideBar = () => {
             <b>Sort by</b>
             <div className="priority">
               <Link
-                to={buildQueryString("sort", { priorityLevel: "priority" })}
+                to={buildQueryString("sort", {
+                  priorityLevel: "priority",
+                  order: "desc",
+                })}
                 className="priority-link"
+                onClick={() => {
+                  handlePrioritySort();
+                  setSortByPriority(!sortByPriority);
+                }}
               >
                 Priority
               </Link>
