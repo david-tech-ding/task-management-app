@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SideBar from "./SideBar";
 import "../styles/taskcardpage.css";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TaskCard from "./TaskCard";
 
 const TaskCardPage = ({ user, users }) => {
   const [tasks, setTasks] = useState([]);
   const [userFilter, setUserFilter] = useState("");
   const search = useLocation();
+  const navigate = useNavigate();
   const [tasksToShow, setTasksToShow] = useState([]);
   const [sortByPriority, setSortByPriority] = useState(false);
 
@@ -63,6 +64,10 @@ const TaskCardPage = ({ user, users }) => {
   const sortedTaskCards = sortByPriority
     ? sortTaskCardByPriority(tasksToShow)
     : tasksToShow;
+
+  if (!user.id) {
+    navigate("/");
+  }
 
   return (
     <div className="task-card-page">

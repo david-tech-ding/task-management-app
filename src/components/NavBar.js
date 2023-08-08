@@ -27,15 +27,20 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
         {user.firstName ? (
           <ul className="navbar-links">
             <li className="navbar-links-item">
-              <Link to="/">Dashboard</Link>
+              <Link className="navbar-links-item_text" to="/">
+                Dashboard
+              </Link>
             </li>
             <li className="navbar-links-item">
-              <Link to="create-task">Create Task</Link>
+              <Link className="navbar-links-item_text" to="create-task">
+                Create Task
+              </Link>
             </li>
           </ul>
         ) : null}
-        <div className="switch">
+        <div className="switch-container">
           <ReactSwitch
+            className="switch"
             onChange={toggleTheme}
             checked={theme === "dark"}
             checkedIcon={

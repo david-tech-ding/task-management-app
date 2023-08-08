@@ -56,7 +56,6 @@ const TaskCard = ({
         setSavedComments(data.data);
       })
       .catch((err) => console.log(err));
-    console.log(usersList);
   }, [id]);
 
   const handleChange = (e) => {
@@ -193,7 +192,7 @@ const TaskCard = ({
           <div className="task-card_due_date">Due on: {dueDate}</div>
           <div className="task-card_status">Status: {status}</div>
           <select
-            className="status-select"
+            className="task-card_select-input"
             id="status-select"
             onChange={handleStatusChange}
             defaultValue={status}
@@ -203,7 +202,7 @@ const TaskCard = ({
             <option value="Complete">Complete</option>
           </select>
           <button
-            className="status-button"
+            className="task-card_button"
             type="button"
             onClick={handleStatusSubmit}
           >
@@ -213,7 +212,7 @@ const TaskCard = ({
             <h3>Assign To</h3>
             <div className="assign-row">
               <select
-                className="assigned-user_select"
+                className="task-card_select-input"
                 id="assigned-user_select"
                 onChange={handleAssignedUserChange}
                 value={assignedUser}
@@ -227,7 +226,7 @@ const TaskCard = ({
                 ))}
               </select>
               <button
-                className="save-assigned-user-button"
+                className="task-card_button"
                 type="button"
                 onClick={handleAssignedUserSubmit}
               >
