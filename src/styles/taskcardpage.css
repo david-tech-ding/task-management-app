@@ -1,11 +1,9 @@
 .task-card-content {
   display: grid;
-  margin-left: 150px;
   transition: margin-left 0.5s;
   margin-top: 30px;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   gap: 20px;
-  max-width: 1440px;
 }
 
 .side-bar.collapsed + .task-card-content {
@@ -27,16 +25,32 @@
 
 @media screen and (max-width: 768px) {
   .task-card-content {
-    display: flex;
+    display: grid;
+    grid-template-rows: 1fr auto;
     flex-direction: row;
     flex-wrap: wrap;
+    row-gap: 20px;
+    margin-left: 20px;
+    margin-top: 3em;
   }
 
   .side-bar {
-    display: none;
+    width: 100%;
+    grid-row: 1 2;
+    grid-column-start: span(100);
+    margin-bottom: 2em;
+  }
+
+  .side-bar.collapsed {
+    width: 100%;
   }
 
   .side-bar.collapsed + .task-card-content {
-    margin-left: 30px;
+    margin-left: 20px;
+  }
+
+  .side-bar.expanded + .task-card-content {
+    margin-left: 20px;
+    margin-right: 0;
   }
 }

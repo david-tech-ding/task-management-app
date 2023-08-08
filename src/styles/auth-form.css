@@ -1,6 +1,6 @@
 .auth {
   max-width: 400px;
-  margin: 5em auto;
+  margin: 3em auto;
   border: 1px double #05299e;
   display: flex;
   flex-direction: column;
@@ -10,6 +10,13 @@
 }
 
 .auth-subheading {
+  margin-top: 0;
+  font-size: 30px;
+  font-weight: 50;
+  color: rgb(0, 0, 0);
+}
+
+.create-account_subheading {
   font-size: 30px;
   font-weight: 50;
   color: rgb(0, 0, 0);
@@ -45,4 +52,17 @@
   border-style: solid;
   box-sizing: content-box;
   height: 17px;
+}
+
+@media screen and (max-width: 768px) {
+  .auth {
+    max-width: 200px;
+    margin: 2em auto;
+    border: 1px double #05299e;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #a6d9f7;
+  }
 }

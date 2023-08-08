@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link, useLocation } from "react-router-dom";
-import qs from "qs";
+import { Link } from "react-router-dom";
 import "../styles/sidebar.css";
 import searchLogo from "../images/searchLogo.png";
 import * as FaIcons from "react-icons/fa";
@@ -11,13 +10,14 @@ const SideBar = ({
   setSortByPriority,
   sortByPriority,
   filterTasksByStatus,
+  changeUser,
 }) => {
-  const { search } = useLocation();
   const [searchItem, setSearchItem] = useState("");
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [contentVisible, setContentVisible] = useState(true);
   const [existingUsers, setExistingUsers] = useState([]);
 
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [priorityMenuOpen, setPriorityMenuOpen] = useState(false);
   const [statusMenuOpen, setStatusMenuOpen] = useState(false);
 
@@ -35,18 +35,6 @@ const SideBar = ({
     }
   };
 
-  const buildQueryString = (operation, valueObj) => {
-    const currentQueryString = qs.parse(search, { ignoreQueryPrefix: true });
-    const newQueryString = {
-      ...currentQueryString,
-      [operation]: JSON.stringify(valueObj),
-    };
-    return qs.stringify(newQueryString, {
-      addQueryPrefix: true,
-      encode: false,
-    });
-  };
-
   const handleSearch = (e) => {
     setSearchItem(e.target.value);
   };
@@ -54,10 +42,6 @@ const SideBar = ({
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
     setContentVisible(!contentVisible);
-  };
-
-  const handleUserChange = (user) => {
-    setSearchItem(user);
   };
 
   const filteredUsers = existingUsers.filter(
@@ -76,9 +60,14 @@ const SideBar = ({
     setStatusMenuOpen(!statusMenuOpen);
   };
 
-  // const handleStatusChange = () => {
+  const handleUserClick = () => {
+    setUserMenuOpen(!userMenuOpen);
+  };
 
-  // }
+  const handleUserFilter = (e) => {
+    changeUser(e.target.value);
+  };
+
   return (
     <div className={`side-bar ${sidebarVisible ? "expanded" : "collapsed"}`}>
       <div className="logo-container" onClick={toggleSidebar}>
@@ -90,82 +79,74 @@ const SideBar = ({
       </div>
       {contentVisible && (
         <div className="side-bar-content">
-          <b>Filter by user</b>
-          <div className="search-bar">
-            <input
-              type="text"
-              placeholder="Search users"
-              value={searchItem}
-              onChange={handleSearch}
-            />
-            <img src={searchLogo} alt="Search" className="search-logo" />
-          </div>
-          <div className="filter-user-container">
-            {filteredUsers.map((user, index) => (
-              <div className="user" key={index}>
-                <button
-                  className="user-filter_button"
-                  type="button"
-                  onClick={() => handleUserChange(user)}
-                  value={user}
-                >
-                  {user}
-                </button>
-              </div>
-            ))}
-            <div className="status-container">
-              <div className="status-header" onClick={handleStatusClick}>
-                Status
-              </div>
-              {statusMenuOpen && (
-                <div className="status-options">
-                  <Link
-                    to="/completed"
-                    className="selected-option"
-                    onClick={filterTasksByStatus}
-                  >
-                    Completed
-                  </Link>
-                  <Link to="/in-progress" className="selected-option">
-                    In Progress
-                  </Link>
-                  <Link to="/not-started" className="selected-option">
-                    Not Started
-                  </Link>
-                </div>
-              )}
+          <div className="user-container">
+            <div className="side-bar-header" onClick={handleUserClick}>
+              Filter by User
             </div>
+            {userMenuOpen && (
+              <div className="user-options">
+                <div className="search-bar">
+                  <input
+                    type="text"
+                    placeholder="Search users"
+                    value={searchItem}
+                    onChange={handleSearch}
+                  />
+                  <img src={searchLogo} alt="Search" className="search-logo" />
+                </div>
+                <div className="filter-user-container">
+                  {filteredUsers.map((user, index) => (
+                    <div className="user" key={index}>
+                      <button
+                        className="user-filter_button"
+                        type="button"
+                        onClick={handleUserFilter}
+                        value={user}
+                      >
+                        {user}
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
-          <div className="sort-container">
-            <b>Sort by</b>
-            <div className="priority-container">
-              <div className="priority-header" onClick={handlePriorityClick}>
+          <div className="status-container">
+            <div className="side-bar-header" onClick={handleStatusClick}>
+              Filter by Status
+            </div>
+            {statusMenuOpen && (
+              <div className="status-options">
                 <Link
-                  to={buildQueryString("sort", {
-                    priorityLevel: "priority",
-                  })}
-                  className="priority-link"
+                  to="/completed"
+                  className="selected-option"
+                  onClick={filterTasksByStatus}
                 >
-                  Priority
+                  Completed
+                </Link>
+                <Link to="/in-progress" className="selected-option">
+                  In Progress
+                </Link>
+                <Link to="/not-started" className="selected-option">
+                  Not Started
                 </Link>
               </div>
-              {priorityMenuOpen && (
-                <div className="priority-options">
-                  <div
-                    className="selected-option"
-                    onClick={() => handlePrioritySort()}
-                  >
-                    High to Low
-                  </div>
-                  <div
-                    className="selected-option"
-                    onClick={() => handlePrioritySort()}
-                  >
-                    Low to High
-                  </div>
-                </div>
-              )}
+            )}
+          </div>
+          <div className="priority-container">
+            <div className="priority-header" onClick={handlePriorityClick}>
+              Sort by Priority
             </div>
+            {priorityMenuOpen && (
+              <div className="priority-options">
+                <div className="selected-option" onClick={handlePrioritySort}>
+                  High to Low
+                </div>
+                <div className="selected-option" onClick={handlePrioritySort}>
+                  Low to High
+                </div>
+              </div>
+            )}
           </div>
         </div>
       )}

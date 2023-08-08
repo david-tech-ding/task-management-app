@@ -56,7 +56,6 @@ const TaskCard = ({
         setSavedComments(data.data);
       })
       .catch((err) => console.log(err));
-    console.log(usersList);
   }, [id]);
 
   const handleChange = (e) => {
@@ -200,7 +199,7 @@ const TaskCard = ({
           >
             <option value="Not Started">Not Started</option>
             <option value="In Progress">In Progress</option>
-            <option value="Complete">Complete</option>
+            <option value="Completed">Completed</option>
           </select>
           <button
             className="task-card_button"
