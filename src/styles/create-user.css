@@ -1,43 +1,53 @@
 .create-user {
-    max-width: 400px;
-    margin: 80px auto;
-    margin-left: 500px;
-    padding: 20px;
-    border: 1px solid #ccc;
-  }
-  
-  .create-user h2 {
-    margin-top: 0;
-  }
-  
-  .create-user div {
-    margin-bottom: 10px;
-  }
-  
-  .create-user label {
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .create-user input {
-    width: 100%;
-    padding: 5px;
-  }
-  
-  .create-user button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 8px 16px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .create-user button:hover {
-    background-color: #0056b3;
-  }
-  
-  .create-user a {
-    display: block;
-    margin-top: 10px;
-  }
-  
+  max-width: 400px;
+  margin: 5em auto;
+  border: 1px double #05299e;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #a6d9f7;
+  padding: 1em;
+}
+
+.create-user h2 {
+  margin-top: 0;
+}
+
+.create-user div {
+  padding: 10px;
+  max-width: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.create-user label {
+  margin-bottom: 0.5em;
+}
+
+.create-user input {
+  margin-bottom: 1em;
+  width: 15em;
+  padding: 5px;
+  border-width: 1.5px;
+  border-style: solid;
+  box-sizing: content-box;
+}
+
+.create-user button {
+  background-color: #fdfffc;
+  margin-top: 10px;
+  border: 0.1em outset #05299e;
+  width: fit-content;
+  align-self: center;
+}
+
+.create-user button:hover {
+  background-color: #05299e;
+  color: #fdfffc;
+}
+
+.create-user button:active {
+  transform: scale(0.94);
+  box-shadow: 1px 0.5px 0.5px rgb(60, 59, 59);
+}

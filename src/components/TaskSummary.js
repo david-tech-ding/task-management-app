@@ -14,7 +14,7 @@ const TaskSummary = ({ title, tasks }) => {
       <div className="task-summary">
         <h2 className="task-summary-heading">{title}</h2>
         <div className="high-priority-summary">
-          <h3 className="priority-summary-heading">High Priority</h3>
+          <h3 className="priority-summary-heading">High &nbsp;Priority</h3>
           {highPriorityTasks.length}
         </div>
         <div className="medium-priority-summary">
@@ -22,7 +22,7 @@ const TaskSummary = ({ title, tasks }) => {
           {mediumPriorityTasks.length}
         </div>
         <div className="low-priority-summary">
-          <h3 className="priority-summary-heading">Low Priority</h3>
+          <h3 className="priority-summary-heading">Low &nbsp; Priority</h3>
           {lowPriorityTasks.length}
         </div>
       </div>

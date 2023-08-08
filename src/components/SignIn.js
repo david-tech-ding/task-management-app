@@ -4,6 +4,7 @@ import AuthContext from "../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../config/firebase";
+import "../styles/auth-form.css";
 
 const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
   const [userLogin, setUserLogin] = useState({
@@ -68,20 +69,23 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
       const { user } = userCredential;
       axios
         .get(`/user/username/${user.displayName}`)
-        .then((response) => {
-          onSetLoggedInUser({
+        .then(async (response) => {
+          console.log(response);
+          await onSetLoggedInUser({
             ...loggedInUser,
             id: response.data[0].id,
             userName: user.displayName,
             firstName: response.data[0].firstName,
           });
-          if (response.data.length === 0) {
-            navigate("/create-user");
-          } else {
+          if (response.data[0].firstName) {
             navigate("/");
+          } else {
+            navigate("/create-user");
           }
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+        });
 
       setUserLogin("");
 
@@ -101,8 +105,6 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
       errRef.current.focus();
     }
 
-    loggedInUser.firstName ? navigate("/") : navigate("/create-user");
-
     addEnterKeyPressListener();
   };
 
@@ -117,31 +119,31 @@ const SignIn = ({ onSetLoggedInUser, loggedInUser }) => {
       </p>
       <h2 className="auth-subheading">Sign In</h2>
       <form className="auth-form" onSubmit={handleSignIn} ref={formRef}>
-        <label htmlFor="sign-in_email-input">
-          Email
-          <input
-            className="auth-form_input"
-            onChange={handleChange}
-            value={userLogin.email}
-            type="email"
-            name="email"
-            id="sign-in_email-input"
-            ref={userRef}
-            required
-          />
+        <label className="auth-form_label" htmlFor="sign-in_email-input">
+          Email:
         </label>
-        <label htmlFor="sign-in_password-input">
-          Password
-          <input
-            className="auth-form_input"
-            onChange={handleChange}
-            value={userLogin.password}
-            type="password"
-            name="password"
-            id="sign-in_password-input"
-            required
-          />
+        <input
+          className="auth-form_input"
+          onChange={handleChange}
+          value={userLogin.email}
+          type="email"
+          name="email"
+          id="sign-in_email-input"
+          ref={userRef}
+          required
+        />
+        <label className="auth-form_label" htmlFor="sign-in_password-input">
+          Password:
         </label>
+        <input
+          className="auth-form_input"
+          onChange={handleChange}
+          value={userLogin.password}
+          type="password"
+          name="password"
+          id="sign-in_password-input"
+          required
+        />
         <button id="sign-in_button" type="submit" onClick={handleSignIn}>
           SIGN IN
         </button>

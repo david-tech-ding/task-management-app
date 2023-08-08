@@ -13,6 +13,8 @@
   background-color: white;
   text-align: left;
   transition: width 0.5s;
+  border-right: 0.1em solid #d1ac00;
+  border-top: 0.2em solid #d1ac00;
 }
 
 .logo-container {
@@ -27,7 +29,6 @@
 .collapsed {
   width: 80px;
   background-color: #4a5671;
-
 }
 
 .expanded {
@@ -50,7 +51,7 @@
   padding-top: 1em;
   display: flex;
   align-items: center;
-  margin-bottom: -8px;
+  margin-bottom: 1em;
   width: max-content;
 }
 
@@ -63,8 +64,9 @@
   width: 59%;
 }
 
-.filter-user-container{
+.filter-user-container {
   overflow-y: auto;
+  overflow-x: hidden;
   max-height: 350px;
 }
 

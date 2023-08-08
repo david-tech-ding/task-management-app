@@ -85,9 +85,7 @@ const App = () => {
             />
             <Route
               path="create-task"
-              element={
-                <CreateTask user={loggedInUser.userName} users={users} />
-              }
+              element={<CreateTask user={loggedInUser} users={users} />}
             />
             <Route
               path="create-account"

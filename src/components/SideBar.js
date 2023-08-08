@@ -90,17 +90,17 @@ const SideBar = ({
       </div>
       {contentVisible && (
         <div className="side-bar-content">
+          <b>Filter by user</b>
+          <div className="search-bar">
+            <input
+              type="text"
+              placeholder="Search users"
+              value={searchItem}
+              onChange={handleSearch}
+            />
+            <img src={searchLogo} alt="Search" className="search-logo" />
+          </div>
           <div className="filter-user-container">
-            <b>Filter by user</b>
-            <div className="search-bar">
-              <input
-                type="text"
-                placeholder="Search users"
-                value={searchItem}
-                onChange={handleSearch}
-              />
-              <img src={searchLogo} alt="Search" className="search-logo" />
-            </div>
             {filteredUsers.map((user, index) => (
               <div className="user" key={index}>
                 <button

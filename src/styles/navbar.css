@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Belleza&family=Offside&family=Oswald&display=swap");
+
 :root {
   --clr-blue: hsla(215, 100%, 50%, 1);
   --clr-bg: hsla(220, 96%, 42%, 1);
@@ -13,7 +15,10 @@
 }
 .navbar {
   display: flex;
+  width: 100%;
   background-color: #3f3c3c;
+  border-bottom: 0.2em solid #d1ac00;
+  font-family: Rubik;
 }
 
 .navbar-title {
@@ -34,9 +39,19 @@
   padding: 0 1em;
 }
 
-.switch {
+.navbar-links-item_text {
+  text-decoration: none;
+  color: #fffcf7;
+}
+
+.switch-container {
   margin: 1.5rem 0 0 1rem;
 }
+
+.switch {
+  height: 10;
+}
+
 .icon-container-sun {
   display: flex;
   align-items: center;
@@ -54,6 +69,7 @@
 .navbar-login {
   margin-left: auto;
   padding: 1.2em 1em;
+  align-self: center;
 }
 
 .navbar-signout {

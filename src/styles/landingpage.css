@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Belleza&family=Offside&family=Oswald&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik&display=swap");
 
 .landing-page-container {
   height: 100vh;
@@ -10,18 +10,22 @@
     ),
     url("../images/LandingPageBackground.jpg");
   background-size: cover;
+  color: #fffcf7;
+  font-family: Rubik;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  line-height: 6em;
 }
 
 .typewriter h1 {
   overflow: hidden;
-  border-right: 0.05em solid aliceblue;
   white-space: nowrap;
-  color: aliceblue;
-  font-family: Belleza;
   font-size: 5em;
   margin: 0 auto;
   letter-spacing: 0.2em;
-  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end;
+  animation: typing 3s steps(120, end);
+  padding-top: 3em;
 }
 
 @keyframes typing {
@@ -29,16 +33,25 @@
     width: 0;
   }
   to {
-    width: 100%;
+    width: 70%;
   }
 }
 
-@keyframes blink-caret {
-  from,
-  to {
-    border-color: transparent;
+.login-prompt-blurb {
+  font-size: 1.5em;
+  color: transparent;
+}
+
+.fade-in p {
+  animation: appear 3s steps(80, end) 3s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+  from {
+    color: transparent;
   }
-  50% {
-    border-color: aliceblue;
+  to {
+    color: #fffcf7;
   }
 }

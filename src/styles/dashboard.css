@@ -1,3 +1,7 @@
 .dashboard-page {
   grid-column-start: 2;
 }
+
+.task-summary-link {
+  color: black;
+}
