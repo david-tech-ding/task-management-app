@@ -7,12 +7,19 @@ import searchLogo from "../images/searchLogo.png";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 
-const SideBar = ({ setSortByPriority, sortByPriority }) => {
+const SideBar = ({
+  setSortByPriority,
+  sortByPriority,
+  filterTasksByStatus,
+}) => {
   const { search } = useLocation();
   const [searchItem, setSearchItem] = useState("");
   const [sidebarVisible, setSidebarVisible] = useState(true);
   const [contentVisible, setContentVisible] = useState(true);
   const [existingUsers, setExistingUsers] = useState([]);
+
+  const [priorityMenuOpen, setPriorityMenuOpen] = useState(false);
+  const [statusMenuOpen, setStatusMenuOpen] = useState(false);
 
   useEffect(() => {
     fetchExistingUsersList();
@@ -61,6 +68,17 @@ const SideBar = ({ setSortByPriority, sortByPriority }) => {
     setSortByPriority(!sortByPriority);
   };
 
+  const handlePriorityClick = () => {
+    setPriorityMenuOpen(!priorityMenuOpen);
+  };
+
+  const handleStatusClick = () => {
+    setStatusMenuOpen(!statusMenuOpen);
+  };
+
+  // const handleStatusChange = () => {
+
+  // }
   return (
     <div className={`side-bar ${sidebarVisible ? "expanded" : "collapsed"}`}>
       <div className="logo-container" onClick={toggleSidebar}>
@@ -95,31 +113,58 @@ const SideBar = ({ setSortByPriority, sortByPriority }) => {
                 </button>
               </div>
             ))}
+            <div className="status-container">
+              <div className="status-header" onClick={handleStatusClick}>
+                Status
+              </div>
+              {statusMenuOpen && (
+                <div className="status-options">
+                  <Link
+                    to="/completed"
+                    className="selected-option"
+                    onClick={filterTasksByStatus}
+                  >
+                    Completed
+                  </Link>
+                  <Link to="/in-progress" className="selected-option">
+                    In Progress
+                  </Link>
+                  <Link to="/not-started" className="selected-option">
+                    Not Started
+                  </Link>
+                </div>
+              )}
+            </div>
           </div>
           <div className="sort-container">
             <b>Sort by</b>
-            <div className="priority">
-              <Link
-                to={buildQueryString("sort", {
-                  priorityLevel: "priority",
-                  order: "desc",
-                })}
-                className="priority-link"
-                onClick={() => {
-                  handlePrioritySort();
-                  setSortByPriority(!sortByPriority);
-                }}
-              >
-                Priority
-              </Link>
-            </div>
-            <div className="status">
-              <Link
-                to={buildQueryString("sort", { status: "status" })}
-                className="status-link"
-              >
-                Status
-              </Link>
+            <div className="priority-container">
+              <div className="priority-header" onClick={handlePriorityClick}>
+                <Link
+                  to={buildQueryString("sort", {
+                    priorityLevel: "priority",
+                  })}
+                  className="priority-link"
+                >
+                  Priority
+                </Link>
+              </div>
+              {priorityMenuOpen && (
+                <div className="priority-options">
+                  <div
+                    className="selected-option"
+                    onClick={() => handlePrioritySort()}
+                  >
+                    High to Low
+                  </div>
+                  <div
+                    className="selected-option"
+                    onClick={() => handlePrioritySort()}
+                  >
+                    Low to High
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

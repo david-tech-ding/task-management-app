@@ -28,6 +28,10 @@ const TaskCardPage = ({ user, users }) => {
     return taskDueDate <= soonDue;
   });
 
+  const filterTasksByStatus = (status) => {
+    return allYourTasks.filter((task) => task.status === status);
+  };
+
   useEffect(() => {
     axios
       .get(`/task/${userFilter}`)
@@ -39,6 +43,12 @@ const TaskCardPage = ({ user, users }) => {
           setTasksToShow(tasksAssignedByYou);
         } else if (search.pathname === "/due-soon") {
           setTasksToShow(tasksDueSoon);
+        } else if (search.pathname === "/completed") {
+          setTasksToShow(filterTasksByStatus("Completed"));
+        } else if (search.pathname === "/in-progress") {
+          setTasksToShow(filterTasksByStatus("In Progress"));
+        } else if (search.pathname === "/not-started") {
+          setTasksToShow(filterTasksByStatus("Not Started"));
         }
       })
       .catch((err) => console.log(err));
@@ -71,6 +81,7 @@ const TaskCardPage = ({ user, users }) => {
         changeUser={setUserFilter}
         setSortByPriority={setSortByPriority}
         sortByPriority={sortByPriority}
+        filterTasksByStatus={filterTasksByStatus}
       />
       <div className="task-card-content">
         {sortedTaskCards
