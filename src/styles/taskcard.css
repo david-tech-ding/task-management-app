@@ -18,6 +18,9 @@
   border-radius: 5px;
   max-width: fit-content;
   padding: 15px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .task-card_title-container {
@@ -48,7 +51,7 @@
   border: 1px dotted black;
 }
 
-.comments-container{
+.comments-container {
   border: 2px solid lightblue;
   border-radius: 8px;
   margin: 10px 0;
@@ -58,7 +61,7 @@
 }
 .comments-list {
   list-style-type: none;
-  padding: 0
+  padding: 0;
 }
 
 .comments-list li {
@@ -83,7 +86,7 @@
   cursor: pointer;
 }
 
-.tick-container{
+.tick-container {
   width: 18px;
   height: 18px;
   display: flex;
@@ -92,16 +95,16 @@
   align-items: center;
 }
 
-.tick-logo{
+.tick-logo {
   font-size: 18px;
 }
 .task-card_comments input {
   border-radius: 5px;
 }
 
-.status-select {
+.task-card_select-input {
   margin-top: 5px;
-  width: fit-content;
+  max-width: 7em;
   padding: 1px 2px;
   border-radius: 5px;
   border-width: 1.5px;
@@ -109,7 +112,7 @@
   box-sizing: content-box;
 }
 
-.status-button {
+.task-card_button {
   margin-top: 5px;
   border: 1px outset black;
   border-radius: 5px;
@@ -122,13 +125,16 @@
   box-shadow: 1px 0.5px 0.5px rgba(60, 59, 59, 0.486);
 }
 
-.assign-container h3{
+.assign-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.assign-container h3 {
   margin-bottom: 0.3rem;
 }
 
-.assigned-user_select{
-  width: 100px;
-}
 .comments-input {
   margin-top: 5px;
   border-radius: 5px;
@@ -158,6 +164,10 @@
   border-radius: 5px;
   padding: 1px 5px;
   box-shadow: 2px 1px 1px rgba(119, 117, 117, 0.675);
+}
+
+.delete-button:hover {
+  transform: scale(1.1);
 }
 
 .delete-button:active {

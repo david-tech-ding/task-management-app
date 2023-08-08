@@ -49,8 +49,8 @@ const CreateAccount = ({ onSetLoggedInUser, loggedInUser }) => {
     e.preventDefault();
     removeEnterKeyPressListener();
     createUserWithEmailAndPassword(auth, newUser.email, newUser.password)
-      .then((userCredential) => {
-        axios
+      .then(async (userCredential) => {
+        await axios
           .post("/user", { ...newUser })
           .then(
             setNewUser({
@@ -88,39 +88,48 @@ const CreateAccount = ({ onSetLoggedInUser, loggedInUser }) => {
     <div className="auth">
       <h2 className="auth-subheading">Create an Account</h2>
       <form className="auth-form" onSubmit={handleCreateAccount} ref={formRef}>
-        <label htmlFor="create-account_email-input">
+        <label className="auth-form_label" htmlFor="create-account_email-input">
           Email
-          <input
-            className="auth-form_input"
-            onChange={handleChange}
-            value={newUser.email}
-            type="email"
-            name="email"
-            id="create-account_email-input"
-          />
         </label>
-        <label htmlFor="create-account_password-input">
+        <input
+          className="auth-form_input"
+          onChange={handleChange}
+          value={newUser.email}
+          type="email"
+          name="email"
+          id="create-account_email-input"
+        />
+
+        <label
+          className="auth-form_label"
+          htmlFor="create-account_password-input"
+        >
           Password
-          <input
-            className="auth-form_input"
-            onChange={handleChange}
-            value={newUser.password}
-            type="password"
-            name="password"
-            id="create-account_password-input"
-          />
         </label>
-        <label htmlFor="create-account_username-input">
+        <input
+          className="auth-form_input"
+          onChange={handleChange}
+          value={newUser.password}
+          type="password"
+          name="password"
+          id="create-account_password-input"
+        />
+
+        <label
+          className="auth-form_label"
+          htmlFor="create-account_username-input"
+        >
           Username
-          <input
-            className="auth-form_input"
-            onChange={handleChange}
-            value={newUser.userName}
-            type="userName"
-            name="userName"
-            id="create-account_username-input"
-          />
         </label>
+        <input
+          className="auth-form_input"
+          onChange={handleChange}
+          value={newUser.userName}
+          type="userName"
+          name="userName"
+          id="create-account_username-input"
+        />
+
         <button
           id="create-user_button"
           type="submit"

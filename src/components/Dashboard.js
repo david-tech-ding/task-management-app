@@ -34,7 +34,7 @@ const Dashboard = ({ user }) => {
 
   return (
     <div className="dashboard-page">
-      <h1>{user.userName}'s Dashboard</h1>
+      <h1>{user.firstName}'s Dashboard</h1>
       <TaskSummary
         title={
           <Link className="task-summary-link" to="/your-tasks">
