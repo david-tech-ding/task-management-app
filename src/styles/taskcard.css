@@ -174,3 +174,14 @@
   transform: scale(0.98);
   box-shadow: 1px 0.5px 0.5px rgba(60, 59, 59, 0.486);
 }
+
+@media screen and (max-width: 768px) {
+  .task-card {
+    border: 1px solid black;
+    border-radius: 5px;
+    max-width: fit-content;
+    padding: 15px 15px;
+    display: flex;
+    align-items: center;
+  }
+}

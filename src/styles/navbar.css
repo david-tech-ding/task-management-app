@@ -21,6 +21,10 @@
   font-family: Rubik;
 }
 
+.mobile-navbar {
+  display: none;
+}
+
 .navbar-title {
   margin-right: 1em;
   align-self: center;
@@ -100,4 +104,71 @@
   text-shadow: 0 0 0.125em hsl(0 0% 100% / 0.3), 0 0 0.45em currentColor;
 
   box-shadow: inset 0 0 0.5em 0 var(--clr-blue), 0 0 0.5em 0 currentColor;
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    display: none;
+  }
+
+  .mobile-navbar {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 100vw;
+    background-color: #3f3c3c;
+    border-bottom: 0.2em solid #d1ac00;
+    font-family: Rubik;
+    align-items: center;
+  }
+
+  .switch-container {
+    margin: 0;
+  }
+
+  .mobile-nav-menu:hover {
+    cursor: pointer;
+  }
+
+  .mobile-nav-menu:active {
+    transform: scale(0.98);
+  }
+
+  .navbar-links {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 80px;
+    right: 0;
+    background-color: #3f3c3cbd;
+    width: 10em;
+    border-radius: 0.5em;
+    /* border: 0.2em solid #d1ac00; */
+  }
+
+  .navbar-links-item {
+    margin-bottom: 1em;
+  }
+
+  .signout-button {
+    cursor: pointer;
+    background-color: transparent;
+    color: #fffcf7;
+    padding: none;
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    text-shadow: none;
+    box-shadow: none;
+  }
+
+  .navbar-login {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .navbar-links-item_auth {
+    margin-right: 2em;
+    text-decoration: none;
+    color: #fffcf7;
+  }
 }

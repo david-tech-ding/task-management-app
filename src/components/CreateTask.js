@@ -15,7 +15,7 @@ const CreateTask = ({ user, users }) => {
       title: "",
       details: "",
       priorityLevel: "High",
-      assignTo: "",
+      assignTo: "default",
       assignedBy: "",
       dueDate: "",
       status: "Not started",
@@ -110,18 +110,24 @@ const CreateTask = ({ user, users }) => {
           className="create-task-form_select"
           id="assignTo"
           name="assignTo"
+          defaultValue="default"
           value={fields.assignTo}
           onChange={handleFieldChange}
           data-testid="assignTo"
         >
-          {users.map((userData) => {
-            return (
-              <option value={userData.id} key={userData.id}>
-                {userData.firstName}&nbsp;{userData.lastName}&nbsp;&#40;
-                {userData.jobRole}&#41;
-              </option>
-            );
-          })}
+          <>
+            <option value="default" disabled>
+              Choose an assignee
+            </option>
+            {users.map((userData) => {
+              return (
+                <option value={userData.id} key={userData.id}>
+                  {userData.firstName}&nbsp;{userData.lastName}&nbsp;&#40;
+                  {userData.jobRole}&#41;
+                </option>
+              );
+            })}
+          </>
         </select>
         <button
           className="create-task-form_button"
