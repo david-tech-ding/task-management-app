@@ -55,3 +55,41 @@
     color: #fffcf7;
   }
 }
+
+@media screen and (max-width: 768px) {
+  .typewriter h1 {
+    font-size: 2em;
+    margin: 0 auto;
+    letter-spacing: 0.1em;
+    animation: typing 3s steps(120, end);
+    padding-top: 3em;
+  }
+
+  .fade-in p {
+    font-size: 1.2em;
+    margin: 2em 2em;
+    line-height: normal;
+    animation: appear 2s steps(80, end) 1.5s;
+    animation-fill-mode: forwards;
+  }
+}
+
+@media screen and (max-width: 490px) {
+  .typewriter h1 {
+    font-size: 2em;
+    line-height: 1.5em;
+    white-space: wrap;
+    margin: 0 2em;
+    letter-spacing: 0.1em;
+    animation: appear 2s steps(120, end);
+    padding-top: 3em;
+  }
+
+  .fade-in p {
+    font-size: 1em;
+    margin: 2em 2em;
+    line-height: normal;
+    animation: appear 2s steps(80, end) 1.5s;
+    animation-fill-mode: forwards;
+  }
+}

@@ -18,7 +18,7 @@ const CreateTask = ({ user, users }) => {
       assignTo: "default",
       assignedBy: "",
       dueDate: "",
-      status: "Not started",
+      status: "Not Started",
     },
   };
 

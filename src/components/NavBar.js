@@ -3,7 +3,7 @@ import ReactSwitch from "react-switch";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 import ctmLogo from "../images/ctmLogo.png";
-import { FaRegMoon, FaBars } from "react-icons/fa";
+import { FaRegMoon, FaBars, FaAngleDoubleUp } from "react-icons/fa";
 import { BiSun } from "react-icons/bi";
 
 const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
@@ -22,11 +22,7 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
           alt="clinic-task-logo"
           className="navbar-logo"
           onClick={() => {
-            if (user.firstName) {
-              navigate("/");
-            } else {
-              navigate("/create-user");
-            }
+            navigate("/");
           }}
         ></img>
         {user.firstName ? (
@@ -120,11 +116,15 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
         <div className="mobile-nav-menu">
           {user.id ? (
             <div>
-              <FaBars
-                size={30}
-                color="fffcf7"
-                onClick={handleMenuClick}
-              ></FaBars>
+              {menuOpen ? (
+                <FaAngleDoubleUp
+                  size={30}
+                  color="fffcf7"
+                  onClick={handleMenuClick}
+                />
+              ) : (
+                <FaBars size={30} color="fffcf7" onClick={handleMenuClick} />
+              )}
               {menuOpen ? (
                 <ul className="navbar-links">
                   <li className="navbar-links-item">

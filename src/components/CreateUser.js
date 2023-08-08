@@ -6,8 +6,21 @@ import "../styles/create-user.css";
 const CreateUser = ({ onSetLoggedInUser, user }) => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [jobRole, setJobRole] = useState("");
+  const [jobRole, setJobRole] = useState("default");
   const navigate = useNavigate();
+
+  const jobRoleList = [
+    "Clinic Manager",
+    "Healthcare Administrator",
+    "Doctor",
+    "Head Nurse",
+    "Junior Doctor",
+    "Nurse",
+    "Medical Technician",
+    "Nutritionist",
+    "Pharmacist",
+    "Secretary",
+  ];
 
   const userRef = useRef();
   const formRef = useRef();
@@ -97,12 +110,26 @@ const CreateUser = ({ onSetLoggedInUser, user }) => {
         </div>
         <div>
           <label htmlFor="jobRole">Job Role:</label>
-          <input
-            type="text"
+          <select
+            className="create-user_select"
             id="jobRole"
+            defaultValue="default"
             value={jobRole}
             onChange={handleJobRoleChange}
-          />
+          >
+            <>
+              <option value="default" disabled>
+                Select your position
+              </option>
+              {jobRoleList.map((jobRole) => {
+                return (
+                  <option value={jobRole} key={jobRole.index}>
+                    {jobRole}
+                  </option>
+                );
+              })}
+            </>
+          </select>
         </div>
         <button onClick={handleCreateUser}>Create User</button>
       </form>

@@ -10,8 +10,8 @@
   right: 0;
   padding-top: 2rem;
   padding-left: 1rem;
-  background-color: white;
   text-align: left;
+  color: #fffcf7;
   transition: width 0.5s;
   border-right: 0.1em solid #d1ac00;
   border-top: 0.2em solid #d1ac00;
@@ -51,7 +51,7 @@
   padding-top: 1em;
   display: flex;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
   width: max-content;
 }
 
@@ -70,58 +70,114 @@
   max-height: 350px;
 }
 
-.status-header{
-  padding-bottom: 0.8rem;
+.side-bar-header {
+  font-weight: bold;
+  font-size: 1.1em;
 }
 
-.status-header:hover{
+.side-bar-header:hover {
   font-weight: bold;
   cursor: pointer;
 }
 
-.selected-option{
-  padding-bottom: 0.6rem;
-}
-.selected-option:hover{
-  cursor: pointer;
-  font-weight: 500;
+.status-options {
+  margin-top: 0.5em;
+  display: flex;
+  flex-direction: column;
 }
 
-.status-container{
-  margin-top: 2rem;
-}
-
-.priority-header{
-  padding-top: 1.2rem;
-  padding-bottom: 0.8rem;
-}
-
-.sort-container
-.user-link,
-.priority-link,
-.status-link {
+.selected-option {
+  padding-bottom: 0.4rem;
+  color: #fffcf7;
   text-decoration: none;
-  color: black;
+  margin-top: 1em;
+  margin-left: 0.5em;
 }
-
-.user,
-.priority,
-.status,
-.sort-container {
-  padding-top: 30px;
-}
-
-.user-link:hover,
-.priority-link:hover,
-.status-link:hover {
+.selected-option:hover {
+  cursor: pointer;
   font-weight: 800;
 }
 
 .user-filter_button {
   background-color: transparent;
   border-style: none;
+  color: #fffcf7;
+  margin-top: 1em;
+  margin-left: 0.2em;
 }
 
 .user-filter_button:hover {
   cursor: pointer;
+  font-weight: 800;
+}
+
+.user-container {
+  margin-top: 2em;
+  margin-bottom: 1em;
+}
+
+.status-container {
+  margin-top: 3em;
+}
+
+.priority-container {
+  padding-top: 3em;
+}
+
+.priority-header {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 1.5em;
+}
+
+.priority-header:hover {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+@media screen and (max-width: 768px) {
+  .side-bar {
+    font-size: 13.5px;
+    width: 100vw;
+    max-width: 100vw;
+    height: 1vh;
+    margin-top: none;
+    position: absolute;
+    top: 62px;
+    left: 0;
+    right: 10;
+    padding-top: 2rem;
+    padding-left: 1rem;
+    text-align: left;
+    color: #fffcf7;
+    transition: height 0.5s;
+    border-right: none;
+    border-top: 0.2em solid #d1ac00;
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+  }
+
+  .collapsed {
+    width: 100%;
+    background-color: #4a5671;
+  }
+
+  .expanded {
+    width: 100%;
+    height: 150px;
+    background-color: #4a5671;
+  }
+
+  .sidebar-logo {
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    padding-right: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .side-bar-content {
+    display: flex;
+  }
 }

@@ -1,6 +1,6 @@
 .create-user {
   max-width: 400px;
-  margin: 5em auto;
+  margin: 3em auto;
   border: 1px double #05299e;
   display: flex;
   flex-direction: column;
@@ -32,6 +32,16 @@
   border-width: 1.5px;
   border-style: solid;
   box-sizing: content-box;
+}
+
+.create-user_select {
+  padding: 5px;
+  margin-bottom: 1em;
+  width: 15em;
+  border-width: 1.5px;
+  border-style: solid;
+  box-sizing: content-box;
+  align-self: center;
 }
 
 .create-user button {

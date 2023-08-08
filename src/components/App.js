@@ -59,7 +59,7 @@ const App = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  });
 
   return (
     <AuthProvider>
@@ -115,6 +115,18 @@ const App = () => {
             />
             <Route
               path="due-soon"
+              element={<TaskCardPage user={loggedInUser} users={users} />}
+            />
+            <Route
+              path="completed"
+              element={<TaskCardPage user={loggedInUser} users={users} />}
+            />
+            <Route
+              path="in-progress"
+              element={<TaskCardPage user={loggedInUser} users={users} />}
+            />
+            <Route
+              path="not-started"
               element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route

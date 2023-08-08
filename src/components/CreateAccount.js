@@ -86,7 +86,7 @@ const CreateAccount = ({ onSetLoggedInUser, loggedInUser }) => {
 
   return (
     <div className="auth">
-      <h2 className="auth-subheading">Create an Account</h2>
+      <h2 className="create-account_subheading">Create an Account</h2>
       <form className="auth-form" onSubmit={handleCreateAccount} ref={formRef}>
         <label className="auth-form_label" htmlFor="create-account_email-input">
           Email
