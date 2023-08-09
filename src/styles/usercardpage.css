@@ -1,0 +1,18 @@
+.user-card-content {
+  display: grid;
+  transition: margin-left 0.5s;
+  margin-top: 30px;
+  margin-right: 35px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  .user-card-page {
+    display: grid;
+    grid-template-rows: 1fr auto;
+    row-gap: 20px;
+    margin-left: 20px;
+    margin-top: 3em;
+  }
+}

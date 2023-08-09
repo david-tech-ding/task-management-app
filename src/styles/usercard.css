@@ -1,0 +1,54 @@
+.user-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #3f3c3c;
+  border-radius: 5px;
+  background-color: #4a5671;
+  color: #fffcf7;
+  width: 10em;
+  margin-top: 3em;
+  margin-left: 3em;
+  padding: 2em 1em 2em 1em;
+}
+
+.user-card_title {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.user-card_label {
+  margin-top: 1em;
+}
+
+.user-card_form {
+  display: flex;
+  flex-direction: column;
+}
+
+.job-role_select {
+  width: fit-content;
+  max-width: 9em;
+  margin-top: 1em;
+  border-radius: 3px;
+  height: 2em;
+  overflow-x: initial;
+}
+
+.change-job-role_button {
+  margin-top: 0.3em;
+  border: 1px outset black;
+  border-radius: 5px;
+  width: fit-content;
+  align-self: center;
+}
+
+.job-role_delete {
+  background-color: rgb(237, 62, 62);
+  margin-top: 2em;
+  border: 1px outset black;
+  border-radius: 5px;
+  padding: 1px 5px;
+  box-shadow: 2px 1px 1px rgba(119, 117, 117, 0.675);
+}
