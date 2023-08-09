@@ -132,15 +132,15 @@ const App = () => {
               element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route
-              path="completed"
+              path="/your-tasks/completed"
               element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route
-              path="in-progress"
+              path="/your-tasks/in-progress"
               element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route
-              path="not-started"
+              path="/your-tasks/not-started"
               element={<TaskCardPage user={loggedInUser} users={users} />}
             />
             <Route

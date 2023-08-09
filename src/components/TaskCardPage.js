@@ -7,7 +7,7 @@ import TaskCard from "./TaskCard";
 
 const TaskCardPage = ({ user, users, isAdmin }) => {
   const [tasks, setTasks] = useState([]);
-  const [userFilter, setUserFilter] = useState([]);
+  const [selectedUser, setSelectedUser] = useState(null);
   const search = useLocation();
   const navigate = useNavigate();
   const [tasksToShow, setTasksToShow] = useState([]);
@@ -34,7 +34,9 @@ const TaskCardPage = ({ user, users, isAdmin }) => {
     return allYourTasks.filter((task) => task.status === status);
   };
 
-  useEffect(() => {}, [userFilter]);
+  const handleSelectedUser = (user) => {
+    setSelectedUser(user);
+  };
 
   useEffect(() => {
     axios
@@ -49,12 +51,20 @@ const TaskCardPage = ({ user, users, isAdmin }) => {
           setTasksToShow(tasksDueSoon);
         } else if (search.pathname === "/all-tasks") {
           isAdmin ? setTasksToShow(data.data) : navigate("/");
-        } else if (search.pathname === "/completed") {
+        } else if (search.pathname === "/your-tasks/completed") {
           setTasksToShow(filterTasksByStatus("Completed"));
-        } else if (search.pathname === "/in-progress") {
+        } else if (search.pathname === "/your-tasks/in-progress") {
           setTasksToShow(filterTasksByStatus("In Progress"));
-        } else if (search.pathname === "/not-started") {
+        } else if (search.pathname === "/your-tasks/not-started") {
           setTasksToShow(filterTasksByStatus("Not Started"));
+        }
+        if (selectedUser) {
+          const tasksForSelectedUser = allYourTasks.filter(
+            (task) => task.assignTo === selectedUser[1] // Use selectedUser[1] as user id
+          );
+          setTasksToShow(tasksForSelectedUser);
+        } else {
+          setTasksToShow(allYourTasks);
         }
       })
       .catch((err) => console.log(err));
@@ -85,22 +95,6 @@ const TaskCardPage = ({ user, users, isAdmin }) => {
     });
   };
 
-  // const filterByAssignTo = (tasks) => {
-  //   tasks.filter((task) => task.assignedTo === userFilter[1]);
-  //   setUserFilter([]);
-  // };
-  // const filterByAssignedBy = (tasks) => {
-  //   tasks.filter((task) => task.assignedBy === userFilter[0]);
-  //   setUserFilter([]);
-  // };
-  // const filterByBothAssignValues = (tasks) => {
-  //   tasks.filter(
-  //     (task) =>
-  //       task.assignedBy === userFilter[0] || task.assignedTo === userFilter[1]
-  //   );
-  //   setUserFilter([]);
-  // };
-
   const sortedTaskCards = sortByPriority
     ? sortTaskCardByPriority(tasksToShow)
     : sortByDate
@@ -123,12 +117,12 @@ const TaskCardPage = ({ user, users, isAdmin }) => {
     <div className="task-card-page">
       <SideBar
         className="sidebar"
-        changeUser={setUserFilter}
         setSortByPriority={setSortByPriority}
         sortByPriority={sortByPriority}
         setSortByDate={setSortByDate}
         sortByDate={sortByDate}
         filterTasksByStatus={filterTasksByStatus}
+        changeUser={handleSelectedUser}
       />
       <div className="task-card-content">
         {sortedTaskCards.map((task) => {

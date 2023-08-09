@@ -86,8 +86,8 @@ const SideBar = ({
     setUserMenuOpen(!userMenuOpen);
   };
 
-  const handleUserFilter = (e) => {
-    changeUser(e.target.value.split(","));
+  const handleUserFilter = (user) => {
+    changeUser(user);
   };
 
   return (
@@ -122,7 +122,9 @@ const SideBar = ({
                       <button
                         className="user-filter_button"
                         type="button"
-                        onClick={handleUserFilter}
+                        onClick={() => {
+                          handleUserFilter(user);
+                        }}
                         value={[user.userName, user.id]}
                       >
                         {user.firstName}&nbsp;{user.lastName}
@@ -140,16 +142,16 @@ const SideBar = ({
             {statusMenuOpen && (
               <div className="status-options">
                 <Link
-                  to="/completed"
+                  to="/your-tasks/completed"
                   className="selected-option"
                   onClick={filterTasksByStatus}
                 >
                   Completed
                 </Link>
-                <Link to="/in-progress" className="selected-option">
+                <Link to="/your-tasks/in-progress" className="selected-option">
                   In Progress
                 </Link>
-                <Link to="/not-started" className="selected-option">
+                <Link to="/your-tasks/not-started" className="selected-option">
                   Not Started
                 </Link>
                 <button
