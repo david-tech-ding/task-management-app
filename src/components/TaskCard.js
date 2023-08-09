@@ -135,7 +135,12 @@ const TaskCard = ({
           </div>
           {detailsVisible && (
             <form className="task-card_form">
-              <div className="task-card_details">{details}</div>
+              <div className="details-container">
+                <h3>
+                  Task Details
+                  <div className="task-card_details">{details}</div>
+                </h3>
+              </div>
               <div className="comments-container">
                 <h3>Comments</h3>
                 <ul className="comments-list">

@@ -4,7 +4,7 @@ import TaskSummary from "./TaskSummary";
 import { Link } from "react-router-dom";
 import "../styles/dashboard.css";
 
-const Dashboard = ({ user }) => {
+const Dashboard = ({ user, isAdmin }) => {
   const [dashboardTasks, setDashboardTasks] = useState([]);
 
   useEffect(() => {
@@ -59,6 +59,16 @@ const Dashboard = ({ user }) => {
         }
         tasks={tasksDueSoon}
       />
+      {isAdmin ? (
+        <TaskSummary
+          title={
+            <Link className="task-summary-link" to="/all-tasks">
+              All Tasks
+            </Link>
+          }
+          tasks={dashboardTasks}
+        />
+      ) : null}
     </div>
   );
 };

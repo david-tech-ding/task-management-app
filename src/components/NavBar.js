@@ -6,12 +6,17 @@ import ctmLogo from "../images/ctmLogo.png";
 import { FaRegMoon, FaEllipsisV, FaAngleDoubleUp } from "react-icons/fa";
 import { BiSun } from "react-icons/bi";
 
-const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
+const NavBar = ({ user, onLogout, theme, toggleTheme, isAdmin }) => {
   const navigate = useNavigate();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [adminMenuOpen, setAdminMenuOpen] = useState(false);
 
-  const handleMenuClick = () => {
-    setMenuOpen(!menuOpen);
+  const handleMobileMenuClick = () => {
+    setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const handleAdminMenuClick = () => {
+    setAdminMenuOpen(!adminMenuOpen);
   };
 
   return (
@@ -37,6 +42,26 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
                 Create Task
               </Link>
             </li>
+            {isAdmin ? (
+              <li className="navbar-links-item">
+                <div
+                  className="navbar-links-item_text"
+                  onClick={handleAdminMenuClick}
+                >
+                  Admin
+                </div>
+                {adminMenuOpen ? (
+                  <div className="admin-menu_container">
+                    <div>
+                      <select>
+                        <option>User</option>
+                      </select>
+                      <button type="button">Delete User</button>
+                    </div>
+                  </div>
+                ) : null}
+              </li>
+            ) : null}
           </ul>
         ) : null}
         <div className="switch-container">
@@ -116,20 +141,20 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
         <div className="mobile-nav-menu">
           {user.id ? (
             <div>
-              {menuOpen ? (
+              {mobileMenuOpen ? (
                 <FaAngleDoubleUp
                   size={30}
                   color="fffcf7"
-                  onClick={handleMenuClick}
+                  onClick={handleMobileMenuClick}
                 />
               ) : (
                 <FaEllipsisV
                   size={30}
                   color="fffcf7"
-                  onClick={handleMenuClick}
+                  onClick={handleMobileMenuClick}
                 />
               )}
-              {menuOpen ? (
+              {mobileMenuOpen ? (
                 <ul className="navbar-links">
                   <li className="navbar-links-item">
                     <Link className="navbar-links-item_text" to="/">
