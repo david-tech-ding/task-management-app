@@ -64,6 +64,7 @@ const CreateTask = ({ user, users }) => {
           id="title"
           name="title"
           value={fields.title}
+          maxLength={50}
           onChange={handleFieldChange}
         />
         <label htmlFor="details">Details:</label>
@@ -73,6 +74,7 @@ const CreateTask = ({ user, users }) => {
           id="details"
           name="details"
           value={fields.details}
+          maxLength={255}
           onChange={handleFieldChange}
         />
         <label htmlFor="dueDate">Due Date:</label>

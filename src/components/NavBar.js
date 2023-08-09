@@ -9,14 +9,9 @@ import { BiSun } from "react-icons/bi";
 const NavBar = ({ user, onLogout, theme, toggleTheme, isAdmin }) => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [adminMenuOpen, setAdminMenuOpen] = useState(false);
 
   const handleMobileMenuClick = () => {
     setMobileMenuOpen(!mobileMenuOpen);
-  };
-
-  const handleAdminMenuClick = () => {
-    setAdminMenuOpen(!adminMenuOpen);
   };
 
   return (
@@ -44,22 +39,9 @@ const NavBar = ({ user, onLogout, theme, toggleTheme, isAdmin }) => {
             </li>
             {isAdmin ? (
               <li className="navbar-links-item">
-                <div
-                  className="navbar-links-item_text"
-                  onClick={handleAdminMenuClick}
-                >
-                  Admin
-                </div>
-                {adminMenuOpen ? (
-                  <div className="admin-menu_container">
-                    <div>
-                      <select>
-                        <option>User</option>
-                      </select>
-                      <button type="button">Delete User</button>
-                    </div>
-                  </div>
-                ) : null}
+                <Link className="navbar-links-item_text" to="manage-users">
+                  Manage Users
+                </Link>
               </li>
             ) : null}
           </ul>

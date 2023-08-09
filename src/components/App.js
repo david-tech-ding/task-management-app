@@ -15,6 +15,7 @@ import SignIn from "./SignIn";
 import CreateUser from "./CreateUser";
 import TaskCardPage from "./TaskCardPage";
 import LandingPage from "./LandingPage";
+import UserCardPage from "./UserCardPage";
 
 export const ThemeContext = createContext(null);
 axios.defaults.baseURL = "http://localhost:3001";
@@ -151,6 +152,10 @@ const App = () => {
                   isAdmin={admin}
                 />
               }
+            />
+            <Route
+              path="manage-users"
+              element={<UserCardPage isAdmin={admin} />}
             />
             <Route
               path="create-user"

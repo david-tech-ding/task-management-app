@@ -194,8 +194,9 @@ const TaskCard = ({
           <div className="task-card_priority_level">
             {priorityLevel}&nbsp;Priority
           </div>
-          <div className="task-card_due_date">Due on: {dueDate}</div>
-          <div className="task-card_status">Status: {status}</div>
+          <div className="task-card_status">
+            <b>Status:</b> {status}
+          </div>
           <select
             className="task-card_select-input"
             id="status-select"
@@ -239,6 +240,7 @@ const TaskCard = ({
               </button>
             </div>
           </div>
+          <div className="task-card_due_date">Due on: {dueDate}</div>
           {assignedBy === user.userName && (
             <button
               className="delete-button"

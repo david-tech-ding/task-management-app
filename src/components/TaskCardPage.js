@@ -134,6 +134,7 @@ const TaskCardPage = ({ user, users, isAdmin }) => {
         {sortedTaskCards.map((task) => {
           return (
             <TaskCard
+              task-card_in-grid
               key={task.id}
               title={task.title}
               priorityLevel={task.priorityLevel}
