@@ -33,8 +33,7 @@ const SideBar = ({
   const fetchExistingUsersList = async () => {
     try {
       const users = await axios.get("/user");
-      const userFirstNames = users.data.map((user) => user.firstName);
-      setExistingUsers(userFirstNames);
+      setExistingUsers(users.data);
     } catch (err) {
       console.error("Error fetching existing users", err);
     }
@@ -62,7 +61,9 @@ const SideBar = ({
   };
 
   const filteredUsers = existingUsers.filter(
-    (user) => user && user.toLowerCase().includes(searchItem.toLowerCase())
+    (user) =>
+      user.firstName &&
+      user.firstName.toLowerCase().includes(searchItem.toLowerCase())
   );
 
   const handlePrioritySort = () => {
@@ -86,7 +87,7 @@ const SideBar = ({
   };
 
   const handleUserFilter = (e) => {
-    changeUser(e.target.value);
+    changeUser(e.target.value.split(","));
   };
 
   return (
@@ -122,9 +123,9 @@ const SideBar = ({
                         className="user-filter_button"
                         type="button"
                         onClick={handleUserFilter}
-                        value={user}
+                        value={[user.userName, user.id]}
                       >
-                        {user}
+                        {user.firstName}&nbsp;{user.lastName}
                       </button>
                     </div>
                   ))}

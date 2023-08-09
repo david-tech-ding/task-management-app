@@ -5,9 +5,9 @@ import "../styles/taskcardpage.css";
 import { useLocation, useNavigate } from "react-router-dom";
 import TaskCard from "./TaskCard";
 
-const TaskCardPage = ({ user, users }) => {
+const TaskCardPage = ({ user, users, isAdmin }) => {
   const [tasks, setTasks] = useState([]);
-  const [userFilter, setUserFilter] = useState("");
+  const [userFilter, setUserFilter] = useState([]);
   const search = useLocation();
   const navigate = useNavigate();
   const [tasksToShow, setTasksToShow] = useState([]);
@@ -34,9 +34,11 @@ const TaskCardPage = ({ user, users }) => {
     return allYourTasks.filter((task) => task.status === status);
   };
 
+  useEffect(() => {}, [userFilter]);
+
   useEffect(() => {
     axios
-      .get(`/task/${userFilter}`)
+      .get(`/task`)
       .then((data) => {
         setTasks(data.data);
         if (search.pathname === "/your-tasks") {
@@ -45,6 +47,8 @@ const TaskCardPage = ({ user, users }) => {
           setTasksToShow(tasksAssignedByYou);
         } else if (search.pathname === "/due-soon") {
           setTasksToShow(tasksDueSoon);
+        } else if (search.pathname === "/all-tasks") {
+          isAdmin ? setTasksToShow(data.data) : navigate("/");
         } else if (search.pathname === "/completed") {
           setTasksToShow(filterTasksByStatus("Completed"));
         } else if (search.pathname === "/in-progress") {
@@ -81,15 +85,39 @@ const TaskCardPage = ({ user, users }) => {
     });
   };
 
+  // const filterByAssignTo = (tasks) => {
+  //   tasks.filter((task) => task.assignedTo === userFilter[1]);
+  //   setUserFilter([]);
+  // };
+  // const filterByAssignedBy = (tasks) => {
+  //   tasks.filter((task) => task.assignedBy === userFilter[0]);
+  //   setUserFilter([]);
+  // };
+  // const filterByBothAssignValues = (tasks) => {
+  //   tasks.filter(
+  //     (task) =>
+  //       task.assignedBy === userFilter[0] || task.assignedTo === userFilter[1]
+  //   );
+  //   setUserFilter([]);
+  // };
+
   const sortedTaskCards = sortByPriority
     ? sortTaskCardByPriority(tasksToShow)
     : sortByDate
     ? sortTasksByDate(tasksToShow)
-    : tasksToShow;
+    : // : userFilter && search.pathname === "/your-tasks"
+      // ? filterByAssignedBy(tasksToShow)
+      // : userFilter && search.pathname === "/assigned-by-you"
+      // ? filterByAssignTo(tasksToShow)
+      // : userFilter && search.pathname === "/due-soon"
+      // ? filterByBothAssignValues(tasksToShow)
+      tasksToShow;
 
-  if (!user.id) {
-    navigate("/");
-  }
+  useEffect(() => {
+    if (!user.id) {
+      navigate("/");
+    }
+  });
 
   return (
     <div className="task-card-page">
@@ -103,25 +131,23 @@ const TaskCardPage = ({ user, users }) => {
         filterTasksByStatus={filterTasksByStatus}
       />
       <div className="task-card-content">
-        {sortedTaskCards
-          .filter((task) => task.assignTo === user.id)
-          .map((task) => {
-            return (
-              <TaskCard
-                key={task.id}
-                title={task.title}
-                priorityLevel={task.priorityLevel}
-                details={task.details}
-                dueDate={task.dueDate}
-                status={task.status}
-                id={task.id}
-                user={user}
-                assignedBy={task.assignedBy}
-                assignTo={task.assignTo}
-                usersList={users}
-              />
-            );
-          })}
+        {sortedTaskCards.map((task) => {
+          return (
+            <TaskCard
+              key={task.id}
+              title={task.title}
+              priorityLevel={task.priorityLevel}
+              details={task.details}
+              dueDate={task.dueDate}
+              status={task.status}
+              id={task.id}
+              user={user}
+              assignedBy={task.assignedBy}
+              assignTo={task.assignTo}
+              usersList={users}
+            />
+          );
+        })}
       </div>
     </div>
   );

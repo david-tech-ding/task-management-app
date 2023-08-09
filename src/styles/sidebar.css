@@ -138,7 +138,7 @@
 .sidebar-clear-button {
   background-color: #fffcf7;
   border: 1px solid red;
-  color: #4a5671;
+  color: black;
   margin-top: 1em;
   margin-left: 0.4em;
   width: fit-content;
@@ -246,6 +246,10 @@
   }
 
   .user:last-child {
+    margin-bottom: 1em;
+  }
+
+  .sidebar-clear-button {
     margin-bottom: 1em;
   }
 }

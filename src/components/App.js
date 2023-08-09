@@ -27,6 +27,7 @@ const App = () => {
   });
 
   const [users, setUsers] = useState([]);
+  const [admin, setAdmin] = useState(false);
   const [theme, setTheme] = useState("light");
 
   const navigate = useNavigate();
@@ -61,6 +62,17 @@ const App = () => {
       });
   });
 
+  useEffect(() => {
+    axios
+      .get(`/user/username/${loggedInUser.userName}`)
+      .then((response) => {
+        if (response.data[0].jobRole === "Clinic Manager") {
+          setAdmin(true);
+        }
+      })
+      .catch((err) => console.error(err));
+  }, [loggedInUser]);
+
   return (
     <AuthProvider>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -71,13 +83,14 @@ const App = () => {
             user={loggedInUser}
             toggleTheme={toggleTheme}
             theme={theme}
+            isAdmin={admin}
           />
           <Routes>
             <Route
               path="/"
               element={
                 loggedInUser.id ? (
-                  <Dashboard user={loggedInUser} />
+                  <Dashboard user={loggedInUser} isAdmin={admin} />
                 ) : (
                   <LandingPage />
                 )
@@ -128,6 +141,16 @@ const App = () => {
             <Route
               path="not-started"
               element={<TaskCardPage user={loggedInUser} users={users} />}
+            />
+            <Route
+              path="all-tasks"
+              element={
+                <TaskCardPage
+                  user={loggedInUser}
+                  users={users}
+                  isAdmin={admin}
+                />
+              }
             />
             <Route
               path="create-user"
