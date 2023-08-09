@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import "../styles/sidebar.css";
 import searchLogo from "../images/searchLogo.png";
 import * as FaIcons from "react-icons/fa";
@@ -9,6 +9,8 @@ import * as AiIcons from "react-icons/ai";
 const SideBar = ({
   setSortByPriority,
   sortByPriority,
+  setSortByDate,
+  sortByDate,
   filterTasksByStatus,
   changeUser,
 }) => {
@@ -20,6 +22,9 @@ const SideBar = ({
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const [priorityMenuOpen, setPriorityMenuOpen] = useState(false);
   const [statusMenuOpen, setStatusMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
+  const search = useLocation();
 
   useEffect(() => {
     fetchExistingUsersList();
@@ -39,6 +44,18 @@ const SideBar = ({
     setSearchItem(e.target.value);
   };
 
+  const clearFilters = () => {
+    if (
+      search.pathname === "/your-tasks" ||
+      search.pathname === "/assigned-by-you" ||
+      search.pathname === "/due-soon"
+    ) {
+      console.log("Filters cleared!");
+    } else {
+      navigate(-1);
+    }
+  };
+
   const toggleSidebar = () => {
     setSidebarVisible(!sidebarVisible);
     setContentVisible(!contentVisible);
@@ -50,6 +67,10 @@ const SideBar = ({
 
   const handlePrioritySort = () => {
     setSortByPriority(!sortByPriority);
+  };
+
+  const handleDateSort = () => {
+    setSortByDate(!sortByDate);
   };
 
   const handlePriorityClick = () => {
@@ -130,6 +151,13 @@ const SideBar = ({
                 <Link to="/not-started" className="selected-option">
                   Not Started
                 </Link>
+                <button
+                  className="sidebar-clear-button"
+                  type="button"
+                  onClick={clearFilters}
+                >
+                  Clear
+                </button>
               </div>
             )}
           </div>
@@ -142,8 +170,8 @@ const SideBar = ({
                 <div className="selected-option" onClick={handlePrioritySort}>
                   High to Low
                 </div>
-                <div className="selected-option" onClick={handlePrioritySort}>
-                  Low to High
+                <div className="selected-option" onClick={handleDateSort}>
+                  Soonest due
                 </div>
               </div>
             )}

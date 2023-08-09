@@ -138,10 +138,12 @@
     position: absolute;
     top: 80px;
     right: 0;
-    background-color: #3f3c3cbd;
+    background-color: #3f3c3c;
+    padding-top: 1em;
     width: 10em;
+    transition: 0.3s;
     border-radius: 0.5em;
-    /* border: 0.2em solid #d1ac00; */
+    z-index: 1;
   }
 
   .navbar-links-item {

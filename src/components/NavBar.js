@@ -3,7 +3,7 @@ import ReactSwitch from "react-switch";
 import { Link, useNavigate } from "react-router-dom";
 import "../styles/navbar.css";
 import ctmLogo from "../images/ctmLogo.png";
-import { FaRegMoon, FaBars, FaAngleDoubleUp } from "react-icons/fa";
+import { FaRegMoon, FaEllipsisV, FaAngleDoubleUp } from "react-icons/fa";
 import { BiSun } from "react-icons/bi";
 
 const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
@@ -123,7 +123,11 @@ const NavBar = ({ user, onLogout, theme, toggleTheme }) => {
                   onClick={handleMenuClick}
                 />
               ) : (
-                <FaBars size={30} color="fffcf7" onClick={handleMenuClick} />
+                <FaEllipsisV
+                  size={30}
+                  color="fffcf7"
+                  onClick={handleMenuClick}
+                />
               )}
               {menuOpen ? (
                 <ul className="navbar-links">

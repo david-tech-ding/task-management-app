@@ -67,7 +67,7 @@
 .filter-user-container {
   overflow-y: auto;
   overflow-x: hidden;
-  max-height: 350px;
+  max-height: 150px;
 }
 
 .side-bar-header {
@@ -135,6 +135,24 @@
   font-weight: 800;
 }
 
+.sidebar-clear-button {
+  background-color: #fffcf7;
+  border: 1px solid red;
+  color: #4a5671;
+  margin-top: 1em;
+  margin-left: 0.4em;
+  width: fit-content;
+}
+
+.sidebar-clear-button:hover {
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.sidebar-clear-button:active {
+  transform: scale(0.98);
+}
+
 @media screen and (max-width: 768px) {
   .side-bar {
     font-size: 13.5px;
@@ -165,7 +183,7 @@
 
   .expanded {
     width: 100%;
-    height: 150px;
+    height: 4em;
     background-color: #4a5671;
   }
 
@@ -179,5 +197,55 @@
 
   .side-bar-content {
     display: flex;
+  }
+
+  .user-container {
+    margin-left: 2em;
+    margin-top: 1.5em;
+  }
+
+  .status-container {
+    margin-left: 3em;
+    margin-top: 1.5em;
+  }
+
+  .priority-container {
+    margin-left: 3em;
+    margin-top: -1.5em;
+  }
+
+  .user-options,
+  .status-options {
+    background-color: #4a5671df;
+    border-radius: 5px;
+  }
+
+  .priority-options {
+    padding-top: 0.5em;
+    background-color: #4a5671df;
+    border-radius: 5px;
+  }
+
+  .priority-header {
+    margin-bottom: 0;
+  }
+
+  .search-bar {
+    margin-bottom: 0em;
+    width: 120px;
+    padding-left: 0.5em;
+  }
+
+  .search-bar input {
+    width: 90%;
+  }
+
+  .search-logo {
+    max-width: 20px;
+    padding: 0.5em 0.5em 0.5em 0.5em;
+  }
+
+  .user:last-child {
+    margin-bottom: 1em;
   }
 }
