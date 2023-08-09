@@ -12,6 +12,7 @@ const TaskCardPage = ({ user, users }) => {
   const navigate = useNavigate();
   const [tasksToShow, setTasksToShow] = useState([]);
   const [sortByPriority, setSortByPriority] = useState(false);
+  const [sortByDate, setSortByDate] = useState(false);
 
   const yourTasks = tasks.filter((task) => task.assignTo === user.id);
 
@@ -55,6 +56,15 @@ const TaskCardPage = ({ user, users }) => {
       .catch((err) => console.log(err));
   });
 
+  const sortTasksByDate = (tasks) => {
+    return tasks.sort((a, b) => {
+      let dateA = new Date(a.dueDate);
+      let dateB = new Date(b.dueDate);
+
+      return dateA - dateB;
+    });
+  };
+
   const priorityOrder = ["High", "Medium", "Low"];
 
   const sortTaskCardByPriority = (tasks) => {
@@ -73,6 +83,8 @@ const TaskCardPage = ({ user, users }) => {
 
   const sortedTaskCards = sortByPriority
     ? sortTaskCardByPriority(tasksToShow)
+    : sortByDate
+    ? sortTasksByDate(tasksToShow)
     : tasksToShow;
 
   if (!user.id) {
@@ -86,6 +98,8 @@ const TaskCardPage = ({ user, users }) => {
         changeUser={setUserFilter}
         setSortByPriority={setSortByPriority}
         sortByPriority={sortByPriority}
+        setSortByDate={setSortByDate}
+        sortByDate={sortByDate}
         filterTasksByStatus={filterTasksByStatus}
       />
       <div className="task-card-content">
